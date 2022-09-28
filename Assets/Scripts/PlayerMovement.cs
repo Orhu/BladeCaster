@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-  public float speed = 75.0f;
-  public float jump = 5.0f;
+  public float speed;
+  public float jump;
 
   private Rigidbody2D _body;
   private Animator _anim;
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
 
     //Horizontal Movement
-    float deltaX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+    float deltaX = Input.GetAxisRaw("Horizontal") * speed;
     Vector2 movement = new Vector2(deltaX, _body.velocity.y);
     _body.velocity = movement;
 
