@@ -116,15 +116,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerNoWeapon_0
+      name: PlayerIdle00
       rect:
         serializedVersion: 2
-        x: 0
+        x: 11
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -137,15 +137,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_1
+      name: PlayerIdle01
       rect:
         serializedVersion: 2
-        x: 32
+        x: 43
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -158,15 +158,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_2
+      name: PlayerRun00
       rect:
         serializedVersion: 2
-        x: 64
+        x: 74
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -179,15 +179,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_3
+      name: PlayerRun01
       rect:
         serializedVersion: 2
-        x: 96
+        x: 110
         y: 0
-        width: 32
-        height: 32
+        width: 8
+        height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,15 +200,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_4
+      name: PlayerRun02
       rect:
         serializedVersion: 2
-        x: 128
+        x: 138
         y: 0
-        width: 32
-        height: 32
+        width: 12
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -221,15 +221,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_5
+      name: PlayerRun03
       rect:
         serializedVersion: 2
-        x: 160
+        x: 174
         y: 0
-        width: 32
-        height: 32
+        width: 8
+        height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -242,15 +242,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_6
+      name: PlayerJump00
       rect:
         serializedVersion: 2
-        x: 192
+        x: 203
         y: 0
-        width: 32
-        height: 32
+        width: 9
+        height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -263,15 +263,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_7
+      name: PlayerHurt00
       rect:
         serializedVersion: 2
-        x: 224
+        x: 235
         y: 0
-        width: 32
-        height: 32
+        width: 10
+        height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -284,15 +284,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerNoWeapon_8
+      name: PlayeStun00
       rect:
         serializedVersion: 2
-        x: 256
+        x: 267
         y: 0
-        width: 32
-        height: 32
+        width: 12
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,15 +315,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerNoWeapon_4: -1302123121
-      PlayerNoWeapon_3: 603204085
-      PlayerNoWeapon_6: -1985727213
-      PlayerNoWeapon_7: -48761641
-      PlayerNoWeapon_5: -1689437203
-      PlayerNoWeapon_0: 1768033705
-      PlayerNoWeapon_8: -280871972
-      PlayerNoWeapon_1: -239459770
-      PlayerNoWeapon_2: -853461784
+      PlayerRun03: -1689437203
+      PlayerRun01: 603204085
+      PlayerRun02: -1302123121
+      PlayerHurt00: -48761641
+      PlayeStun00: -280871972
+      PlayerJump00: -1985727213
+      PlayerIdle01: -239459770
+      PlayerIdle00: 1768033705
+      PlayerRun00: -853461784
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

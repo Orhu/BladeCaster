@@ -990,10 +990,11 @@ TextureImporter:
       BlockB: -283898181
       Platform_Mid: -1918509500
       Brick_BR: -2020884444
-      Brick_R: 718679910
+      Brick_BRO: 1817934785
       Lock_Open: -1981525383
       blacknwhite_3: -320328963
       Brick_BLO: -1353275156
+      Fire: -1229892859
       Platform_R: 1884213290
       Ladder: -396126608
       blacknwhite_33: -2080455074
@@ -1001,7 +1002,6 @@ TextureImporter:
       blacknwhite_38: 1504904930
       blacknwhite_40: -2007452602
       Brick_B: 1002691773
-      Fire: -1229892859
       blacknwhite_39: -731875536
       blacknwhite_35: 168651656
       Brick_T: 1026923895
@@ -1025,9 +1025,9 @@ TextureImporter:
       Brick_TLO: -711125891
       Chain: -1395190097
       Key: -2018427921
-      Brick_BRO: 1817934785
-      Block_Outline: 1073631280
+      Brick_R: 718679910
       blacknwhite_6: 214129249
+      Block_Outline: 1073631280
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
