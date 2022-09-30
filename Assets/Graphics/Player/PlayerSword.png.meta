@@ -119,52 +119,10 @@ TextureImporter:
       name: PlayerSwordIdle
       rect:
         serializedVersion: 2
-        x: 12
-        y: 4
-        width: 12
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc4ea09822aeed64e9c49d5f59934c2c
-      internalID: 1298355976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSwordAtk00
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 4
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fd61c2abe64e3549843223c8eb962b1
-      internalID: 305367671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSwordAtk01
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 4
-        width: 20
-        height: 16
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,8 +130,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec1ae28dcf4f92b4b81495775c80d818
-      internalID: 2053660592
+      spriteID: 3d4d845f488467b4fbf4ed16b0796613
+      internalID: 1298355976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordAtk0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffe39c70220b81d408b68d61dacf8e57
+      internalID: 194930004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordAtk1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a23116c9ce82ba47a515552afad5cdd
+      internalID: 1713936245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordAtk2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 138ebee529b2a0d41a6497ddbac9169b
+      internalID: 1029914417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordAtk3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3786e45a0db90074087793ac6ca496b9
+      internalID: -2116500903
       vertices: []
       indices: 
       edges: []
@@ -182,10 +224,10 @@ TextureImporter:
       name: PlayerSwordAirAtk
       rect:
         serializedVersion: 2
-        x: 108
+        x: 160
         y: 0
-        width: 9
-        height: 21
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,7 +235,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d140637dbcdda844b1254c7ba519618
+      spriteID: a4edbda4b64d2af4785941fb1beab283
       internalID: -146569702
       vertices: []
       indices: 
@@ -210,10 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerSwordAtk01: 2053660592
-      PlayerSwordAtk00: 305367671
+      PlayerSwordAtk3: -2116500903
       PlayerSwordIdle: 1298355976
+      PlayerSwordAtk2: 1029914417
+      PlayerSwordAtk1: 1713936245
       PlayerSwordAirAtk: -146569702
+      PlayerSwordAtk0: 194930004
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

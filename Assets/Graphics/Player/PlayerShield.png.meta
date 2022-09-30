@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2a0933a49366e5046a6c69829e2578ca
+guid: d75f274d04b73ee48813a163b4bc89a4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,190 +116,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerIdle0
+      name: PlayerShieldIdle
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aa839aab259cae49b51daa1fcc7edca
-      internalID: 1768033705
+      spriteID: 004eb7ba1b295df4d93fe33afd40b138
+      internalID: -1988274497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle1
+      name: PlayerShield0
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a667d5f63cb416f43b008a9a0c606afb
-      internalID: -239459770
+      spriteID: 02fd924428513114baddbeac59fdeb02
+      internalID: 220211656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun0
+      name: PlayerShield1
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa2d702347575c74eaafaa7f92c712b6
-      internalID: -853461784
+      spriteID: 213a3d3d27b10a140bdc374655e16fcf
+      internalID: -826418371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun1
+      name: PlayerShield2
       rect:
         serializedVersion: 2
         x: 96
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd62166ddd3b93b4dba324545fab5a39
-      internalID: 603204085
+      spriteID: c63f8e7a305114844b6f13bb176194e9
+      internalID: -606111382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun2
+      name: PlayerShieldRun3
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04ee8b93e0fa0f9479930bf52e49a544
-      internalID: -1302123121
+      spriteID: 16d1831eaf2664b46ab9901d4a58e198
+      internalID: -449829107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun3
+      name: PlayerShieldThrow
       rect:
         serializedVersion: 2
         x: 160
-        y: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d55ded6b4adc5940a2f87b8a6cea086
-      internalID: -1689437203
+      spriteID: 00ad2686a432e2c4692d623756d8f11e
+      internalID: -518384095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerJump
+      name: ShieldProjectile
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
+        x: 173
+        y: 15
+        width: 6
+        height: 2
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b5e18e0909abc849a745d2fea2a93e5
-      internalID: -1985727213
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerHurt
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f9340d56a4f1984c806c82aaa21fc8c
-      internalID: -48761641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerStun
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65ddef80015360e40a55b3e52841733c
-      internalID: -280871972
+      spriteID: 3c70b77c68b552e40a7e9d4e165c9397
+      internalID: 1780490504
       vertices: []
       indices: 
       edges: []
@@ -315,15 +273,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerRun2: -1302123121
-      PlayerRun3: -1689437203
-      PlayerJump: -1985727213
-      PlayerRun1: 603204085
-      PlayerStun: -280871972
-      PlayerIdle0: 1768033705
-      PlayerHurt: -48761641
-      PlayerIdle1: -239459770
-      PlayerRun0: -853461784
+      PlayerShield2: -606111382
+      PlayerShield0: 220211656
+      PlayerShieldIdle: -1988274497
+      PlayerShield1: -826418371
+      PlayerShieldThrow: -518384095
+      ShieldProjectile: 1780490504
+      PlayerShieldRun3: -449829107
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

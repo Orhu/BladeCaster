@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2a0933a49366e5046a6c69829e2578ca
+guid: 43ae06b125ab24c44ba85e50b358cb38
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerIdle0
+      name: PlayerSpearIdle
       rect:
         serializedVersion: 2
         x: 0
@@ -124,20 +124,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aa839aab259cae49b51daa1fcc7edca
-      internalID: 1768033705
+      spriteID: 6a82e945fb5d25b409eab89673127ec4
+      internalID: -373554786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle1
+      name: PlayerSpearAtk0
       rect:
         serializedVersion: 2
         x: 32
@@ -145,20 +145,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a667d5f63cb416f43b008a9a0c606afb
-      internalID: -239459770
+      spriteID: a10f660c300afc8498d107ac8f93f81f
+      internalID: -416170244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun0
+      name: PlayerSpear_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,20 +166,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa2d702347575c74eaafaa7f92c712b6
-      internalID: -853461784
+      spriteID: e951ced1f3f35444bab249b07f46e6d0
+      internalID: -1364969087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun1
+      name: PlayerSpear_3
       rect:
         serializedVersion: 2
         x: 96
@@ -187,20 +187,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd62166ddd3b93b4dba324545fab5a39
-      internalID: 603204085
+      spriteID: 80738bba508e4d4409ef5804a0ad92ae
+      internalID: 1777630543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun2
+      name: PlayerSpear_4
       rect:
         serializedVersion: 2
         x: 128
@@ -208,20 +208,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04ee8b93e0fa0f9479930bf52e49a544
-      internalID: -1302123121
+      spriteID: 132dc6fcfdd32294cb8e2d43311d8403
+      internalID: 653458525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun3
+      name: PlayerSpear_5
       rect:
         serializedVersion: 2
         x: 160
@@ -229,20 +229,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d55ded6b4adc5940a2f87b8a6cea086
-      internalID: -1689437203
+      spriteID: 207d444bed456b242baa617d2c0d3de8
+      internalID: 1389636428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerJump
+      name: PlayerSpear_6
       rect:
         serializedVersion: 2
         x: 192
@@ -250,20 +250,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b5e18e0909abc849a745d2fea2a93e5
-      internalID: -1985727213
+      spriteID: 0c5cc26ade32b81469afb24c80af54f0
+      internalID: 585902427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerHurt
+      name: PlayerSpear_7
       rect:
         serializedVersion: 2
         x: 224
@@ -271,20 +271,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f9340d56a4f1984c806c82aaa21fc8c
-      internalID: -48761641
+      spriteID: 16b73e8caa1145045be34f17d289aff3
+      internalID: -831357573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerStun
+      name: PlayerSpear_8
       rect:
         serializedVersion: 2
         x: 256
@@ -292,14 +292,77 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65ddef80015360e40a55b3e52841733c
-      internalID: -280871972
+      spriteID: 0d4356fde58ee6b42a89332f6966d66c
+      internalID: 919222098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSpear_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc3b347f0a1924c4abf49d35ba11738f
+      internalID: -1463809963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSpear_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61aff226903f1f34f8140d67d7f33bcb
+      internalID: 144061865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSpear_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8afe71d16c5983a44b5aaf4b33b57842
+      internalID: 664156777
       vertices: []
       indices: 
       edges: []
@@ -315,15 +378,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerRun2: -1302123121
-      PlayerRun3: -1689437203
-      PlayerJump: -1985727213
-      PlayerRun1: 603204085
-      PlayerStun: -280871972
-      PlayerIdle0: 1768033705
-      PlayerHurt: -48761641
-      PlayerIdle1: -239459770
-      PlayerRun0: -853461784
+      PlayerSpear_7: -831357573
+      PlayerSpear_9: -1463809963
+      PlayerSpear_2: -1364969087
+      PlayerSpearAtk0: -416170244
+      PlayerSpear_4: 653458525
+      PlayerSpear_8: 919222098
+      PlayerSpear_10: 144061865
+      PlayerSpear_11: 664156777
+      PlayerSpear_3: 1777630543
+      PlayerSpear_5: 1389636428
+      PlayerSpearIdle: -373554786
+      PlayerSpear_6: 585902427
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

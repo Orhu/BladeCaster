@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2a0933a49366e5046a6c69829e2578ca
+guid: 5d0573c3e353c644e88e92ca33304341
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerIdle0
+      name: PlayerClawsIdle
       rect:
         serializedVersion: 2
         x: 0
@@ -124,20 +124,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aa839aab259cae49b51daa1fcc7edca
-      internalID: 1768033705
+      spriteID: 2708cbdc4651ddc408ace36cd05727f9
+      internalID: 897616216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle1
+      name: PlayerClawsAtk0
       rect:
         serializedVersion: 2
         x: 32
@@ -145,20 +145,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a667d5f63cb416f43b008a9a0c606afb
-      internalID: -239459770
+      spriteID: 7e68bd009cd270745bb9e4167bde0f9d
+      internalID: -599967073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun0
+      name: PlayerClawsAtk1
       rect:
         serializedVersion: 2
         x: 64
@@ -166,20 +166,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa2d702347575c74eaafaa7f92c712b6
-      internalID: -853461784
+      spriteID: 8ad02e6c3031aa8499abeb48d8b0b526
+      internalID: 1915798609
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun1
+      name: PlayerClawsAtk2
       rect:
         serializedVersion: 2
         x: 96
@@ -187,20 +187,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd62166ddd3b93b4dba324545fab5a39
-      internalID: 603204085
+      spriteID: 5ca4dae822f034148acf64acc30a1cd4
+      internalID: -1145687802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun2
+      name: PlayerClawsClimb0
       rect:
         serializedVersion: 2
         x: 128
@@ -208,20 +208,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04ee8b93e0fa0f9479930bf52e49a544
-      internalID: -1302123121
+      spriteID: 82e57d82f9c154448a2b1f2552002429
+      internalID: 257439884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerRun3
+      name: PlayerClawsClimb1
       rect:
         serializedVersion: 2
         x: 160
@@ -229,20 +229,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d55ded6b4adc5940a2f87b8a6cea086
-      internalID: -1689437203
+      spriteID: f8303e6bbea6bb94e933f976e4320414
+      internalID: 107837466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerJump
+      name: PlayerClawsSlide
       rect:
         serializedVersion: 2
         x: 192
@@ -250,56 +250,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b5e18e0909abc849a745d2fea2a93e5
-      internalID: -1985727213
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerHurt
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f9340d56a4f1984c806c82aaa21fc8c
-      internalID: -48761641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerStun
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65ddef80015360e40a55b3e52841733c
-      internalID: -280871972
+      spriteID: e5cff2b056a2b024bb003505d1f3c7a8
+      internalID: 1908373116
       vertices: []
       indices: 
       edges: []
@@ -315,15 +273,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerRun2: -1302123121
-      PlayerRun3: -1689437203
-      PlayerJump: -1985727213
-      PlayerRun1: 603204085
-      PlayerStun: -280871972
-      PlayerIdle0: 1768033705
-      PlayerHurt: -48761641
-      PlayerIdle1: -239459770
-      PlayerRun0: -853461784
+      PlayerClawsAtk0: -599967073
+      PlayerClawsSlide: 1908373116
+      PlayerClawsClimb1: 107837466
+      PlayerClawsAtk2: -1145687802
+      PlayerClawsIdle: 897616216
+      PlayerClawsAtk1: 1915798609
+      PlayerClawsClimb0: 257439884
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
