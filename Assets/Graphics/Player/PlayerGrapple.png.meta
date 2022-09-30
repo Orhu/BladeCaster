@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerGrapple_0
+      name: PlayerGrappleIdle
       rect:
         serializedVersion: 2
         x: 0
@@ -124,7 +124,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -137,7 +137,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_1
+      name: PlayerGrappleUp
       rect:
         serializedVersion: 2
         x: 32
@@ -145,7 +145,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -158,7 +158,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_2
+      name: PlayerGrappleUpSide
       rect:
         serializedVersion: 2
         x: 64
@@ -166,7 +166,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -179,7 +179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_3
+      name: PlayerGrappleSide
       rect:
         serializedVersion: 2
         x: 96
@@ -187,7 +187,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,7 +200,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_4
+      name: PlayerGrappleDownSide
       rect:
         serializedVersion: 2
         x: 128
@@ -208,7 +208,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -221,7 +221,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_5
+      name: PlayerGrappleDown
       rect:
         serializedVersion: 2
         x: 160
@@ -229,7 +229,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,12 +245,12 @@ TextureImporter:
       name: PlayerGrappleAIr
       rect:
         serializedVersion: 2
-        x: 10
-        y: 40
-        width: 12
-        height: 17
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -263,7 +263,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_7
+      name: PlayerGrappleArmUp
       rect:
         serializedVersion: 2
         x: 32
@@ -271,7 +271,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -284,7 +284,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_8
+      name: PlayerGrappleArmUpSide
       rect:
         serializedVersion: 2
         x: 64
@@ -292,7 +292,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -305,7 +305,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_9
+      name: PlayerGrappleArmSide
       rect:
         serializedVersion: 2
         x: 96
@@ -313,7 +313,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -326,7 +326,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_10
+      name: PlayerGrappleArmDownSide
       rect:
         serializedVersion: 2
         x: 128
@@ -334,7 +334,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -347,7 +347,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_11
+      name: PlayerGrappleArmDown
       rect:
         serializedVersion: 2
         x: 160
@@ -355,7 +355,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -368,7 +368,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_12
+      name: PlayerGrappleHookUp
       rect:
         serializedVersion: 2
         x: 32
@@ -376,7 +376,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -389,7 +389,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_13
+      name: PlayerGrappleHookUpSide
       rect:
         serializedVersion: 2
         x: 64
@@ -397,7 +397,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -410,7 +410,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_14
+      name: PlayerGrappleHookSide
       rect:
         serializedVersion: 2
         x: 96
@@ -418,7 +418,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -431,7 +431,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_15
+      name: PlayerGrappleHookDownSide
       rect:
         serializedVersion: 2
         x: 128
@@ -439,7 +439,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -452,7 +452,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrapple_16
+      name: PlayerGrappleHookDown
       rect:
         serializedVersion: 2
         x: 160
@@ -460,7 +460,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -483,23 +483,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerGrapple_0: -1033107564
-      PlayerGrapple_5: -251981967
-      PlayerGrapple_8: 495652865
-      PlayerGrapple_9: 2127668322
-      PlayerGrapple_12: 634623852
-      PlayerGrapple_13: -2022425002
+      PlayerGrappleArmDownSide: -1842310873
+      PlayerGrappleUpSide: 768397903
+      PlayerGrappleArmUp: -373299518
+      PlayerGrappleHookDownSide: -559984211
       PlayerGrappleAIr: -1453752811
-      PlayerGrapple_11: -1024512920
-      PlayerGrapple_3: 2144125954
-      PlayerGrapple_10: -1842310873
-      PlayerGrapple_2: 768397903
-      PlayerGrapple_14: 418379211
-      PlayerGrapple_4: -1330850128
-      PlayerGrapple_1: -341614532
-      PlayerGrapple_16: 900713949
-      PlayerGrapple_15: -559984211
-      PlayerGrapple_7: -373299518
+      PlayerGrappleArmDown: -1024512920
+      PlayerGrappleArmUpSide: 495652865
+      PlayerGrappleHookSide: 418379211
+      PlayerGrappleIdle: -1033107564
+      PlayerGrappleArmSide: 2127668322
+      PlayerGrappleHookUpSide: -2022425002
+      PlayerGrappleHookDown: 900713949
+      PlayerGrappleDown: -251981967
+      PlayerGrappleDownSide: -1330850128
+      PlayerGrappleUp: -341614532
+      PlayerGrappleHookUp: 634623852
+      PlayerGrappleSide: 2144125954
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
