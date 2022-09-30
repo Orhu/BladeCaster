@@ -15,28 +15,58 @@ public class Player : MonoBehaviour
   //Testing Purposes
   public TextMesh EText;
 
-  void Start()
-  {
+  void Start() {
       curEnergy = maxEnergy;
       EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
   }
 
   void Update() {
+    // Weapon Swap
     // press [button] to open weapon wheel theoretically
     if (Input.GetKeyDown("1")) { // sword
-      currentWeapon = WeaponsMaster.sword;
+      SwitchWeapon(0);
     } else if (Input.GetKeyDown("2")) { // grapple
-      currentWeapon = WeaponsMaster.grapple;
+      SwitchWeapon(1);
     } else if (Input.GetKeyDown("3")) { // spear
-      currentWeapon = WeaponsMaster.spear;
+      SwitchWeapon(2);
     } else if (Input.GetKeyDown("4")) { // claymore
-      currentWeapon = WeaponsMaster.claymore;
+      SwitchWeapon(3);
     } else if (Input.GetKeyDown("5")) { // claws
-      currentWeapon = WeaponsMaster.claws;
+      SwitchWeapon(4);
     } else if (Input.GetKeyDown("6")) { // musket
-      currentWeapon = WeaponsMaster.musket;
+      SwitchWeapon(5);
     } else if (Input.GetKeyDown("7")) { // shield
-      currentWeapon = WeaponsMaster.shield;
+      SwitchWeapon(6);
+    }
+
+    if (currentWeapon != null) {
+      currentWeapon.WeaponUpdate();
+    }
+  }
+
+  private void SwitchWeapon(int weaponNum) {
+    switch (weaponNum) {
+      case 0:
+        currentWeapon = WeaponsMaster.sword;
+        break;
+      case 1:
+        currentWeapon = WeaponsMaster.grapple;
+        break;
+      case 2:
+        currentWeapon = WeaponsMaster.spear;
+        break;
+      case 3:
+        currentWeapon = WeaponsMaster.claymore;
+        break;
+      case 4:
+        currentWeapon = WeaponsMaster.claws;
+        break;
+      case 5:
+        currentWeapon = WeaponsMaster.musket;
+        break;
+      case 6:
+        currentWeapon = WeaponsMaster.shield;
+        break;
     }
   }
 
@@ -44,8 +74,7 @@ public class Player : MonoBehaviour
     weaponUnlocks[weaponNum] = true;
   }
 
-  public bool UpdateEnergy(float x)
-  {
+  public bool UpdateEnergy(float x) {
     /*
     Params:
       float x = energy consumption from the weapon being called
