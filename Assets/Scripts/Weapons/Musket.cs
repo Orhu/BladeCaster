@@ -6,6 +6,10 @@ public class Musket : MonoBehaviour, IWeapon {
     public int damage {get; private set;}
     public int abilityEnergyCost {get; private set;} = 1;
 
+    public void WeaponUpdate() {
+        // TO DO
+    }
+
     public void Attack() {
         //TO DO
     }

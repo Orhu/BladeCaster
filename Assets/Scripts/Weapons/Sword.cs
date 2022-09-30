@@ -6,12 +6,16 @@ public class Sword : MonoBehaviour, IWeapon {
     public int damage {get; private set;}
     public int abilityEnergyCost {get; private set;} = 0;
 
+    public void WeaponUpdate() {
+        // TO DO
+    }
+
     public void Attack() {
-        //TO DO
+        // animate later, turn on hurtbox and check for collision, basically.
     }
 
 
     public void Ability() {
-        //TO DO
+        // Not Used
     }
 }
