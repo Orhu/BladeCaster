@@ -152,10 +152,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 19169140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0510a9d834b37743926d0494265d499, type: 3}
+  m_Script: {fileID: 11500000, guid: e927fe6fc077b694ca360e63135016c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnergy: 10
+  UnlockWeapon: 000000000000
   EText: {fileID: 265131200}
 --- !u!114 &19169142
 MonoBehaviour:

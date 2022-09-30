@@ -8,7 +8,7 @@ public class BaseWeapon : MonoBehaviour
 
   public bool Call()
   {
-    if(GetComponent<PlayerValues>().UpdateEnergy(energyConsump))
+    if(GetComponent<Player>().UpdateEnergy(energyConsump))
     {
       return false;
     }

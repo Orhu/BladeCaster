@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerValues : MonoBehaviour
+public class Player : MonoBehaviour
 {
   private float curEnergy;
   public float maxEnergy = 10;
+
+  // 0: Sword, 1: Grapple, 2: Claws, 3: Claymore, 4: Musket, 5: Shield
+  public bool[] UnlockWeapon = {true, false, false, false, false, false};
 
   //Testing Purposes
   public TextMesh EText;
