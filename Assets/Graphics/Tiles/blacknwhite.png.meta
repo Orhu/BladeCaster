@@ -44,7 +44,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -990,10 +990,10 @@ TextureImporter:
       BlockB: -283898181
       Platform_Mid: -1918509500
       Brick_BR: -2020884444
-      Brick_R: 718679910
       Lock_Open: -1981525383
       blacknwhite_3: -320328963
       Brick_BLO: -1353275156
+      Block_Outline: 1073631280
       Platform_R: 1884213290
       Ladder: -396126608
       blacknwhite_33: -2080455074
@@ -1026,7 +1026,7 @@ TextureImporter:
       Chain: -1395190097
       Key: -2018427921
       Brick_BRO: 1817934785
-      Block_Outline: 1073631280
+      Brick_R: 718679910
       blacknwhite_6: 214129249
   spritePackingTag: 
   pSDRemoveMatte: 0

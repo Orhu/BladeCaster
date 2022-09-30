@@ -13,9 +13,10 @@ public class PlayerValues : MonoBehaviour
   void Start()
   {
       curEnergy = maxEnergy;
+      EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
   }
 
-  public bool UpdateCur(float x)
+  public bool UpdateEnergy(float x)
   {
     /*
     Params:
@@ -28,11 +29,7 @@ public class PlayerValues : MonoBehaviour
       return false;
     }
     curEnergy = tempEng; //Decrement by x if the curEnergy is greater than 0
-    return true;
-  }
-
-  void Update()
-  {
     EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
+    return true;
   }
 }
