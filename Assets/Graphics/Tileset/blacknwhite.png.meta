@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 78f060533eaefe84883b82960b22bdee
+guid: d55b623cf1063214e850e8302669a510
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -990,10 +990,10 @@ TextureImporter:
       BlockB: -283898181
       Platform_Mid: -1918509500
       Brick_BR: -2020884444
+      Brick_BRO: 1817934785
       Lock_Open: -1981525383
       blacknwhite_3: -320328963
       Brick_BLO: -1353275156
-      blacknwhite_6: 214129249
       Platform_R: 1884213290
       Ladder: -396126608
       blacknwhite_33: -2080455074
@@ -1026,7 +1026,7 @@ TextureImporter:
       Chain: -1395190097
       Key: -2018427921
       Brick_R: 718679910
-      Brick_BRO: 1817934785
+      blacknwhite_6: 214129249
       Block_Outline: 1073631280
   spritePackingTag: 
   pSDRemoveMatte: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19a9dcb15fb5e654d88eb7369ae29048
+guid: 5036c877a5746a045859b121965e1d05
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerSwordIdle
+      name: cyan_prop_candle_idle
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 120
+        y: 60
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecd6a330e54bb9a40b340f226794953f
-      internalID: 1954880302
+      spriteID: f976411c0a3c450409a7ea600b61ebf6
+      internalID: -693940501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSwordAtk0
+      name: cyan_prop_candle_idle1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 120
+        y: 48
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,41 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b703bb468a6ff25499dad61973f4ce4d
-      internalID: 1098892477
+      spriteID: f67875a68142cf14f97cc60bc5e227c4
+      internalID: -1447898564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSwordAtk1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df6c6e938b223d44880d75ddaa0db610
-      internalID: 767392779
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSwordAtk2
+      name: cyan_prop_switch_off
       rect:
         serializedVersion: 2
         x: 96
-        y: 0
-        width: 32
-        height: 32
+        y: 36
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a37300f24d81a244ea2c99340f484fb3
-      internalID: 1279071152
+      spriteID: 8f43865240d77854e8a4f2f91ed4f3c5
+      internalID: 719285787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSwordAtk3
+      name: cyan_prop_switch_on
       rect:
         serializedVersion: 2
-        x: 158
-        y: 0
-        width: 36
-        height: 32
+        x: 96
+        y: 24
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d46dd29caceb564587382642c63d13e
-      internalID: 747722960
+      spriteID: 70c6e5c803437814ea1462596ebe4ad2
+      internalID: -1898472021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSwordAitAtk
+      name: cyan_item_checkpoint
       rect:
         serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
+        x: 120
+        y: 12
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,8 +214,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4db974ab0ca9c6145b0c3a86a2f7eb16
-      internalID: -860658649
+      spriteID: 23256c064334e764eaa9b33453dbeaa3
+      internalID: 677224797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyan_item_energy
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 12
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47840175ab7f7e7439b9e02c1e4391e0
+      internalID: -1397926608
       vertices: []
       indices: 
       edges: []
@@ -252,12 +252,56 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerSwordAtk3: 747722960
-      PlayerSwordIdle: 1954880302
-      PlayerSwordAtk2: 1279071152
-      PlayerSwordAitAtk: -860658649
-      PlayerSwordAtk1: 767392779
-      PlayerSwordAtk0: 1098892477
+      TilesetA_Cyan_14: 2086877847
+      TilesetA_Cyan_27: -1386481417
+      TilesetA_Cyan_49: 1637930070
+      TilesetA_Cyan_29: -1380692589
+      TilesetA_Cyan_46: 1445584586
+      TilesetA_Cyan_21: 1124887652
+      TilesetA_Cyan_10: -522052673
+      TilesetA_Cyan_47: 1718558048
+      TilesetA_Cyan_33: 216143432
+      TilesetA_Cyan_15: -57500156
+      TilesetA_Cyan_13: 1342936939
+      TilesetA_Cyan_19: 1735872406
+      TilesetA_Cyan_36: -125109155
+      TilesetA_Cyan_45: 1303823905
+      TilesetA_Cyan_32: 1027679378
+      TilesetA_Cyan_37: 345889859
+      TilesetA_Cyan_9: 1887223367
+      TilesetA_Cyan_20: -882694347
+      TilesetA_Cyan_28: -1837205773
+      TilesetA_Cyan_7: 1027378758
+      cyan_item_checkpoint: 677224797
+      TilesetA_Cyan_38: 1939469799
+      TilesetA_Cyan_44: -372037576
+      cyan_item_energy: -1397926608
+      TilesetA_Cyan_6: 1053703397
+      TilesetA_Cyan_1: -269064001
+      TilesetA_Cyan_26: 1392329908
+      TilesetA_Cyan_42: 1252396473
+      TilesetA_Cyan_17: 281042689
+      TilesetA_Cyan_43: -1673340066
+      TilesetA_Cyan_34: 626814077
+      TilesetA_Cyan_39: -134023964
+      TilesetA_Cyan_5: 1005095844
+      cyan_prop_candle_idle1: -1447898564
+      TilesetA_Cyan_41: -1556125625
+      TilesetA_Cyan_25: 1941084730
+      TilesetA_Cyan_3: -779590020
+      TilesetA_Cyan_11: -1031047842
+      TilesetA_Cyan_23: -805714149
+      TilesetA_Cyan_2: 61729206
+      TilesetA_Cyan_4: 1673824033
+      TilesetA_Cyan_22: 1167549923
+      TilesetA_Cyan_18: -1613399585
+      TilesetA_Cyan_12: 556746688
+      cyan_prop_switch_on: -1898472021
+      TilesetA_Cyan_35: 828818934
+      TilesetA_Cyan_0: -1587757844
+      TilesetA_Cyan_48: 323188421
+      cyan_prop_switch_off: 719285787
+      cyan_prop_candle_idle: -693940501
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19a9dcb15fb5e654d88eb7369ae29048
+guid: 61018f2864956124abddedcd966f2447
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,127 +116,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerSwordIdle
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecd6a330e54bb9a40b340f226794953f
-      internalID: 1954880302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSwordAtk0
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b703bb468a6ff25499dad61973f4ce4d
-      internalID: 1098892477
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSwordAtk1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df6c6e938b223d44880d75ddaa0db610
-      internalID: 767392779
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSwordAtk2
+      name: magenta_prop_switch_Off
       rect:
         serializedVersion: 2
         x: 96
-        y: 0
-        width: 32
-        height: 32
+        y: 36
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a37300f24d81a244ea2c99340f484fb3
-      internalID: 1279071152
+      spriteID: cef8b65d83ab1c44e96292d9a01a448b
+      internalID: 1635774056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSwordAtk3
+      name: magenta_prop_switch_On
       rect:
         serializedVersion: 2
-        x: 158
-        y: 0
-        width: 36
-        height: 32
+        x: 96
+        y: 24
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d46dd29caceb564587382642c63d13e
-      internalID: 747722960
+      spriteID: f3f2cb99663cbf24a864380c433cf8c2
+      internalID: -2145412693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSwordAitAtk
+      name: magenta_item_energy
       rect:
         serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
+        x: 96
+        y: 12
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4db974ab0ca9c6145b0c3a86a2f7eb16
-      internalID: -860658649
+      spriteID: f1a7cc19a3321dc48b62adaf105b4012
+      internalID: 1009308360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magenta_item_checkpoint
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 12
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1701f9385d6e7b944826f6b578307c96
+      internalID: 1153362011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilesetA_Magenta_0
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 60
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19d21ec7e17a5d47b940f8ecf11b9db
+      internalID: -1129196597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magenta_prop_candle_idle1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 48
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa13c7e032dee8449c18fdd71d6ad47
+      internalID: -637755528
       vertices: []
       indices: 
       edges: []
@@ -252,12 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerSwordAtk3: 747722960
-      PlayerSwordIdle: 1954880302
-      PlayerSwordAtk2: 1279071152
-      PlayerSwordAitAtk: -860658649
-      PlayerSwordAtk1: 767392779
-      PlayerSwordAtk0: 1098892477
+      magenta_item_energy: 1009308360
+      magenta_prop_candle_idle1: -637755528
+      magenta_item_checkpoint: 1153362011
+      TilesetA_Magenta_0: -1129196597
+      magenta_prop_switch_Off: 1635774056
+      magenta_prop_switch_On: -2145412693
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
