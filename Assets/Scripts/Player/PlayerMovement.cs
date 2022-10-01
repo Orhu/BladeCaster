@@ -13,31 +13,21 @@ public class PlayerMovement : MonoBehaviour {
 
   private Rigidbody2D _body;
   private BoxCollider2D _box;
+  private Animator _anim;
 
   void Start() {
     _body = GetComponent<Rigidbody2D>();
     _box = GetComponent<BoxCollider2D>();
+    _anim = GetComponent<Animator>();
   }
 
   void Update() {
-    Vector3 max = _box.bounds.max;
-    Vector3 min = _box.bounds.min;
-    Vector2 corner1 = new Vector2(max.x, min.y - .1f);
-    Vector2 corner2 = new Vector2(min.x, min.y - .2f);
-    Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
-
     //Horizontal Movement
     float deltaX = Input.GetAxisRaw("Horizontal") * speed;
     Vector2 movement = new Vector2(deltaX, _body.velocity.y);
     _body.velocity = movement;
 
     //Vertical movement
-    bool grounded = false;
-    if (hit != null) {
-      grounded = true;
-    }
-
-    _body.gravityScale = grounded && deltaX == 0 ? 0 : 1;
     if (jumping) {
       if (Input.GetKey(KeyCode.Space)) {
       _body.AddForce(Vector2.up * jumpBoost, ForceMode2D.Impulse);
@@ -50,6 +40,16 @@ public class PlayerMovement : MonoBehaviour {
       StartCoroutine(JumpMod());
     }
 
+    // animation
+    _anim.SetFloat("speed", Mathf.Abs(deltaX));
+    if (!Mathf.Approximately(deltaX,0)) {
+      transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
+    }
+
+    _anim.SetBool("jump", !IsGrounded());
+
+
+    // We might want to adjust it so attacking happens here.
   }
 
   private bool IsGrounded() {

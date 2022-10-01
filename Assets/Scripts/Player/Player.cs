@@ -15,9 +15,17 @@ public class Player : MonoBehaviour
   //Testing Purposes
   public TextMesh EText;
 
+  private Animator _anim;
+
   void Start() {
-      curEnergy = maxEnergy;
-      EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
+    _anim = GetComponent<Animator>();
+    curEnergy = maxEnergy;
+    EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
+
+    for (int i = 0; i < 7; i++) {
+      UnlockWeapon(i);
+    }
+    
   }
 
   void Update() {
@@ -40,11 +48,19 @@ public class Player : MonoBehaviour
     }
 
     if (currentWeapon != null) {
-      currentWeapon.WeaponUpdate();
+      // Attacking/Ability
+      if (Input.GetKeyDown(KeyCode.Z)) {
+        _anim.SetTrigger("attack");
+        currentWeapon.Attack();
+      } else if (Input.GetKeyDown(KeyCode.X)) {
+        _anim.SetTrigger("ability");
+        currentWeapon.Ability();
+      }
     }
   }
 
   private void SwitchWeapon(int weaponNum) {
+    _anim.SetInteger("weapon", (weaponNum + 1));
     switch (weaponNum) {
       case 0:
         currentWeapon = WeaponsMaster.sword;
