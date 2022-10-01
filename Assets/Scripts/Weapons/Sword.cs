@@ -3,34 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon {
-    [SerializeField] private LayerMask hurtboxLayerMask;
-    public int damage {get; private set;}
+    [SerializeField] private LayerMask hurtboxLayerMask; //???
+    public int damage {get; private set;} = 1;
     public int abilityEnergyCost {get; private set;} = 0;
 
-    [SerializeField] float atkHurtboxXMod = 1.2f;
-    [SerializeField] float atkHurtboxYMod = 0.8f;
-
-    private Rigidbody2D _body;
     private BoxCollider2D _box;
-    
 
     void Start() {
-        _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
     }
 
     public void WeaponUpdate() {
-        // TO DO
+        // TO DO What does this even do
     }
 
     public void Attack() {
-        Vector2 hurtboxDirection = Vector2.left;
-        if (Mathf.Sign(transform.localScale.x) >= 0) {
-            hurtboxDirection = Vector2.right;
+        float direction = transform.localScale.x; // which way are you facing
+        Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x * 3) * direction, 0, 0), new Vector3 (_box.bounds.size.x * 2, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
+        foreach (Collider2D hit in enemiesHit) {
+            Debug.Log(hit);
+            // check for tags for different results of getting hit (do later)
+            if (hit.tag == "enemy") {
+                hit.GetComponent<IEnemy>().GetHit(damage);
+            }
         }
-        float hurtboxDistance = _box.bounds.size.y * atkHurtboxXMod; 
-        RaycastHit2D hurtboxHit = Physics2D.BoxCast(_box.bounds.center, _box.bounds.size + new Vector3(0f, _box.bounds.size.y * atkHurtboxYMod - _box.bounds.size.y,0f), 0f, hurtboxDirection, hurtboxDistance, hurtboxLayerMask);
-        Debug.Log(hurtboxHit.collider);
     }
 
 

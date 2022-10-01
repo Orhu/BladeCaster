@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     curEnergy = maxEnergy;
     EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
 
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 4; i++) {
       UnlockWeapon(i);
     }
     
@@ -39,13 +39,13 @@ public class Player : MonoBehaviour
       SwitchWeapon(2);
     } else if (Input.GetKeyDown("4")) { // claymore
       SwitchWeapon(3);
-    } else if (Input.GetKeyDown("5")) { // claws
+    } /*aelse if (Input.GetKeyDown("5")) { // claws
       SwitchWeapon(4);
     } else if (Input.GetKeyDown("6")) { // musket
       SwitchWeapon(5);
     } else if (Input.GetKeyDown("7")) { // shield
       SwitchWeapon(6);
-    }
+    }*/
 
     if (currentWeapon != null) {
       // Attacking/Ability
@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
       case 3:
         currentWeapon = WeaponsMaster.claymore;
         break;
+      /*
       case 4:
         currentWeapon = WeaponsMaster.claws;
         break;
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
         break;
       case 6:
         currentWeapon = WeaponsMaster.shield;
-        break;
+        break;*/
     }
   }
 
