@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
   
-  [SerializeField] private LayerMask platfromLayerMask;
+  [SerializeField] private LayerMask platformLayerMask;
   public float speed;
   public float baseJump;
   public float jumpBoost;
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
 
   private bool IsGrounded() {
     float bonusHeight = 0.1f;
-    RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center, _box.bounds.size, 0f, Vector2.down, bonusHeight, platfromLayerMask);
+    RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center, _box.bounds.size, 0f, Vector2.down, bonusHeight, platformLayerMask);
     bool retVal = raycastHit.collider != null;
 
     // showing our raycast in the game

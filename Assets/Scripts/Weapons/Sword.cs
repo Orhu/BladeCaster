@@ -24,7 +24,7 @@ public class Sword : MonoBehaviour, IWeapon {
             Debug.Log(hit);
             // check for tags for different results of getting hit (do later)
             if (hit.tag == "enemy") {
-                hit.GetComponent<IEnemy>().GetHit(damage);
+                hit.GetComponent<IEnemy>().GetHit(damage, 2.5f * direction);
             }
         }
     }
