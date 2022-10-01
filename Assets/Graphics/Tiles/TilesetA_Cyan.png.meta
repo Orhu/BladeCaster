@@ -200,27 +200,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cyan_item_checkpoint
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 12
-        width: 12
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23256c064334e764eaa9b33453dbeaa3
-      internalID: 677224797
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: cyan_item_energy
       rect:
         serializedVersion: 2
@@ -241,6 +220,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: cyan_item_checkpoint
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 12
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478753f007b4eb347a954bd225c7e5c7
+      internalID: -1144570347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -253,6 +253,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       TilesetA_Cyan_14: 2086877847
+      cyan_item_checkpoint1: 677224797
       TilesetA_Cyan_27: -1386481417
       TilesetA_Cyan_49: 1637930070
       TilesetA_Cyan_29: -1380692589
@@ -272,36 +273,35 @@ TextureImporter:
       TilesetA_Cyan_20: -882694347
       TilesetA_Cyan_28: -1837205773
       TilesetA_Cyan_7: 1027378758
-      cyan_item_checkpoint: 677224797
-      TilesetA_Cyan_38: 1939469799
-      TilesetA_Cyan_44: -372037576
-      cyan_item_energy: -1397926608
-      TilesetA_Cyan_6: 1053703397
-      TilesetA_Cyan_1: -269064001
-      TilesetA_Cyan_26: 1392329908
-      TilesetA_Cyan_42: 1252396473
-      TilesetA_Cyan_17: 281042689
-      TilesetA_Cyan_43: -1673340066
-      TilesetA_Cyan_34: 626814077
-      TilesetA_Cyan_39: -134023964
-      TilesetA_Cyan_5: 1005095844
-      cyan_prop_candle_idle1: -1447898564
-      TilesetA_Cyan_41: -1556125625
-      TilesetA_Cyan_25: 1941084730
-      TilesetA_Cyan_3: -779590020
-      TilesetA_Cyan_11: -1031047842
-      TilesetA_Cyan_23: -805714149
-      TilesetA_Cyan_2: 61729206
-      TilesetA_Cyan_4: 1673824033
-      TilesetA_Cyan_22: 1167549923
-      TilesetA_Cyan_18: -1613399585
-      TilesetA_Cyan_12: 556746688
-      cyan_prop_switch_on: -1898472021
-      TilesetA_Cyan_35: 828818934
-      TilesetA_Cyan_0: -1587757844
-      TilesetA_Cyan_48: 323188421
-      cyan_prop_switch_off: 719285787
-      cyan_prop_candle_idle: -693940501
+      cyan_item_checkpoint: -1144570347
+      TilesetA_Cyan_38: -372037576
+      TilesetA_Cyan_44: -1397926608
+      cyan_item_energy: 1053703397
+      TilesetA_Cyan_6: -269064001
+      TilesetA_Cyan_1: 1392329908
+      TilesetA_Cyan_26: 1252396473
+      TilesetA_Cyan_42: 281042689
+      TilesetA_Cyan_17: -1673340066
+      TilesetA_Cyan_43: 626814077
+      TilesetA_Cyan_34: -134023964
+      TilesetA_Cyan_39: 1005095844
+      TilesetA_Cyan_5: -1447898564
+      cyan_prop_candle_idle1: -1556125625
+      TilesetA_Cyan_41: 1941084730
+      TilesetA_Cyan_25: -779590020
+      TilesetA_Cyan_3: -1031047842
+      TilesetA_Cyan_11: -805714149
+      TilesetA_Cyan_23: 61729206
+      TilesetA_Cyan_2: 1673824033
+      TilesetA_Cyan_4: 1167549923
+      TilesetA_Cyan_22: -1613399585
+      TilesetA_Cyan_18: 556746688
+      TilesetA_Cyan_12: -1898472021
+      cyan_prop_switch_on: 828818934
+      TilesetA_Cyan_35: -1587757844
+      cyan_prop_candle_idle: 677224797
+      TilesetA_Cyan_48: 719285787
+      cyan_prop_switch_off: -693940501
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
