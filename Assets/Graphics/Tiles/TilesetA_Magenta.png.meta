@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6ce32b5ede0dbe47bb1bd6e120bac31
+guid: 8f40c3bc32da43d4a880379bf27edb83
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,49 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: yellow_prop_candle_idle
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 60
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ff4c67dfe1ed114998e6d1085ae5d27
-      internalID: 605298732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: yellow_prop_candle_idle1
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 48
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c3561f836c47364a9de82ff72941cf6
-      internalID: 2046683197
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: yellow_prop_switch_Off
+      name: magenta_prop_switch_Off
       rect:
         serializedVersion: 2
         x: 96
@@ -172,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea7ca09328dd66e45bdfe91dae29c72a
-      internalID: -40912553
+      spriteID: cef8b65d83ab1c44e96292d9a01a448b
+      internalID: 1635774056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: yellow_prop_switch_On
+      name: magenta_prop_switch_On
       rect:
         serializedVersion: 2
         x: 96
@@ -193,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f959090713babf24c8cb53640d25ab68
-      internalID: -2020115474
+      spriteID: f3f2cb99663cbf24a864380c433cf8c2
+      internalID: -2145412693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: yellow_item_energy
+      name: magenta_item_energy
       rect:
         serializedVersion: 2
         x: 96
@@ -214,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d253b614975b83d47ae14f1f80241589
-      internalID: 823269859
+      spriteID: f1a7cc19a3321dc48b62adaf105b4012
+      internalID: 1009308360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: yellow_item_checkpoint
+      name: magenta_item_checkpoint
       rect:
         serializedVersion: 2
         x: 120
@@ -235,8 +193,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c7bb890a924b1046bdf4b62a682d698
-      internalID: 1359501798
+      spriteID: 1701f9385d6e7b944826f6b578307c96
+      internalID: 1153362011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilesetA_Magenta_0
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 60
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19d21ec7e17a5d47b940f8ecf11b9db
+      internalID: -1129196597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: magenta_prop_candle_idle1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 48
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa13c7e032dee8449c18fdd71d6ad47
+      internalID: -637755528
       vertices: []
       indices: 
       edges: []
@@ -252,12 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      yellow_item_energy: 823269859
-      yellow_prop_switch_On: -2020115474
-      yellow_prop_candle_idle1: 2046683197
-      yellow_prop_switch_Off: -40912553
-      yellow_prop_candle_idle: 605298732
-      yellow_item_checkpoint: 1359501798
+      magenta_item_energy: 1009308360
+      magenta_prop_candle_idle1: -637755528
+      magenta_item_checkpoint: 1153362011
+      TilesetA_Magenta_0: -1129196597
+      magenta_prop_switch_Off: 1635774056
+      magenta_prop_switch_On: -2145412693
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

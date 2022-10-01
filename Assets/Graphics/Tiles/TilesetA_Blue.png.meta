@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1060,11 +1060,11 @@ TextureImporter:
       TilesetA_Blue_11: 377132727
       tile_thinPlatform_R: 1919441313
       tile_wall_BL: -663007528
+      tile_platform_M: -288764007
       tile_wall_U: -1086217525
       tile_innerWall_UL: 427781295
-      tile_platform_M: -288764007
-      blue_prop_candle_idle: 2023406017
       tile_platform_L: 947985157
+      blue_prop_candle_idle: 2023406017
       TilesetA_Blue_12: 636958432
       tile_thickPlatform_L: -1885086473
       tile_door_O1: 151071383
