@@ -32,6 +32,6 @@ public class Spear : MonoBehaviour, IWeapon {
 
     public void Ability() {
         //TO DO Implement a charge and vault
-        
+
     }
 }
