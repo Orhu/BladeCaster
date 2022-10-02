@@ -42,6 +42,8 @@ public class Sword : MonoBehaviour, IWeapon {
             // check for tags for different results of getting hit (complete later)
             if (hit.tag == "enemy") {
                 hit.GetComponent<IEnemy>().GetHit(damage, 2.5f * direction);
+            } else if (hit.tag == "levelProp") {
+                hit.GetComponent<ILevelProp>().Interact();
             }
         }
     }
@@ -57,8 +59,11 @@ public class Sword : MonoBehaviour, IWeapon {
                 if (!hitEnemy.IsInvulnerable()) {
                     hitEnemy.GetHit(damage, 0f);
                     hitThing = true;
-                }               
-            } // else if (hit.tag == "bubble") { ...
+                }         
+            } else if (hit.tag == "levelProp") {
+                hit.GetComponent<ILevelProp>().Interact();
+                hitThing = true;
+            }
         }
 
         if (hitThing) { // if you hit something, pogo up

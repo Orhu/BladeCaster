@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
       SwitchWeapon(2);
     } else if (Input.GetKeyDown("4")) { // claymore
       SwitchWeapon(3);
-    } /*aelse if (Input.GetKeyDown("5")) { // claws
+    } /*else if (Input.GetKeyDown("5")) { // claws
       SwitchWeapon(4);
     } else if (Input.GetKeyDown("6")) { // musket
       SwitchWeapon(5);

@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   private IEnumerator JumpMod() { // jump higher when space is pressed for longer
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(0.25f);
     jumping = false;
   }
 }
