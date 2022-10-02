@@ -70,6 +70,7 @@ public class Sword : MonoBehaviour, IWeapon {
         }
 
         if (hitThing) { // if you hit something, pogo up
+            GetComponent<PlayerMovement>().Unstun(); // pogo unstuns
             _body.velocity = new Vector2 (_body.velocity.x, 0f);
             _body.AddForce(Vector2.up * pogoForce, ForceMode2D.Impulse);
         }

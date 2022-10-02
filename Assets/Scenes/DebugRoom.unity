@@ -181,6 +181,8 @@ MonoBehaviour:
   speed: 1
   baseJump: 2
   jumpBoost: 0.01
+  spearChargeMod: 1.25
+  spearDashMod: 2
 --- !u!61 &19169143
 BoxCollider2D:
   m_ObjectHideFlags: 0
