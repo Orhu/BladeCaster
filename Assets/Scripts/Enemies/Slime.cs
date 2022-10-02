@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (right now it just sits still.)
     public int health {get; [SerializeField] set;} = 2;
+    public bool invulnerable {get; private set;} = false;
 
+    [SerializeField] float iFrames = 0.2f;
 
     private BoxCollider2D _box;
     private Rigidbody2D _body;
@@ -19,8 +21,13 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     void Update() {
         if (health == 0 && IsGrounded()) {
             StartCoroutine(Die());
+            health = -1;
         }
 
+    }
+
+    public bool IsInvulnerable() {
+        return invulnerable;
     }
 
     public void Attack() {
@@ -31,11 +38,21 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         health -= damage;
         Vector2 knockback = new Vector2(Mathf.Cos(0.6f) * strength, Mathf.Sin(0.6f) * Mathf.Abs(strength));
         _body.AddForce(knockback, ForceMode2D.Impulse);
+        if (health != 0) {
+            StartCoroutine(DoIFrames());
+        }
+    }
+
+    private IEnumerator DoIFrames() {
+        invulnerable = true;
+        yield return new WaitForSeconds(iFrames);
+        invulnerable = false;
     }
 
     private IEnumerator Die() {
         Debug.Log("Enemy killed");
-        yield return new WaitForSeconds(1f);
+        invulnerable = true;
+        yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
 

@@ -5,17 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
-  - player
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Character
+  - 
   - Water
   - UI
-  - 
+  - Player
+  - Character
   - Platform
-  - 
   - 
   - 
   - 

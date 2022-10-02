@@ -49,12 +49,14 @@ public class Player : MonoBehaviour
 
     if (currentWeapon != null) {
       // Attacking/Ability
-      if (Input.GetKeyDown(KeyCode.Z)) {
-        _anim.SetTrigger("attack");
-        currentWeapon.Attack();
-      } else if (Input.GetKeyDown(KeyCode.X)) {
+      if (Input.GetKeyDown(KeyCode.X)) {
         _anim.SetTrigger("ability");
         currentWeapon.Ability();
+      } else if (Input.GetKeyDown(KeyCode.Z)) {
+        _anim.SetTrigger("attack");
+        currentWeapon.Attack();
+      } else {
+        currentWeapon.WeaponUpdate();
       }
     }
   }
