@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
   
   [SerializeField] private LayerMask platformLayerMask;
-  public float speed;
-  public float baseJump;
-  public float jumpBoost;
+  public float speed = 1f;
+  public float baseJump = 2.5f;
+  public float jumpBoost = 0.01f;
+
+  private bool inputLock = false;
+  private bool iLTimeLock = false;
 
   private bool jumping = false;
 
@@ -22,10 +25,21 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   void Update() {
-    //Horizontal Movement
-    float deltaX = Input.GetAxisRaw("Horizontal") * speed;
-    Vector2 movement = new Vector2(deltaX, _body.velocity.y);
-    _body.velocity = movement;
+    if (IsGrounded() && !iLTimeLock) {
+      inputLock = false;
+    }
+
+    float deltaX;
+    if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
+      deltaX = gameObject.transform.localScale.x * speed;
+      _body.velocity = new Vector2(deltaX, _body.velocity.y);
+    } else if (!inputLock) { //Horizontal Movement
+      deltaX = Input.GetAxisRaw("Horizontal") * speed;
+      Vector2 movement = new Vector2(deltaX, _body.velocity.y);
+      _body.velocity = movement;
+    } else { // _body's velocity is not within the player's control at the moment
+      deltaX = _body.velocity.x;
+    }
 
     //Vertical movement
     if (jumping) {
@@ -76,6 +90,20 @@ public class PlayerMovement : MonoBehaviour {
   private IEnumerator JumpMod() { // jump higher when space is pressed for longer
     yield return new WaitForSeconds(0.25f);
     jumping = false;
+  }
+
+  public void LockInputs(float timeToLock) {
+    StartCoroutine(LockInputsCR(timeToLock));
+  }
+  private IEnumerator LockInputsCR(float timeToLock) {
+    iLTimeLock = true;
+    inputLock = true;
+    yield return new WaitForSeconds(timeToLock);
+    inputLock = false;
+    iLTimeLock = false;
+  }
+  public void SetInputLockState(bool newLockState) {
+    inputLock = newLockState;
   }
 }
 

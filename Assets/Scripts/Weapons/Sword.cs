@@ -41,7 +41,10 @@ public class Sword : MonoBehaviour, IWeapon {
             Debug.Log(hit);
             // check for tags for different results of getting hit (complete later)
             if (hit.tag == "enemy") {
-                hit.GetComponent<IEnemy>().GetHit(damage, 2.5f * direction);
+                IEnemy hitEnemy = hit.GetComponent<IEnemy>();
+                if (!hitEnemy.IsInvulnerable()) {
+                    hitEnemy.GetHit(damage, 2.5f * direction);
+                }
             } else if (hit.tag == "levelProp") {
                 hit.GetComponent<ILevelProp>().Interact();
             }
