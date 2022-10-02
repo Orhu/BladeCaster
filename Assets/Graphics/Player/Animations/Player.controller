@@ -101,13 +101,13 @@ AnimatorStateMachine:
     m_Position: {x: -320, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 478176888590861674}
-    m_Position: {x: 110, y: 360, z: 0}
+    m_Position: {x: 90, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8285340634971641187}
     m_Position: {x: 170, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6205079674475193514}
-    m_Position: {x: 90, y: 270, z: 0}
+    m_Position: {x: 110, y: 290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -363,7 +363,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: player_spear_attack
-  m_Speed: 1
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4418903931504821666}
@@ -500,9 +500,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_TransitionDuration: 0.08606555
+  m_TransitionOffset: 0.733234
+  m_ExitTime: 0.53651285
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -862,7 +862,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: player_spear_ability_charge
-  m_Speed: 1
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6104081428347231994}
@@ -888,16 +888,19 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: ability
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 478176888590861674}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_TransitionDuration: 0.220231
+  m_TransitionOffset: 0.055816874
+  m_ExitTime: 0.3572282
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1216,7 +1219,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: attack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6205079674475193514}
   m_Solo: 0
@@ -1245,9 +1251,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.25
+  m_TransitionDuration: 0.07730681
+  m_TransitionOffset: 2.4133337
+  m_ExitTime: 0.73365027
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1506,15 +1512,18 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: ability
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8285340634971641187}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
+  m_TransitionDuration: 0.24999999
+  m_TransitionOffset: 0.14865868
   m_ExitTime: 0.25
   m_HasExitTime: 1
   m_HasFixedDuration: 1
@@ -1554,7 +1563,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: player_spear_ability_vault
-  m_Speed: 1
+  m_Speed: 0.625
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2700582316369092284}
