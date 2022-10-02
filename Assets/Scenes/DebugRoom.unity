@@ -179,7 +179,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   speed: 1
-  baseJump: 2.5
+  baseJump: 2
   jumpBoost: 0.01
 --- !u!61 &19169143
 BoxCollider2D:
@@ -354,6 +354,7 @@ MonoBehaviour:
   hurtboxLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  vaultForce: 4
 --- !u!114 &19169154
 MonoBehaviour:
   m_ObjectHideFlags: 0

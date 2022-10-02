@@ -7,6 +7,8 @@ public class Spear : MonoBehaviour, IWeapon {
     public int damage {get; private set;} = 1;
     public int abilityEnergyCost {get; private set;} = 1;
 
+    [SerializeField] float vaultForce = 4f;
+
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private Animator _anim;
@@ -43,10 +45,10 @@ public class Spear : MonoBehaviour, IWeapon {
 
     public void Ability() {
         if (_anim.GetBool("jump")) {
-            Dash();
+            StartCoroutine(Dash());
         } else {
             if (vaultAvailable) {
-                Vault();
+                StartCoroutine(Vault());
             } else {
                 StartCoroutine(Charge());
             }
@@ -54,7 +56,6 @@ public class Spear : MonoBehaviour, IWeapon {
     }
 
     private IEnumerator Charge() {
-        Debug.Log("animator charging set to true");
         _anim.SetBool("charging", true);
         bool charging = true;
         while(charging) {
@@ -68,7 +69,6 @@ public class Spear : MonoBehaviour, IWeapon {
         vaultAvailable = true;
         yield return new WaitForSeconds(0.25f);
         vaultAvailable = false;
-        Debug.Log("animator charging set to false");
         _anim.SetBool("charging", false);
     }
     private IEnumerator ChargeEnergyTick() {
@@ -78,16 +78,28 @@ public class Spear : MonoBehaviour, IWeapon {
         }
     }
 
-    private void Vault() {
+    private IEnumerator Vault() {
         // tell the animator to play the vault animation
         // add a force to the player's rigidbody going up and to the direction the player is facing at 60 degrees with whatever velocity gives the player a vertical component of 4f.
         // also until the player next touches anything (ground, enemy, prop, etc.) they no longer have control over their horizontal movement.
+        StopCoroutine(Charge());
+        _anim.SetTrigger("ability"); // now playing the vault animation.
+        vaultAvailable = false;
+        
 
+        while(_anim.GetCurrentAnimatorStateInfo(0).IsName("player_spear_vault")) { // keep moving while vaulting.
+            yield return null;
+        }
+
+        _body.AddForce(Vector2.up * vaultForce, ForceMode2D.Impulse); // jump        
+        GetComponent<PlayerMovement>().SetInputLockState(true); // maintains horizontal velocity (need to make that until we interact with something
+        _anim.SetBool("charging", false);
     }
 
-    private void Dash() {
+    private IEnumerator Dash() {
         // tell the animator to play the dash animation
         // add a horizontal force to the player's rigidbody and removes the player's control over their horizontal movement for 0.5 seconds.
         // reduce player's energy meter
+        yield return null;
     }
 }
