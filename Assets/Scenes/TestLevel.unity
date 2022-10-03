@@ -2565,8 +2565,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
@@ -2602,19 +2602,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046382536097854713, guid: 03d334311efe4654a88342ec52bb79ae, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD
-      value: -0.014886737
-      objectReference: {fileID: 0}
-    - target: {fileID: 5046382536097854713, guid: 03d334311efe4654a88342ec52bb79ae, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.042205215
-=======
       value: -0.013749003
       objectReference: {fileID: 0}
     - target: {fileID: 5046382536097854713, guid: 03d334311efe4654a88342ec52bb79ae, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.04220575
->>>>>>> 36f7539ac83dd7196e54c7a4cfc5c5d88e6d0611
       objectReference: {fileID: 0}
     - target: {fileID: 5046382536097854713, guid: 03d334311efe4654a88342ec52bb79ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2782,11 +2774,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 424595938754182571, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: room
-      value: 
+      value:
       objectReference: {fileID: 730403403}
     - target: {fileID: 549863941822071256, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: m_Follow
-      value: 
+      value:
       objectReference: {fileID: 509928800}
     - target: {fileID: 1079241309573503257, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: m_Name
@@ -2931,13 +2923,9 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4799884619877754381, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
-      propertyPath: spearChargeMod
-      value: 1.25
-      objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754382, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: EText
-      value: 
+      value:
       objectReference: {fileID: 1642421823}
     - target: {fileID: 4799884619877754383, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_Name
@@ -2959,11 +2947,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 424595938754182571, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: room
-      value: 
+      value:
       objectReference: {fileID: 1688884171}
     - target: {fileID: 549863941822071256, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: m_Follow
-      value: 
+      value:
       objectReference: {fileID: 509928800}
     - target: {fileID: 1079241309573503257, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: m_Name
