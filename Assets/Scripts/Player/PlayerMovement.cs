@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
   // spear horizontal movement variables
   [SerializeField] float spearChargeMod = 1.25f;
   [SerializeField] float spearDashMod = 2f;
+  [SerializeField] float spearCtrlMod = 0.25f;
 
   void Start() {
     _body = GetComponent<Rigidbody2D>();
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour {
       } else {
         switch (stunMessage) {
           case "vault":
-            deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
+            deltaX = (gameObject.transform.localScale.x * speed * spearChargeMod) + (Input.GetAxisRaw("Horizontal") * spearCtrlMod);
             break;
           case "dash":
             deltaX = gameObject.transform.localScale.x * speed * spearDashMod;
