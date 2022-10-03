@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
   private float curEnergy;
   public static float maxEnergy = 10;
+  public bool debugWeapon = false;
 
   public IWeapon currentWeapon;
 
@@ -22,10 +23,11 @@ public class Player : MonoBehaviour
     curEnergy = maxEnergy;
     EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
 
-    for (int i = 0; i < 4; i++) {
-      UnlockWeapon(i);
+    if(debugWeapon){
+      for (int i = 0; i < 4; i++) {
+        UnlockWeapon(i);
+      }
     }
-    
   }
 
   void Update() {
