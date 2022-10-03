@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-  public GameObject camera;
+  public GameObject virtualCamera;
 
   private void OnTriggerEnter2D(Collider2D other){
     if(other.CompareTag("Player") && !other.isTrigger){
-      camera.SetActive(true);
+      virtualCamera.SetActive(true);
     }
   }
 
   private void OnTriggerExit2D(Collider2D other){
     if(other.CompareTag("Player") && !other.isTrigger){
-      camera.SetActive(false);
+      virtualCamera.SetActive(false);
     }
   }
 }
