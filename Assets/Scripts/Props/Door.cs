@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour {
+public class Door : MonoBehaviour, ILevelProp {
     public bool locked = false;
     public bool open = false; 
 
-    private Rigidbody2D _body;
+    private Collider2D _box;
     private Animator _anim;
 
     // Start is called before the first frame update
     void Start() {
-        _body = GetComponent<Rigidbody2D>();
+        _box = GetComponent<Collider2D>();
         _anim = GetComponent<Animator>();
 
-        RefreshDoor();
+        StartCoroutine(RefreshDoor());
     }
 
     public void Interact() {
@@ -22,9 +22,10 @@ public class Door : MonoBehaviour {
     }
 
     public void SwitchToggle() {
+        Debug.Log("Door switch toggle");
         if (!locked) {
             open = !open;
-            RefreshDoor();
+            StartCoroutine(RefreshDoor());
         }
     }
 
@@ -33,12 +34,13 @@ public class Door : MonoBehaviour {
     }
 
     public IEnumerator RefreshDoor() {
+        Debug.Log("Door Refresh");
         if (open != _anim.GetBool("open")) {
             _anim.SetBool("open", open);
             if (open) { // wait for door animation to play to open the door to the player
                 yield return new WaitForSeconds(_anim.GetCurrentAnimatorStateInfo(0).length); 
             }
         }
-        _body.isKinematic = !open; // player can go through!
+        _box.enabled = !open; // player can go through!
     }
 }

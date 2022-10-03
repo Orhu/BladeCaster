@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Switch : MonoBehaviour, ILevelProp {
-    public ILevelProp[] connectedProps;
-    [SerializeField] Sprite[] switchStates;
+    [SerializeField] public GameObject[] connectedProps;
 
     public bool active = false;
     public bool interactable = true;
@@ -20,8 +19,8 @@ public class Switch : MonoBehaviour, ILevelProp {
             active = !active;
             _anim.SetBool("active", active);
             if (connectedProps != null) {
-                foreach (ILevelProp connection in connectedProps) {
-                    connection.SwitchToggle();
+                foreach (GameObject connection in connectedProps) {
+                    connection.GetComponent<ILevelProp>().SwitchToggle();
                 }
             }
         }
