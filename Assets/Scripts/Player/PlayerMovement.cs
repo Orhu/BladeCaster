@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-  
+
   [SerializeField] private LayerMask platformLayerMask;
   public float speed = 1f;
   public float baseJump = 2.5f;
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
       Debug.Log("spear charge");
       deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
     } else {
-      if (!stun) { 
+      if (!stun) {
         deltaX = Input.GetAxisRaw("Horizontal") * speed;
       } else {
         switch (stunMessage) {
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
             deltaX = _body.velocity.x;
             break;
         }
-      }      
+      }
     }
     _body.velocity = new Vector2(deltaX, _body.velocity.y);
 
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
     bool retVal = raycastHit.collider != null;
 
     // showing our raycast in the game
-    
+
     Color rayColor;
     if (retVal) {
       rayColor = Color.green;
@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour {
   public void StunPlayer(float time, bool endOnTime, string message) {
     stunMessage = message;
     if (stunCR != null) {
-      StopCoroutine(stunCR); 
+      StopCoroutine(stunCR);
     }
     if (time == 0) {
       stun = true;
@@ -144,5 +144,3 @@ public class PlayerMovement : MonoBehaviour {
     stunMessage = "";
   }
 }
-
-
