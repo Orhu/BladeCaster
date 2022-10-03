@@ -20,13 +20,13 @@ public class Switch : MonoBehaviour, ILevelProp {
             _anim.SetBool("active", active);
             if (connectedProps != null) {
                 foreach (GameObject connection in connectedProps) {
-                    connection.GetComponent<ILevelProp>().SwitchToggle();
+                    connection.GetComponent<ILevelProp>().SwitchOperate();
                 }
             }
         }
     }
 
-    public void SwitchToggle() {
+    public void SwitchOperate() {
         interactable = !interactable;
     }
 }

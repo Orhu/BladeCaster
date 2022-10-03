@@ -15,7 +15,7 @@ public class Bubble : MonoBehaviour, ILevelProp {
         _anim.SetTrigger("pop");
     }
 
-    public void SwitchToggle() {
+    public void SwitchOperate() {
         // not used by bubble
     }
 

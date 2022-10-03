@@ -21,7 +21,7 @@ public class Door : MonoBehaviour, ILevelProp {
         // not used by door
     }
 
-    public void SwitchToggle() {
+    public void SwitchOperate() {
         Debug.Log("Door switch toggle");
         if (!locked) {
             open = !open;
