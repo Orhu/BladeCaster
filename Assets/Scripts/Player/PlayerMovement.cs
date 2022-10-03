@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour {
 
     float deltaX;
     if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
+      Debug.Log("spear charge");
       deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
     } else {
       if (!stun) { 
@@ -85,7 +86,7 @@ public class PlayerMovement : MonoBehaviour {
 
   private bool IsGrounded() {
     float bonusHeight = 0.075f;
-    RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center, _box.bounds.size - new Vector3(0.01f, 0f,0f), 0f, Vector2.down, bonusHeight, platformLayerMask);
+    RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center - new Vector3(0f, _box.bounds.extents.y, 0f), _box.bounds.size - new Vector3(0.02f, _box.bounds.extents.y,0f), 0f, Vector2.down, bonusHeight, platformLayerMask);
     bool retVal = raycastHit.collider != null;
 
     // showing our raycast in the game
@@ -105,7 +106,7 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   private IEnumerator JumpMod() { // jump higher when space is pressed for longer
-    yield return new WaitForSeconds(0.25f);
+    yield return new WaitForSeconds(0.2f);
     jumping = false;
   }
 

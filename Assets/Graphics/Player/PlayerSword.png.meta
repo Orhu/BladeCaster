@@ -241,6 +241,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PlayerSwordRun0
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2740f0d189974844891cc0e110cfd36a
+      internalID: -1999338229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordRun1
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8326af80cf79bbd419b495a16853342f
+      internalID: -1741257337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordRun2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e7c0afea131ff74e902bbb064d4c764
+      internalID: -1708183811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordRun3
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b9c656cf5ac36409e5fd5d45b7905a
+      internalID: -877098091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerSwordJump
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b163f7b1017d24741a9a3176bc016150
+      internalID: 213132273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -252,11 +357,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      PlayerSwordJump: 213132273
       PlayerSwordAtk3: 747722960
       PlayerSwordIdle: 1954880302
       PlayerSwordAtk2: 1279071152
+      PlayerSwordRun3: -877098091
       PlayerSwordAitAtk: -860658649
+      PlayerSwordRun1: -1741257337
       PlayerSwordAtk1: 767392779
+      PlayerSwordRun2: -1708183811
+      PlayerSwordRun0: -1999338229
       PlayerSwordAtk0: 1098892477
   spritePackingTag: 
   pSDRemoveMatte: 0
