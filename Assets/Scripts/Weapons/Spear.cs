@@ -98,7 +98,7 @@ public class Spear : MonoBehaviour, IWeapon {
             xDirection = Vector2.left;
         }
 
-        _body.AddForce(Vector2.up * vaultForce, ForceMode2D.Impulse); // jump vertical   
+        _body.AddForce(Vector2.up * vaultForce, ForceMode2D.Impulse); // jump vertical
         GetComponent<PlayerMovement>().StunPlayer(0.1f, false, "vault"); // maintains horizontal velocity (need to make that until we interact with something
 
         // energy stuff
