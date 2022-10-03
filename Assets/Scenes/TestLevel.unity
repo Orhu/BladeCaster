@@ -2602,11 +2602,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046382536097854713, guid: 03d334311efe4654a88342ec52bb79ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.015345812
+      value: -0.014886737
       objectReference: {fileID: 0}
     - target: {fileID: 5046382536097854713, guid: 03d334311efe4654a88342ec52bb79ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.042205095
+      value: -0.042205215
       objectReference: {fileID: 0}
     - target: {fileID: 5046382536097854713, guid: 03d334311efe4654a88342ec52bb79ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2898,6 +2898,10 @@ PrefabInstance:
     - target: {fileID: 4799884619877754371, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799884619877754381, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
+      propertyPath: spearChargeMod
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754382, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: EText
