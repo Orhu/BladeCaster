@@ -58,7 +58,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ab9a0cbdbab21264db36bafa701843b9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -107,6 +107,8 @@ MonoBehaviour:
   speed: 1
   baseJump: 2
   jumpBoost: 0.01
+  spearChargeMod: 1.25
+  spearDashMod: 2
 --- !u!114 &4799884619877754382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtboxLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  vaultForce: 4
 --- !u!114 &4799884619877754619
 MonoBehaviour:
   m_ObjectHideFlags: 0
