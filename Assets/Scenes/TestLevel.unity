@@ -2999,7 +2999,7 @@ PrefabInstance:
       objectReference: {fileID: 1688884171}
     - target: {fileID: 1079241309573503257, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: m_Name
-      value: Room Template (1)
+      value: Room 2 Cam
       objectReference: {fileID: 0}
     - target: {fileID: 5902018204831179087, guid: d94fc7440d529f14984811cbbe199671, type: 3}
       propertyPath: m_RootOrder

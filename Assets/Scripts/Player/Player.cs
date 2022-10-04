@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     if(debugWeapon){
       for (int i = 0; i < 4; i++) {
         UnlockWeapon(i);
+        Debug.Log("Weapon " + i + " Unlocked");
       }
     }
   }
@@ -35,10 +36,10 @@ public class Player : MonoBehaviour
     // press [button] to open weapon wheel theoretically
     if (Input.GetKeyDown("1")) { // sword
       SwitchWeapon(0);
-    } else if (Input.GetKeyDown("2")) { // grapple
-      SwitchWeapon(1);
-    } else if (Input.GetKeyDown("3")) { // spear
+    } else if (Input.GetKeyDown("2")) { // spear
       SwitchWeapon(2);
+    } else if (Input.GetKeyDown("3")) { // grapple
+      SwitchWeapon(1);
     } else if (Input.GetKeyDown("4")) { // claymore
       SwitchWeapon(3);
     } /*else if (Input.GetKeyDown("5")) { // claws
@@ -64,18 +65,21 @@ public class Player : MonoBehaviour
   }
 
   private void SwitchWeapon(int weaponNum) {
-    _anim.SetInteger("weapon", (weaponNum + 1));
     switch (weaponNum) {
       case 0:
+        if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.sword;
         break;
       case 1:
-        currentWeapon = WeaponsMaster.grapple;
-        break;
-      case 2:
+        if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.spear;
         break;
+      case 2:
+        if(weaponUnlocks[weaponNum] == false) break;
+        currentWeapon = WeaponsMaster.grapple;
+        break;
       case 3:
+        if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.claymore;
         break;
       /*
@@ -88,6 +92,9 @@ public class Player : MonoBehaviour
       case 6:
         currentWeapon = WeaponsMaster.shield;
         break;*/
+    }
+    if(weaponUnlocks[weaponNum] == true){
+      _anim.SetInteger("weapon", (weaponNum + 1));
     }
   }
 
