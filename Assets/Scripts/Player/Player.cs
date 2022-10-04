@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
   private float curEnergy;
   public static float maxEnergy = 10;
-  public bool debugWeapon = true;
+  public bool debugWeapon = false;
 
   public IWeapon currentWeapon;
 
