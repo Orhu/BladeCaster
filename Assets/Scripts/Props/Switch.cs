@@ -8,6 +8,9 @@ public class Switch : MonoBehaviour, ILevelProp {
     public bool active = false;
     public bool interactable = true;
 
+    public bool timeOff = false;
+    public float delayTime = 0.05f;
+
     private Animator _anim;
 
     void Start() {
@@ -23,10 +26,17 @@ public class Switch : MonoBehaviour, ILevelProp {
                     connection.GetComponent<ILevelProp>().SwitchOperate();
                 }
             }
+            StartCoroutine(Delay());
         }
     }
 
     public void SwitchOperate() {
         interactable = !interactable;
+    }
+
+    private IEnumerator Delay() {
+        interactable = false;
+        yield return new WaitForSeconds(delayTime);
+        interactable = true;
     }
 }

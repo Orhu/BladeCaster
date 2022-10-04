@@ -167,3 +167,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87c9182626fdd84594aecd76b95844f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iFrames: 0.2
+  knockbackStrength: 1.5

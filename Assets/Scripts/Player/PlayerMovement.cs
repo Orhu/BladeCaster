@@ -57,7 +57,9 @@ public class PlayerMovement : MonoBehaviour {
         }
       }
     }
-    _body.velocity = new Vector2(deltaX, _body.velocity.y);
+    if (stunMessage != "hit") {
+      _body.velocity = new Vector2(deltaX, _body.velocity.y);
+    }
 
     //Vertical movement
     if (jumping) {
@@ -78,16 +80,23 @@ public class PlayerMovement : MonoBehaviour {
       transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
     }
 
-    _anim.SetBool("jump", !IsGrounded());
-
-
-    // We might want to adjust it so attacking happens here.
+    _anim.SetBool("jump", !IsGrounded());    
   }
 
   private bool IsGrounded() {
     float bonusHeight = 0.075f;
     RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center - new Vector3(0f, _box.bounds.extents.y, 0f), _box.bounds.size - new Vector3(0.02f, _box.bounds.extents.y,0f), 0f, Vector2.down, bonusHeight, platformLayerMask);
     bool retVal = raycastHit.collider != null;
+    
+    // moving platform bullshit
+    if (retVal) {
+      if (raycastHit.collider.tag == "movingPlatform") {
+        transform.parent = raycastHit.collider.transform; 
+      } 
+    } else {
+        transform.parent = null;
+    }
+
 
     // showing our raycast in the game
 
@@ -108,6 +117,16 @@ public class PlayerMovement : MonoBehaviour {
   private IEnumerator JumpMod() { // jump higher when space is pressed for longer
     yield return new WaitForSeconds(0.2f);
     jumping = false;
+  }
+
+  public void GetHit(float strength) {
+    _body.velocity = Vector2.zero;
+    float angle = 45f * Mathf.Deg2Rad;
+    StunPlayer(0.1f, false, "hit");
+    Vector2 knockback = new Vector2(Mathf.Cos(angle) * strength, Mathf.Sin(angle) * Mathf.Abs(strength));
+    _body.AddForce(knockback, ForceMode2D.Impulse); 
+    _anim.SetTrigger("hit");
+    // this might work?
   }
 
   // stun/input-locking stuff

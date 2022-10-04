@@ -7,6 +7,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     public bool invulnerable {get; private set;} = false;
 
     [SerializeField] float iFrames = 0.2f;
+    [SerializeField] float knockbackStrength = 1.5f;
 
     private BoxCollider2D _box;
     private Rigidbody2D _body;
@@ -60,5 +61,16 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         float bonusHeight = 0.1f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center, _box.bounds.size, 0f, Vector2.down, bonusHeight, LayerMask.GetMask("Platform"));
         return raycastHit.collider != null;
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        GameObject other = col.gameObject;
+        if (other.tag == "Player") {
+            float strength = knockbackStrength;
+            if (other.transform.position.x <= transform.position.x) {
+                strength *= -1;
+            }
+            other.GetComponent<PlayerMovement>().GetHit(strength);
+        }
     }
 }

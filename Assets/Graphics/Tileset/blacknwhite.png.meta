@@ -990,7 +990,7 @@ TextureImporter:
       BlockB: -283898181
       Platform_Mid: -1918509500
       Brick_BR: -2020884444
-      Brick_BRO: 1817934785
+      Brick_R: 718679910
       Lock_Open: -1981525383
       blacknwhite_3: -320328963
       Brick_BLO: -1353275156
@@ -1025,9 +1025,9 @@ TextureImporter:
       Brick_TLO: -711125891
       Chain: -1395190097
       Key: -2018427921
-      Brick_R: 718679910
-      blacknwhite_6: 214129249
+      Brick_BRO: 1817934785
       Block_Outline: 1073631280
+      blacknwhite_6: 214129249
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
