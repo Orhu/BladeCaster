@@ -7,9 +7,12 @@ public class CameraMovement : MonoBehaviour
   public GameObject virtualCamera;
   public GameObject room;
 
+  private Vector2 playerSpawn;
+
   private void OnTriggerEnter2D(Collider2D other){
     if(other.CompareTag("Player") && !other.isTrigger){
       room.SetActive(true);
+      playerSpawn = new Vector2(other.transform.position.x, other.transform.position.y);
       virtualCamera.SetActive(true);
     }
   }
