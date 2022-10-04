@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
   private float curEnergy;
   public static float maxEnergy = 10;
-  public bool debugWeapon = false;
+  public bool debugWeapon = true;
 
   public IWeapon currentWeapon;
 
@@ -72,11 +72,11 @@ public class Player : MonoBehaviour
         break;
       case 1:
         if(weaponUnlocks[weaponNum] == false) break;
-        currentWeapon = WeaponsMaster.spear;
+        currentWeapon = WeaponsMaster.grapple;
         break;
       case 2:
         if(weaponUnlocks[weaponNum] == false) break;
-        currentWeapon = WeaponsMaster.grapple;
+        currentWeapon = WeaponsMaster.spear;
         break;
       case 3:
         if(weaponUnlocks[weaponNum] == false) break;

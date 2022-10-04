@@ -881,6 +881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spear_unlock_crystal
       objectReference: {fileID: 0}
+    - target: {fileID: 2514247684069573885, guid: e02a092fa9a58fe4a84d25646a3dde4f, type: 3}
+      propertyPath: weaponType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2514247684069573887, guid: e02a092fa9a58fe4a84d25646a3dde4f, type: 3}
       propertyPath: m_RootOrder
       value: 1
