@@ -8,12 +8,14 @@ public class Spear : MonoBehaviour, IWeapon {
     public int abilityEnergyCost {get; private set;} = 1;
 
     [SerializeField] float vaultForce = 4f;
+    [SerializeField] float dashCooldownTime = 0.4285f; // ~ 140 bpm rhythm to dashes
 
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private Animator _anim;
 
     private bool vaultAvailable = false;
+    private bool dashOnCooldown = false;
 
     private IEnumerator activeCR;
 
@@ -105,23 +107,31 @@ public class Spear : MonoBehaviour, IWeapon {
     }
 
     private IEnumerator Dash() {
-        // tell the animator to play the dash animatior
-        // reduce player's energy meter
-        _anim.SetBool("spearDash", true);
-        _body.gravityScale = 0;
-        _body.velocity = new Vector2(_body.velocity.x, 0f);
-        GetComponent<PlayerMovement>().StunPlayer(0.25f, true, "dash");
-        StartCoroutine(DashAttacker());
-        yield return new WaitForSeconds(0.25f);
-        _body.gravityScale = 1;
-        _anim.SetBool("spearDash", false);
+        if (!dashOnCooldown) {
+            // tell the animator to play the dash animatior
+            // reduce player's energy meter
+            _anim.SetBool("spearDash", true);
+            _body.gravityScale = 0;
+            _body.velocity = new Vector2(_body.velocity.x, 0f);
+            GetComponent<PlayerMovement>().StunPlayer(0.25f, true, "dash");
+            StartCoroutine(DashAttacker());
+            yield return new WaitForSeconds(0.25f);
+            _body.gravityScale = 1;
+            _anim.SetBool("spearDash", false);
+            StartCoroutine(DashCooldown());
 
-        // energy stuff
+            // energy stuff
+        }
     }
     private IEnumerator DashAttacker() {
         while (_anim.GetBool("spearDash")) {
             Attack();
             yield return null;
         }
+    }
+    private IEnumerator DashCooldown() { // this feels like a pretty generic coroutine, maybe you should make it global and generalized so you can use it with whatever values you want in any script?
+        dashOnCooldown = true;
+        yield return new WaitForSeconds(dashCooldownTime);
+        dashOnCooldown = false;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour, ILevelProp {
-    [SerializeField] float knockbackForce;
+    [SerializeField] float knockbackStrength = 1.5f;
     [SerializeField] float respawnTime = 2.5f;
 
     private Animator _anim;
@@ -34,7 +34,22 @@ public class Bubble : MonoBehaviour, ILevelProp {
         // not used by bubble
     }
 
-    public void OnTriggerEnter() { // push the entity away and pop
-        // TO DO
+    void OnCollisionEnter2D(Collision2D col) {
+        GameObject other = col.gameObject;
+        if (other.tag == "Player") {
+            float strength = knockbackStrength;
+            if (other.transform.position.x <= transform.position.x) {
+                strength *= -1;
+            }
+            other.GetComponent<PlayerMovement>().GetHit(strength);
+        } else if (other.tag == "enemy") {
+            float strength = knockbackStrength;
+            if (other.transform.position.x <= transform.position.x) {
+                strength *= -1;
+            }
+            other.GetComponent<IEnemy>().GetHit(0, strength);
+        }
+        _anim.SetTrigger("pop");
+        StartCoroutine(Respawn());
     }
 }

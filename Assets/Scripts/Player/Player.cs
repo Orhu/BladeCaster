@@ -35,11 +35,13 @@ public class Player : MonoBehaviour
     // Weapon Swap
     // press [button] to open weapon wheel theoretically
     if (Input.GetKeyDown("1")) { // sword
+      Debug.Log("Switching to Sword");
       SwitchWeapon(0);
     } else if (Input.GetKeyDown("2")) { // spear
-      SwitchWeapon(2);
-    } else if (Input.GetKeyDown("3")) { // grapple
+      Debug.Log("Switching to Spear");
       SwitchWeapon(1);
+    } else if (Input.GetKeyDown("3")) { // grapple
+      SwitchWeapon(2);
     } else if (Input.GetKeyDown("4")) { // claymore
       SwitchWeapon(3);
     } /*else if (Input.GetKeyDown("5")) { // claws
@@ -65,18 +67,23 @@ public class Player : MonoBehaviour
   }
 
   private void SwitchWeapon(int weaponNum) {
+    if (_anim.GetBool("swordPogo") && weaponNum!= 0) {
+      _anim.SetBool("swordPogo", false);
+    }
     switch (weaponNum) {
       case 0:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.sword;
+        Debug.Log("Sword equipped successfully");
         break;
       case 1:
         if(weaponUnlocks[weaponNum] == false) break;
-        currentWeapon = WeaponsMaster.grapple;
+        currentWeapon = WeaponsMaster.spear;
+        Debug.Log("Spear equipped successfully");
         break;
       case 2:
         if(weaponUnlocks[weaponNum] == false) break;
-        currentWeapon = WeaponsMaster.spear;
+        currentWeapon = WeaponsMaster.grapple;
         break;
       case 3:
         if(weaponUnlocks[weaponNum] == false) break;
