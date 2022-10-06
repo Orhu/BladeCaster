@@ -22,14 +22,14 @@ public class KillZone : MonoBehaviour {
     }
 
     private IEnumerator RespawnPlayer(Collider2D other) { // look! an impressive mess!
-        Debug.Log("Player respawn timer on");
         SpriteRenderer _sprite = other.GetComponent<SpriteRenderer>();
         Rigidbody2D _body = other.GetComponent<Rigidbody2D>();
+        PlayerMovement _player = other.GetComponent<PlayerMovement>();
+        _player.StunPlayer(0.01f, false, "respawn");
         _sprite.enabled = false;
         _body.gravityScale = 0;
         _body.velocity = new Vector3(0f, 0f, 0f);
         yield return new WaitForSeconds(2f);
-        Debug.Log("Player respawn timer finished");
         other.transform.position = respawnPosition;
         _body.gravityScale = 1;
         _sprite.enabled = true;

@@ -132,6 +132,9 @@ public class PlayerMovement : MonoBehaviour {
   // stun/input-locking stuff
   public void StunPlayer(float time, bool endOnTime, string message) {
     stunMessage = message;
+    if (_anim.GetBool("charging")) {
+      _anim.SetBool("charging", false);
+    }
     if (stunCR != null) {
       StopCoroutine(stunCR);
     }
