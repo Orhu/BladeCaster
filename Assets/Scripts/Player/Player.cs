@@ -111,6 +111,10 @@ public class Player : MonoBehaviour
 
   public void refillEnergy(float amount){
     curEnergy += amount;
+    if(curEnergy > maxEnergy)
+    {
+      curEnergy = maxEnergy;
+    }
     return;
   }
 
