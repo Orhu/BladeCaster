@@ -472,6 +472,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleRun0
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f763fcb8c0911d64aa714689ea3f209d
+      internalID: 170547755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleRun3
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7831a45b846d4414384e333036adc196
+      internalID: 427085575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleRun1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7ae0f249b9bbb4aa125810cb4117cc
+      internalID: 373693020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleJump
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d2a21357f7d37419ffc486e7d83aaf
+      internalID: -1484856135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleRun2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ddcd72170fd78349afdd451c9dee477
+      internalID: 1008305038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -488,16 +593,21 @@ TextureImporter:
       PlayerGrappleArmUp: -373299518
       PlayerGrappleHookDownSide: -559984211
       PlayerGrappleAIr: -1453752811
+      PlayerGrappleRun3: 427085575
       PlayerGrappleArmDown: -1024512920
       PlayerGrappleArmUpSide: 495652865
       PlayerGrappleHookSide: 418379211
       PlayerGrappleIdle: -1033107564
+      PlayerGrappleRun0: 170547755
       PlayerGrappleArmSide: 2127668322
+      PlayerGrappleRun1: 373693020
       PlayerGrappleHookUpSide: -2022425002
+      PlayerGrappleJump: -1484856135
       PlayerGrappleHookDown: 900713949
       PlayerGrappleDown: -251981967
       PlayerGrappleDownSide: -1330850128
       PlayerGrappleUp: -341614532
+      PlayerGrappleRun2: 1008305038
       PlayerGrappleHookUp: 634623852
       PlayerGrappleSide: 2144125954
   spritePackingTag: 
