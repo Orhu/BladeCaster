@@ -241,6 +241,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PlayerClaymoreJump
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 4
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fce8c2a1d1fa3a47bba6374307b4e76
+      internalID: 1877332625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerClaymoreRun3
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 4
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df6ccc1d474228429d8e8325b81ed4d
+      internalID: -2023746617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerClaymoreRun2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 4
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd27afe6e8eb46f4398887240674bf02
+      internalID: -266447934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerClaymoreRun1
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 4
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a39e1474dcd358849abbeb196d993c1c
+      internalID: 86161028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerClaymoreRun0
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 4
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a4db459a160be54e9f25c1de48c7b64
+      internalID: 249381685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -252,12 +357,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      PlayerClaymoreRun0: 249381685
+      PlayerClaymoreRun3: -2023746617
       PlayerClaymoreSlamGround: -1990164281
       PlayerClaymoreIdle: 965965781
       PlayerClaymoreAtk0: -1468792783
       PlayerClaymoreSlamAir: 691969088
-      PlayerClaymore_0: 188212310
+      PlayerClaymoreJump: 188212310
       PlayerClaymoreAtk2: -693239442
+      PlayerClaymoreRun2: -266447934
+      PlayerClaymoreRun1: 86161028
       PlayerClaymoreAtk1: 1151149025
   spritePackingTag: 
   pSDRemoveMatte: 0
