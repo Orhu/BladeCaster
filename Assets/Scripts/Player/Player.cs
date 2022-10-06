@@ -109,6 +109,11 @@ public class Player : MonoBehaviour
     weaponUnlocks[weaponNum] = true;
   }
 
+  public void refillEnergy(float amount){
+    curEnergy += amount;
+    return;
+  }
+
   public bool UpdateEnergy(float x) {
     /*
     Params:

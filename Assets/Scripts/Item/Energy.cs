@@ -8,6 +8,7 @@ public class Energy : MonoBehaviour
     if(other.gameObject.layer == LayerMask.NameToLayer("Player")){
       this.gameObject.SetActive(false);
       //TO DO LATER; Max out Player Energy
+      GetComponent<Player>().refillEnergy(Player.maxEnergy);
     }
   }
 }
