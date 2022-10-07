@@ -22,25 +22,26 @@ public class WeaponWheels : MonoBehaviour
     this.gameObject.SetActive(false);
   }
 
-  void Update()
-  {
-    if(Input.GetKey("c")){
-      this.gameObject.SetActive(true);
-      if(Input.GetKeyDown("LeftArrow")){
+  public int weaponChange(int Current){
+    weaponState = Current;
+    this.gameObject.SetActive(true);
+    Refresh();
+    while(Input.GetKeyDown(KeyCode.C)){
+      if(Input.GetKey(KeyCode.LeftArrow)){
         weaponState++;
         if(weaponState < wheelSprites.Length){
           weaponState = 0;
         }
         Refresh();
       }
-      else if(Input.GetKeyDown("RightArrow")){
-        weaponState--;
-        if(weaponState < 0){
-          weaponState = wheelSprites.Length;
-        }
-        Refresh();
+      else if(Input.GetKey(KeyCode.RightArrow)){
+      weaponState--;
+      if(weaponState < 0){
+        weaponState = wheelSprites.Length;
       }
-      this.gameObject.SetActive(false);
+      Refresh();
+      }
     }
+    return weaponState;
   }
 }
