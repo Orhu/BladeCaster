@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon {
     [SerializeField] private LayerMask hurtboxLayerMask; //???
-    public int damage {get; private set;} = 1;
-    public int abilityEnergyCost {get; private set;} = 0;
+    public int damage {get; [SerializeField] set;} = 1;
+    public int abilityEnergyCost {get; [SerializeField] set;} = 0;
 
+    [SerializeField] float hitStrength = 2.5f;
     [SerializeField] float pogoForce = 2.5f;
 
     private Rigidbody2D _body;
@@ -43,7 +44,7 @@ public class Sword : MonoBehaviour, IWeapon {
             if (hit.tag == "enemy") {
                 IEnemy hitEnemy = hit.GetComponent<IEnemy>();
                 if (!hitEnemy.IsInvulnerable()) {
-                    hitEnemy.GetHit(damage, 2.5f * direction);
+                    hitEnemy.GetHit(damage, hitStrength * direction);
                 }
             } else if (hit.tag == "levelProp") {
                 hit.GetComponent<ILevelProp>().Interact();
