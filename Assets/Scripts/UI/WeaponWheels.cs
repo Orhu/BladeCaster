@@ -8,11 +8,7 @@ public class WeaponWheels : MonoBehaviour
   public Sprite[] wheelSprites; // 0 = sword, 1 = spear, 2 = grapple, 3 = claymore
 
   private SpriteRenderer spriteRenderer;
-  private int weaponState;
-
-  private void Refresh(){
-    spriteRenderer.sprite = this.wheelSprites[weaponState];
-  }
+  private int weaponState = 0;
 
   void Awake(){
     spriteRenderer = GetComponent<SpriteRenderer>();
@@ -22,25 +18,20 @@ public class WeaponWheels : MonoBehaviour
     this.gameObject.SetActive(false);
   }
 
-  public int weaponChange(int Current){
-    weaponState = Current;
-    this.gameObject.SetActive(true);
-    Refresh();
-    while(Input.GetKeyDown(KeyCode.C)){
-      if(Input.GetKey(KeyCode.LeftArrow)){
-        weaponState++;
-        if(weaponState < wheelSprites.Length){
-          weaponState = 0;
-        }
-        Refresh();
+  public int weaponChange(){
+    if(Input.GetKeyDown(KeyCode.LeftArrow)){
+      weaponState++;
+      if(weaponState > wheelSprites.Length - 1){
+        weaponState = 0;
       }
-      else if(Input.GetKey(KeyCode.RightArrow)){
+      spriteRenderer.sprite = this.wheelSprites[weaponState];
+    }
+    else if(Input.GetKeyDown(KeyCode.RightArrow)){
       weaponState--;
       if(weaponState < 0){
-        weaponState = wheelSprites.Length;
+        weaponState = wheelSprites.Length - 1;
       }
-      Refresh();
-      }
+      spriteRenderer.sprite = this.wheelSprites[weaponState];
     }
     return weaponState;
   }

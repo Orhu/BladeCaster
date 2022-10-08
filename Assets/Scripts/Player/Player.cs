@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
 
   public IWeapon currentWeapon;
   public WeaponWheels wheel;
-  public static int weaponNum;
 
   // 0: Sword, 1: Grapple, 2: Spear, 3: Claymore, 4: Claws, 5: Musket, 6: Shield
   public static bool[] weaponUnlocks = {false, false, false, false, false, false, false};
@@ -36,25 +35,24 @@ public class Player : MonoBehaviour
   void Update() {
     // Weapon Swap
     // press [button] to open weapon wheel theoretically
-    if(Input.GetKeyDown(KeyCode.C)){
-      weaponNum = wheel.weaponChange(weaponNum);
-      SwitchWeapon();
+    if(Input.GetKey(KeyCode.C)){
+      wheel.gameObject.SetActive(true);
+      SwitchWeapon(wheel.weaponChange());
+    }
+    else if(Input.GetKeyUp(KeyCode.C)){
+      wheel.gameObject.SetActive(false);
     }
 
     if (Input.GetKeyDown("1")) { // sword
       Debug.Log("Switching to Sword");
-      weaponNum = 0;
-      SwitchWeapon();
+      SwitchWeapon(0);
     } else if (Input.GetKeyDown("2")) { // spear
       Debug.Log("Switching to Spear");
-      weaponNum = 1;
-      SwitchWeapon();
+      SwitchWeapon(1);
     } else if (Input.GetKeyDown("3")) { // grapple
-      weaponNum = 2;
-      SwitchWeapon();
+      SwitchWeapon(2);
     } else if (Input.GetKeyDown("4")) { // claymore
-      weaponNum = 3;
-      SwitchWeapon();
+      SwitchWeapon(3);
     } /*else if (Input.GetKeyDown("5")) { // claws
       SwitchWeapon(4);
     } else if (Input.GetKeyDown("6")) { // musket
@@ -77,7 +75,7 @@ public class Player : MonoBehaviour
     }
   }
 
-  private void SwitchWeapon() {
+  private void SwitchWeapon(int weaponNum) {
     if (_anim.GetBool("swordPogo") && weaponNum!= 0) {
       _anim.SetBool("swordPogo", false);
     }
