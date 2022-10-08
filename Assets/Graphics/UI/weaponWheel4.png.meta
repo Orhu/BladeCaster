@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weaponWheelSword
+      name: weaponWheel4_Sword
       rect:
         serializedVersion: 2
         x: 0
@@ -124,20 +124,20 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee814f7407670c649afb2549a5b0026e
-      internalID: -887731199
+      spriteID: fe1a09e5049c18b418a3f43d63838525
+      internalID: -1415627784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weaponWheelSpear
+      name: weaponWheel4_Spear
       rect:
         serializedVersion: 2
         x: 640
@@ -145,20 +145,20 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c24bc57ac2639b40a905e5a82adb801
-      internalID: 1213922156
+      spriteID: a20ed6fbcdff9254a8738b0d51ea0c90
+      internalID: -722595479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weaponWheelGrapple
+      name: weaponWheel4_Grapple
       rect:
         serializedVersion: 2
         x: 1280
@@ -166,20 +166,20 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbaede1c438da2f4d8d3bef2780bbe4d
-      internalID: -95352362
+      spriteID: 0a281b60221193742aee413ad02b9ca2
+      internalID: -1118067883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weaponWheelClaymore
+      name: weaponWheel4_Claymore
       rect:
         serializedVersion: 2
         x: 1920
@@ -187,14 +187,14 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bc6382996ba3be4daf1de16bf7ba242
-      internalID: -614889457
+      spriteID: 62dc55dc32a85fe4398ff09463d48323
+      internalID: 377360900
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      weaponWheelGrapple: -95352362
-      weaponWheelClaymore: -614889457
-      weaponWheelSpear: 1213922156
-      weaponWheelSword: -887731199
+      weaponWheel4_Claymore: 377360900
+      weaponWheel4_Spear: -722595479
+      weaponWheel4_Sword: -1415627784
+      weaponWheel4_Grapple: -1118067883
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

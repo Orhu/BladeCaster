@@ -9,20 +9,15 @@ public class Player : MonoBehaviour
   public bool debugWeapon = false;
 
   public IWeapon currentWeapon;
-  public WeaponWheels wheel;
+  public WeaponWheel wheel;
 
   // 0: Sword, 1: Grapple, 2: Spear, 3: Claymore, 4: Claws, 5: Musket, 6: Shield
   public static bool[] weaponUnlocks = {false, false, false, false, false, false, false};
-
-  //Testing Purposes
-  public TextMesh EText;
 
   private Animator _anim;
 
   void Start() {
     _anim = GetComponent<Animator>();
-    curEnergy = maxEnergy;
-    EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
 
     if(debugWeapon){
       for (int i = 0; i < 4; i++) {
@@ -116,6 +111,7 @@ public class Player : MonoBehaviour
 
   public void UnlockWeapon(int weaponNum) {
     weaponUnlocks[weaponNum] = true;
+    wheel.IncrementWeaponsUnlocked();
   }
 
   public void refillEnergy(float amount){
@@ -127,11 +123,11 @@ public class Player : MonoBehaviour
     return;
   }
 
-  public bool UpdateEnergy(float x) {
-    /*
+  /*public bool UpdateEnergy(float x) {
+    
     Params:
       float x = energy consumption from the weapon being called
-    */
+    
     float tempEng = curEnergy; //Pinpoints the energy so it is not updated
     tempEng -= x;
     if(tempEng <= 0) //If the energy is less than zero (empty), then nothing is changed and the execution is negated
@@ -141,5 +137,5 @@ public class Player : MonoBehaviour
     curEnergy = tempEng; //Decrement by x if the curEnergy is greater than 0
     EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
     return true;
-  }
+  }*/
 }
