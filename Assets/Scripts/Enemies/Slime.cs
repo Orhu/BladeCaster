@@ -282,7 +282,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     }
 
     public void GetHit(int damage, float strength) {
-        StopCoroutine(currentAction);
+        if (currentAction != null) {
+            StopCoroutine(currentAction);
+        }
         health -= damage;
         _anim.SetInteger("health", health);
         Vector2 knockback = new Vector2(Mathf.Cos(0.6f) * strength, Mathf.Sin(0.6f) * Mathf.Abs(strength));
@@ -302,7 +304,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     }
 
     private IEnumerator Die() {
-        StopCoroutine(currentAction);
+        if (currentAction != null) {
+            StopCoroutine(currentAction);
+        }
         Debug.Log("Enemy killed");
         invulnerable = true;
         yield return new WaitForSeconds(0.1f);
