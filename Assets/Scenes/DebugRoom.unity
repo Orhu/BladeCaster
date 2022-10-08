@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754381, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: claymorePlummetSpeed
-      value: 0.3285
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754382, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: EText
@@ -959,7 +959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: iFrames
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: movesToLose
