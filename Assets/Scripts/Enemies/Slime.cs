@@ -7,7 +7,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     public bool invulnerable {get; private set;} = false;
 
     [Header("Slimy Parameters")]
-    [SerializeField] float iFrames = 0.2f;
+    [SerializeField] float iFrames = 1f;
     [SerializeField] float knockbackStrength = 1.5f;
     [SerializeField] float bounce = 1.5f;
     
@@ -25,6 +25,8 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     [SerializeField] float approachSpeed = 1f; // speed of slime in approach action
     [SerializeField] float approachTimeDelay = 2f;
     [SerializeField] int movesToLose = 3; // moves to forget about player
+
+    public bool freeze = false;
     
     
     // behavioral variables
@@ -41,8 +43,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         _playerSensor = GetComponent<AIPlayerSensor>();
 
         _anim.SetInteger("health", 2);
-
-        StartCoroutine(SlimeUpdate());
+        if (!freeze) {
+            StartCoroutine(SlimeUpdate());
+        }
     }
 
     void Update() {
@@ -54,7 +57,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         }
 
         // die zone
-        if (health == 0 && IsGrounded()) {
+        if (health <= 0 && IsGrounded()) {
             StartCoroutine(Die());
             health = -1;
         }
@@ -296,11 +299,16 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     }
 
     private IEnumerator DoIFrames() {
+        acting = true;
         invulnerable = true;
-        _anim.SetBool("invuln", true);
+        gameObject.layer = 10;
         yield return new WaitForSeconds(iFrames);
+        while (!IsGrounded()) {
+            yield return null;
+        }
         invulnerable = false;
-        _anim.SetBool("invuln", false);
+        gameObject.layer = 7;
+        acting = false;
     }
 
     private IEnumerator Die() {

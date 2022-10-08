@@ -288,7 +288,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: player_claymore_run
-  m_Speed: 0.4
+  m_Speed: 0.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2623818660794015622}

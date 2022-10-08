@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour {
   public float jumpBoost = 0.01f;
 
   private bool jumping = false;
+  private bool invincible = false;
+  [SerializeField] float iFrames = 2f;
 
   private bool stun = false;
   private bool stunTimed = false;
@@ -26,6 +28,12 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] float spearDashMod = 2f;
   [SerializeField] float spearCtrlMod = 0.25f;
 
+  [Header("Claymore Movement Modifiers")]
+  [SerializeField] float claymoreSpeed = 0.3f;
+  [SerializeField] float claymoreBaseJump = 1.25f;
+  [SerializeField] float claymoreJumpBoost = 0.05f;
+  [SerializeField] float claymorePlummetSpeed = 3f;
+
 
   void Start() {
     _body = GetComponent<Rigidbody2D>();
@@ -39,13 +47,19 @@ public class PlayerMovement : MonoBehaviour {
       StunReset();
     }
 
+    bool claymoreEquipped = _anim.GetInteger("weapon") == 4;
+
     float deltaX;
     if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
       Debug.Log("spear charge");
       deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
     } else {
       if (!stun) {
-        deltaX = Input.GetAxisRaw("Horizontal") * speed;
+        if (claymoreEquipped) {
+          deltaX = Input.GetAxisRaw("Horizontal") * claymoreSpeed;
+        } else {
+          deltaX = Input.GetAxisRaw("Horizontal") * speed;
+        }
       } else {
         switch (stunMessage) {
           case "vault":
@@ -53,6 +67,9 @@ public class PlayerMovement : MonoBehaviour {
             break;
           case "dash":
             deltaX = gameObject.transform.localScale.x * speed * spearDashMod;
+            break;
+          case "plummet":
+            deltaX = 0;
             break;
           default:
             deltaX = _body.velocity.x;
@@ -65,14 +82,25 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     //Vertical movement
-    if (jumping) {
+    if (stunMessage == "plummet") {
+      _body.AddForce(Vector2.down * claymorePlummetSpeed, ForceMode2D.Impulse);
+    }
+    else if (jumping) {
       if (Input.GetKey(KeyCode.Space)) {
-      _body.AddForce(Vector2.up * jumpBoost, ForceMode2D.Impulse);
+        if (claymoreEquipped) {
+          _body.AddForce(Vector2.up * claymoreJumpBoost, ForceMode2D.Impulse);
+        } else {
+          _body.AddForce(Vector2.up * jumpBoost, ForceMode2D.Impulse);
+        }
       } else {
         jumping = false;
       }
     } else if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
-      _body.AddForce(Vector2.up * baseJump, ForceMode2D.Impulse);
+      if (claymoreEquipped) {
+        _body.AddForce(Vector2.up * claymoreBaseJump, ForceMode2D.Impulse);
+      } else {
+        _body.AddForce(Vector2.up * baseJump, ForceMode2D.Impulse);
+      }
       jumping = true;
       StartCoroutine(JumpMod());
     }
@@ -126,7 +154,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
   public void GetHit(float strength) {
-    if (!_anim.GetBool("spearDash")) {
+    if (!_anim.GetBool("spearDash") && !invincible) {
       _body.velocity = Vector2.zero;
       float angle = 45f * Mathf.Deg2Rad;
       StunPlayer(0.1f, false, "hit");
@@ -135,6 +163,7 @@ public class PlayerMovement : MonoBehaviour {
       _anim.SetTrigger("hit");
     // this might work?
     }
+    StartCoroutine(Invuln());
   }
 
 
@@ -143,6 +172,9 @@ public class PlayerMovement : MonoBehaviour {
     stunMessage = message;
     if (_anim.GetBool("charging")) {
       _anim.SetBool("charging", false);
+    }
+    if (message == "plummet") {
+      invincible = true;
     }
     if (stunCR != null) {
       StopCoroutine(stunCR);
@@ -173,8 +205,21 @@ public class PlayerMovement : MonoBehaviour {
     if (stunCR != null) {
       StopCoroutine(stunCR);
     }
+    if (stunMessage != "hit") {
+      invincible = false;
+    }
     stun = false;
     stunTimed = false;
     stunMessage = "";
+  }
+
+  private IEnumerator Invuln() {
+    Debug.Log("Invincible");
+    invincible = true;
+    gameObject.layer = 10;
+    yield return new WaitForSeconds(iFrames);
+    Debug.Log("Uninvincible");
+    invincible = false;
+    gameObject.layer = 6;
   }
 }
