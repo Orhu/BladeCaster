@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
   public bool debugWeapon = false;
 
   public IWeapon currentWeapon;
+  public WeaponWheels wheel;
 
   // 0: Sword, 1: Grapple, 2: Spear, 3: Claymore, 4: Claws, 5: Musket, 6: Shield
   public static bool[] weaponUnlocks = {false, false, false, false, false, false, false};
@@ -34,6 +35,14 @@ public class Player : MonoBehaviour
   void Update() {
     // Weapon Swap
     // press [button] to open weapon wheel theoretically
+    if(Input.GetKey(KeyCode.C)){
+      wheel.gameObject.SetActive(true);
+      SwitchWeapon(wheel.weaponChange());
+    }
+    else if(Input.GetKeyUp(KeyCode.C)){
+      wheel.gameObject.SetActive(false);
+    }
+
     if (Input.GetKeyDown("1")) { // sword
       Debug.Log("Switching to Sword");
       SwitchWeapon(0);
