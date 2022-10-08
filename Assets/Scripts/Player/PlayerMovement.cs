@@ -21,15 +21,18 @@ public class PlayerMovement : MonoBehaviour {
   private Animator _anim;
 
   // spear horizontal movement variables
+  [Header("Spear Movement Modifiers")]
   [SerializeField] float spearChargeMod = 1.25f;
   [SerializeField] float spearDashMod = 2f;
   [SerializeField] float spearCtrlMod = 0.25f;
+
 
   void Start() {
     _body = GetComponent<Rigidbody2D>();
     _box = GetComponent<BoxCollider2D>();
     _anim = GetComponent<Animator>();
   }
+
 
   void Update() {
     if (IsGrounded() && stun && !stunTimed) {
@@ -76,12 +79,13 @@ public class PlayerMovement : MonoBehaviour {
 
     // animation
     _anim.SetFloat("speed", Mathf.Abs(deltaX));
-    if (!Mathf.Approximately(deltaX,0)) {
+    if (!Mathf.Approximately(deltaX,0)) { // lets you turn around
       transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
     }
 
     _anim.SetBool("jump", !IsGrounded());    
   }
+
 
   private bool IsGrounded() {
     float bonusHeight = 0.075f;
@@ -114,20 +118,25 @@ public class PlayerMovement : MonoBehaviour {
     return retVal;
   }
 
+
   private IEnumerator JumpMod() { // jump higher when space is pressed for longer
     yield return new WaitForSeconds(0.2f);
     jumping = false;
   }
 
+
   public void GetHit(float strength) {
-    _body.velocity = Vector2.zero;
-    float angle = 45f * Mathf.Deg2Rad;
-    StunPlayer(0.1f, false, "hit");
-    Vector2 knockback = new Vector2(Mathf.Cos(angle) * strength, Mathf.Sin(angle) * Mathf.Abs(strength));
-    _body.AddForce(knockback, ForceMode2D.Impulse); 
-    _anim.SetTrigger("hit");
+    if (!_anim.GetBool("spearDash")) {
+      _body.velocity = Vector2.zero;
+      float angle = 45f * Mathf.Deg2Rad;
+      StunPlayer(0.1f, false, "hit");
+      Vector2 knockback = new Vector2(Mathf.Cos(angle) * strength, Mathf.Sin(angle) * Mathf.Abs(strength));
+      _body.AddForce(knockback, ForceMode2D.Impulse); 
+      _anim.SetTrigger("hit");
     // this might work?
+    }
   }
+
 
   // stun/input-locking stuff
   public void StunPlayer(float time, bool endOnTime, string message) {
@@ -145,9 +154,11 @@ public class PlayerMovement : MonoBehaviour {
       StartCoroutine(stunCR);
     }
   }
+
   public void Unstun() {
     StunReset();
   }
+
   private IEnumerator StunTime(float time, bool endOnTime) {
     stunTimed = true;
     stun = true;
@@ -157,6 +168,7 @@ public class PlayerMovement : MonoBehaviour {
       StunReset();
     }
   }
+
   private void StunReset() {
     if (stunCR != null) {
       StopCoroutine(stunCR);

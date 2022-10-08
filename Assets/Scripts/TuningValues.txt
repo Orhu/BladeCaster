@@ -1,0 +1,47 @@
+Tuning Document
+
+--Player--
+  General:
+    Speed = 1
+    Base Jump = 2.5
+    Jump Boost = 0.05
+    Jump Boost Time (hidden) = 0.2s
+    Grounded check bonus height = 0.075
+
+  Sword: 
+    Damage = 1
+    Ability Energy Cost =  0
+    Hit Strength = 2.5
+    Pogo Force = 2.5
+
+  Spear:
+    Damage = 1
+    Ability Energy Cost = 1 (need to change)
+    Attack Hit Strength = 1.75
+    Charge Hit Strength = 2.5
+    Dash Hit Strength = 3
+    Vault Force = 4
+    Dash Cooldown Time = 0.4285s (~140 bpm)
+    (from PlayerMovement)
+    Spear Charge Speed Mod = 1.25
+    Spear Dash Mod = 2
+    Spear Vault In-Air Control Mod = 0.25
+
+==Slime==
+  Health = 2
+  Invincibility On Hit Time = 0.2s
+  Knockback Strength = 1.5
+
+==Bubble==
+  Respawn Time = 2.5s
+  Knockback Strength = 1.5
+
+==Misc.==
+  Killzone:
+    Respawn Time = 2s
+
+  Moving Platforms:
+    Speed = 0.5
+
+  Switch:
+    Delay After State Toggle Time = 0.05s (should be long enough that nothing can trigger it twice in one action)
