@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 
 
 public class EnergySystem : MonoBehaviour
@@ -18,7 +19,7 @@ public class EnergySystem : MonoBehaviour
     if(Input.GetKeyDown("x"))
     {
       EnergyReduce();
-      
+
     }
   }
 
