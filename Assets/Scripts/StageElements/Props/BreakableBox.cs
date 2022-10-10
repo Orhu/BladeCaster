@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BreakableBox : MonoBehaviour, IEnemy {
-    public int health {get; private set;} = 2;
-    public bool invulnerable {get; private set;} = false; // not used
+    [SerializeField] int size; // 0 = small, 1 = big
 
-    [SerializeField] int damageThreshold = 3;
+    public int health {get; private set;}
+    public bool invulnerable {get; private set;} = false; // not used
+    private int damageThreshold;
 
     private Rigidbody2D _body;
     private BoxCollider2D _box;
@@ -18,6 +19,18 @@ public class BreakableBox : MonoBehaviour, IEnemy {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _sprite = GetComponent<SpriteRenderer>();
+
+        switch (size) {
+            case 0:
+                health = 1;
+                damageThreshold = 1;
+                break;
+            case 1:
+                health = 2;
+                damageThreshold = 3;
+                break;
+        }
+
         _sprite.sprite = boxSprites[health];
     }
 
