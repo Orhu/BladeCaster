@@ -38,12 +38,12 @@ public class Player : MonoBehaviour
   void Update() {
     // Weapon Swap
     // press [button] to open weapon wheel theoretically
-    if(Input.GetKey(KeyCode.C)){
+    if(Input.GetKey(KeyCode.LeftShift)){
       wheel.gameObject.SetActive(true);
       SwitchWeapon(wheel.weaponChange());
       Time.timeScale = 0.1f;
     }
-    else if(Input.GetKeyUp(KeyCode.C)){
+    else if(Input.GetKeyUp(KeyCode.LeftShift)){
       wheel.gameObject.SetActive(false);
       Time.timeScale = 1.0f;
     }

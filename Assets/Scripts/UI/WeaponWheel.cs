@@ -27,14 +27,14 @@ public class WeaponWheel : MonoBehaviour {
   }
 
   public int weaponChange(){
-    if(Input.GetKeyDown(KeyCode.LeftArrow)){
+    if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Comma)){
       weaponState++;
       if(weaponState > wheelSprites.Length - 1){
         weaponState = 0;
       }
       _sprite.sprite = this.wheelSprites[weaponState];
     }
-    else if(Input.GetKeyDown(KeyCode.RightArrow)){
+    else if(Input.GetKeyDown(KeyCode.Period)){
       weaponState--;
       if(weaponState < 0){
         weaponState = wheelSprites.Length - 1;
