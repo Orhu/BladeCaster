@@ -8,6 +8,7 @@ TagManager:
   - levelProp
   - movingPlatform
   - destructableProp
+  - box
   layers:
   - Default
   - TransparentFX

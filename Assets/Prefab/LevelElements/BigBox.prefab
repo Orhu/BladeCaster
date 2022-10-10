@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3240153856671263647}
   - component: {fileID: 3240153856671263643}
   - component: {fileID: 3240153856671263642}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BigBox
-  m_TagString: destructableProp
+  m_TagString: box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

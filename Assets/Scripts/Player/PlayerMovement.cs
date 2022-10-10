@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 
   [SerializeField] private LayerMask platformLayerMask;
   public float speed = 1f;
+  public float airCtrlMod = 0.25f;
+  public float airSlowForce = 0.05f;
   public float baseJump = 2.5f;
   public float jumpBoost = 0.01f;
 
@@ -37,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
   private int currentWeapon = 0; // 0 = none, 1 = sword, 2 = spear, 3 = grapple, 4 = claymore
 
   // claymore speed purposes
-  private bool movementRefreshed = true;
+  private bool movementRefreshed = true; // deprecated soon hopefully
 
   void Start() {
     _body = GetComponent<Rigidbody2D>();
@@ -54,26 +56,34 @@ public class PlayerMovement : MonoBehaviour {
       }
     }
 
+    // Horizontal Movement
+
     bool claymoreEquipped = (currentWeapon == 4 && movementRefreshed); // weapon-tied movement will only change once ground is touched after switching
+    float horizontalInput = Input.GetAxisRaw("Horizontal");
 
     float deltaX;
     if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
       Debug.Log("spear charge");
       deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
     } else {
-      if (!stun) {
-        if (claymoreEquipped) { // speed will not change until ground is touched
-          deltaX = Input.GetAxisRaw("Horizontal") * claymoreSpeed;
+      if (!stun) { // if you're not stunned
+        if (!IsGrounded()) {
+          ChangeAirSpeed();
+          deltaX = _body.velocity.x;
         } else {
-          deltaX = Input.GetAxisRaw("Horizontal") * speed;
+          if (claymoreEquipped) {
+            deltaX = horizontalInput * claymoreSpeed;
+          } else {
+            deltaX = horizontalInput * speed;
+          }
         }
-      } else {
+      } else { // if you are stunned
         switch (stunMessage) {
           case "vault":
-            deltaX = (gameObject.transform.localScale.x * speed * spearChargeMod) + (Input.GetAxisRaw("Horizontal") * spearCtrlMod);
-            break;
+            deltaX = (gameObject.transform.localScale.x * speed * spearChargeMod) + (horizontalInput * spearCtrlMod); // unnecessary soon
+           break;
           case "dash":
-            deltaX = gameObject.transform.localScale.x * speed * spearDashMod;
+            deltaX = gameObject.transform.localScale.x * speed * spearDashMod; // I want to retain velocity out of a dash, this is probably unnecessary after the air speed changes too
             break;
           case "plummet":
             deltaX = 0;
@@ -84,9 +94,11 @@ public class PlayerMovement : MonoBehaviour {
         }
       }
     }
-    if (stunMessage != "hit") {
-      _body.velocity = new Vector2(deltaX, _body.velocity.y);
+
+    if (stunMessage != "hit" && (IsGrounded() || stun)) {
+        _body.velocity = new Vector2(deltaX, _body.velocity.y);
     }
+
 
     //Vertical movement
     if (stunMessage == "plummet") {
@@ -95,9 +107,9 @@ public class PlayerMovement : MonoBehaviour {
     else if (jumping) {
       if (Input.GetKey(KeyCode.Space)) {
         if (claymoreEquipped) {
-          _body.AddForce(Vector2.up * claymoreJumpBoost, ForceMode2D.Impulse);
+          _body.velocity += new Vector2(0f, claymoreJumpBoost * Time.deltaTime);
         } else {
-          _body.AddForce(Vector2.up * jumpBoost, ForceMode2D.Impulse);
+          _body.velocity += new Vector2(0f, jumpBoost * Time.deltaTime);
         }
       } else {
         jumping = false;
@@ -112,15 +124,31 @@ public class PlayerMovement : MonoBehaviour {
       StartCoroutine(JumpMod());
     }
 
+
     // animation
     _anim.SetFloat("speed", Mathf.Abs(deltaX));
-    if (!Mathf.Approximately(deltaX,0)) { // lets you turn around
-      transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
+    if (horizontalInput != 0) { // lets you turn around
+      transform.localScale = new Vector3(Mathf.Sign(horizontalInput), 1, 1);
     }
 
     _anim.SetBool("jump", !IsGrounded());    
   }
 
+  private void ChangeAirSpeed() {
+    if (Input.GetAxisRaw("Horizontal") == 0) {
+      float xVelIn = Mathf.Sign(_body.velocity.x);
+      _body.AddForce((Vector2.left * Mathf.Sign(_body.velocity.x)) * airSlowForce, ForceMode2D.Impulse); // might be acceleration, unsure
+      if (xVelIn != Mathf.Sign(_body.velocity.x)) {
+        _body.velocity = new Vector2(0f, _body.velocity.y); // if x velocity change goes through 0, set x velocity to 0
+      }
+    } else {
+      _body.AddForce((Vector2.right * Input.GetAxisRaw("Horizontal")) * airCtrlMod, ForceMode2D.Impulse);
+      
+      if (Mathf.Abs(_body.velocity.x) > speed) {
+        _body.velocity = new Vector2(speed * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+      }
+    }
+  }
 
   private bool IsGrounded() {
     float bonusHeight = 0.075f;
@@ -131,7 +159,9 @@ public class PlayerMovement : MonoBehaviour {
     if (retVal) {
       if (raycastHit.collider.tag == "movingPlatform") {
         transform.parent = raycastHit.collider.transform; 
-      } 
+      } else if (raycastHit.collider.gameObject.layer == 7 && raycastHit.collider.tag != "box") { // if the thing is a character but not a box
+        retVal = false; // overwrite retVal to be false since ya can't stand on that stuff
+      }
     } else {
         transform.parent = null;
     }

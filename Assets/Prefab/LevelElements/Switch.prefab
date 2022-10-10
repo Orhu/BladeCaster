@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4788781477586000289}
   - component: {fileID: 4788781477586000293}
   - component: {fileID: 4788781477586000294}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Switch
   m_TagString: levelProp
   m_Icon: {fileID: 0}

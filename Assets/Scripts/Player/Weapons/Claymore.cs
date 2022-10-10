@@ -40,7 +40,7 @@ public class Claymore : MonoBehaviour, IWeapon {
         foreach (Collider2D hit in enemiesHit) {
             Debug.Log(hit);
             // check for tags for different results of getting hit (complete later)
-            if (hit.tag == "enemy" || hit.tag == "destructableProp") {
+            if (hit.tag == "enemy" || hit.tag == "box") {
                 IEnemy hitEnemy = hit.GetComponent<IEnemy>();
                 if (!hitEnemy.IsInvulnerable()) {
                     hitEnemy.GetHit(damage, attackKnockback * direction);

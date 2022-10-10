@@ -133,12 +133,12 @@ public class Spear : MonoBehaviour, IWeapon {
 
     private IEnumerator Dash() {
         if (!dashOnCooldown) {
-            Debug.Log("starting dash");
             // tell the animator to play the dash animatior
             // reduce player's energy meter
             _anim.SetBool("spearDash", true);
             _body.gravityScale = 0;
             _body.velocity = new Vector2(_body.velocity.x, 0f);
+            //_body.AddForce()
             GetComponent<PlayerMovement>().StunPlayer(0.25f, true, "dash");
             StartCoroutine(DashAttacker());
             yield return new WaitForSeconds(0.25f);
