@@ -56,7 +56,7 @@ public class WeaponWheel : MonoBehaviour {
       case 2:
         wheelSprites = wheel2Sprites;
         break;
-      case 3: 
+      case 3:
         wheelSprites = wheel3Sprites;
         break;
       case 4:

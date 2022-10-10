@@ -11,13 +11,21 @@ public class Player : MonoBehaviour
   public IWeapon currentWeapon;
   public WeaponWheel wheel;
 
+  private float fixedDeltaTime;
+  private PlayerMovement _movement;
+
   // 0: Sword, 1: Grapple, 2: Spear, 3: Claymore, 4: Claws, 5: Musket, 6: Shield
   public static bool[] weaponUnlocks = {false, false, false, false, false, false, false};
 
   private Animator _anim;
 
+  void Awake(){
+    this.fixedDeltaTime = Time.fixedDeltaTime;
+  }
+
   void Start() {
     _anim = GetComponent<Animator>();
+    _movement = GetComponent<PlayerMovement>();
 
     if(debugWeapon){
       for (int i = 0; i < 4; i++) {
@@ -33,10 +41,13 @@ public class Player : MonoBehaviour
     if(Input.GetKey(KeyCode.C)){
       wheel.gameObject.SetActive(true);
       SwitchWeapon(wheel.weaponChange());
+      Time.timeScale = 0.1f;
     }
     else if(Input.GetKeyUp(KeyCode.C)){
       wheel.gameObject.SetActive(false);
+      Time.timeScale = 1.0f;
     }
+    Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
 
     if (Input.GetKeyDown("1")) { // sword
       Debug.Log("Switching to Sword");
@@ -124,10 +135,10 @@ public class Player : MonoBehaviour
   }
 
   /*public bool UpdateEnergy(float x) {
-    
+
     Params:
       float x = energy consumption from the weapon being called
-    
+
     float tempEng = curEnergy; //Pinpoints the energy so it is not updated
     tempEng -= x;
     if(tempEng <= 0) //If the energy is less than zero (empty), then nothing is changed and the execution is negated
