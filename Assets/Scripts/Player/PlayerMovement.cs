@@ -34,6 +34,10 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] float claymoreJumpBoost = 0.05f;
   [SerializeField] float claymorePlummetSpeed = 3f;
 
+  private int currentWeapon = 0; // 0 = none, 1 = sword, 2 = spear, 3 = grapple, 4 = claymore
+
+  // claymore speed purposes
+  private bool movementRefreshed = true;
 
   void Start() {
     _body = GetComponent<Rigidbody2D>();
@@ -43,11 +47,14 @@ public class PlayerMovement : MonoBehaviour {
 
 
   void Update() {
-    if (IsGrounded() && stun && !stunTimed) {
-      StunReset();
+    if (IsGrounded()) {
+      movementRefreshed = true;
+      if (stun && !stunTimed) {
+        StunReset();
+      }
     }
 
-    bool claymoreEquipped = _anim.GetInteger("weapon") == 4;
+    bool claymoreEquipped = (currentWeapon == 4 && movementRefreshed); // weapon-tied movement will only change once ground is touched after switching
 
     float deltaX;
     if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
@@ -55,7 +62,7 @@ public class PlayerMovement : MonoBehaviour {
       deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
     } else {
       if (!stun) {
-        if (claymoreEquipped) {
+        if (claymoreEquipped) { // speed will not change until ground is touched
           deltaX = Input.GetAxisRaw("Horizontal") * claymoreSpeed;
         } else {
           deltaX = Input.GetAxisRaw("Horizontal") * speed;
@@ -173,9 +180,16 @@ public class PlayerMovement : MonoBehaviour {
     if (_anim.GetBool("charging")) {
       _anim.SetBool("charging", false);
     }
-    if (message == "plummet") {
-      invincible = true;
+
+    switch (message) {
+      case "plummet":
+        invincible = true;
+        break;
+      case "dash":
+        RefreshMovement();
+        break;
     }
+
     if (stunCR != null) {
       StopCoroutine(stunCR);
     }
@@ -221,5 +235,14 @@ public class PlayerMovement : MonoBehaviour {
     Debug.Log("Uninvincible");
     invincible = false;
     gameObject.layer = 6;
+  }
+
+  public void SwitchWeapon(int weaponNum) {
+    currentWeapon = weaponNum;
+    movementRefreshed = false;
+  }
+
+  public void RefreshMovement() {
+    movementRefreshed = true;
   }
 }

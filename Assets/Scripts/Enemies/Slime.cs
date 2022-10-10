@@ -24,17 +24,19 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     [SerializeField] float wanderDelay = 2.125f;
     [SerializeField] float approachSpeed = 1f; // speed of slime in approach action
     [SerializeField] float approachTimeDelay = 2f;
-    [SerializeField] int movesToLose = 3; // moves to forget about player
-
-    public bool freeze = false;
-    
+    [SerializeField] int movesToLose = 3; // moves to forget about player 
+    [SerializeField] float heightDifferenceTolerance = 0.2f; // How far the slime is willing to fall.   
     
     // behavioral variables
     private float lastX; // last x value the player was spotted at or wander destinations.
     private bool passive = true; // true if player not detected as of last slime update
     private bool acting = false; // if the slime is acting, dont do slime update
+    private Vector3 homePosition; // set in start
+    
 
     private IEnumerator currentAction;
+
+    private bool justStarted = true;
 
     void Start() {
         _box = GetComponent<BoxCollider2D>();
@@ -43,9 +45,10 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         _playerSensor = GetComponent<AIPlayerSensor>();
 
         _anim.SetInteger("health", 2);
-        if (!freeze) {
-            StartCoroutine(SlimeUpdate());
-        }
+
+        homePosition = transform.position;
+
+        StartCoroutine(SlimeUpdate());
     }
 
     void Update() {
@@ -70,6 +73,10 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     // SLIME AI ACTION ZONE
 
     private IEnumerator SlimeUpdate() {
+        if (justStarted) {
+            justStarted = false;
+            yield return new WaitForSeconds(2f);
+        }
         yield return new WaitForSeconds(updateDelay);
         
         // when target detected
@@ -152,14 +159,13 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         }
         
         if (move) {
-            for (int i = 0; i < 3; i++) {
-                float deltaX = dir * wanderSpeed;
-                if (SafeToMove(deltaX)) {
+            float realMove = 0.031062f * dir;
+            if (SafeToMove(realMove, 0)) {
+                for (int i = 0; i < 3; i++) {
+                    float deltaX = dir * wanderSpeed;
                     _body.velocity = new Vector2(deltaX, _body.velocity.y);
                     yield return new WaitForSeconds(0.05f);
-                } else {
-                    break;
-                }
+                } 
             }
             yield return new WaitForSeconds(wanderDelay);
         } else {
@@ -177,8 +183,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
 
         float dir = Mathf.Sign(lastX - transform.position.x); 
 
-        float deltaX = dir * approachSpeed;
-        if (SafeToMove(deltaX)) {
+        float realMove = 0.2531857f * dir;
+        if (SafeToMove(realMove, 1)) {
+            float deltaX = dir * approachSpeed;
             _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
             yield return new WaitForSeconds(approachTimeDelay);
         }
@@ -200,8 +207,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         float dir = Mathf.Sign(lastX - transform.position.x);
 
         for (int i = 0; i < movesToLose; i++) {
-            float deltaX = dir * approachSpeed;
-                if (SafeToMove(deltaX)) {
+            float realMove = 0.2531857f * dir;
+                if (SafeToMove(realMove, 1)) {
+                    float deltaX = dir * approachSpeed;
                     _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
                     yield return new WaitForSeconds(approachTimeDelay);
                 } else {
@@ -256,6 +264,11 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         acting = false;
     }
 
+    //private IEnumerator Retreat() {
+        // TO DO 
+        // Way later, not really important right now
+    //}
+
 
     private float GenerateAtkThreshold(Vector3 targetPos) {
          float distance = Mathf.Abs(transform.position.x - targetPos.x);
@@ -270,9 +283,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     }
 
 
-    private bool SafeToMove(float deltaX) {
-        return true;
-        // TO DO
+    private bool SafeToMove(float deltaX, int mode) { // 0 = wander, 1 = approach
+        RaycastHit2D hit = Physics2D.Raycast(_box.bounds.center + new Vector3 (deltaX, 0f, 0f), Vector3.down, heightDifferenceTolerance, LayerMask.GetMask("Platform"));
+        return (hit.collider != null);
     }
 
 

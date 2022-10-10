@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
     }
     if(weaponUnlocks[weaponNum] == true){
       _anim.SetInteger("weapon", (weaponNum + 1));
+      GetComponent<PlayerMovement>().SwitchWeapon(weaponNum + 1);
     }
   }
 

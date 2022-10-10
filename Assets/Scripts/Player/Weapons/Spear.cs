@@ -104,7 +104,6 @@ public class Spear : MonoBehaviour, IWeapon {
     }
     private IEnumerator ChargeEnergyTick() {
         while(_anim.GetBool("charging")) {
-            // tick down energy
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -130,7 +129,6 @@ public class Spear : MonoBehaviour, IWeapon {
             yield return new WaitForSeconds(0.1f); // adjust to match roughly the length of the start of the jump
         }
         vaulting = false;
-        // energy stuff
     }
 
     private IEnumerator Dash() {
@@ -147,8 +145,6 @@ public class Spear : MonoBehaviour, IWeapon {
             _body.gravityScale = 1;
             _anim.SetBool("spearDash", false);
             StartCoroutine(DashCooldown());
-
-            // energy stuff
         }
     }
     private IEnumerator DashAttacker() {

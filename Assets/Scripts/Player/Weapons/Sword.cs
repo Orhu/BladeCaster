@@ -71,7 +71,9 @@ public class Sword : MonoBehaviour, IWeapon {
         }
 
         if (hitThing) { // if you hit something, pogo up
-            GetComponent<PlayerMovement>().Unstun(); // pogo unstuns
+            PlayerMovement _playerMove = GetComponent<PlayerMovement>();
+            _playerMove.Unstun(); // pogo unstuns
+            _playerMove.RefreshMovement(); // and refreshes movement
             _body.velocity = new Vector2 (_body.velocity.x, 0f);
             _body.AddForce(Vector2.up * pogoForce, ForceMode2D.Impulse);
         }
