@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
   public IWeapon currentWeapon;
   public WeaponWheels wheel;
 
+  private float fixedDeltaTime;
+  private PlayerMovement _movement;
+
   // 0: Sword, 1: Grapple, 2: Spear, 3: Claymore, 4: Claws, 5: Musket, 6: Shield
   public static bool[] weaponUnlocks = {false, false, false, false, false, false, false};
 
@@ -19,8 +22,13 @@ public class Player : MonoBehaviour
 
   private Animator _anim;
 
+  void Awake(){
+    this.fixedDeltaTime = Time.fixedDeltaTime;
+  }
+
   void Start() {
     _anim = GetComponent<Animator>();
+    _movement = GetComponent<PlayerMovement>();
     curEnergy = maxEnergy;
     EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
 
@@ -38,10 +46,13 @@ public class Player : MonoBehaviour
     if(Input.GetKey(KeyCode.C)){
       wheel.gameObject.SetActive(true);
       SwitchWeapon(wheel.weaponChange());
+      Time.timeScale = 0f;
     }
     else if(Input.GetKeyUp(KeyCode.C)){
       wheel.gameObject.SetActive(false);
+      Time.timeScale = 1.0f;
     }
+    Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
 
     if (Input.GetKeyDown("1")) { // sword
       Debug.Log("Switching to Sword");
