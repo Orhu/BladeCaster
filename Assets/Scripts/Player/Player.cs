@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour
   public static bool[] weaponUnlocks = {false, false, false, false, false, false, false};
 
   private Animator _anim;
+
+  private int pendingWeapon;
 
   void Awake(){
     this.fixedDeltaTime = Time.fixedDeltaTime;
@@ -38,14 +41,10 @@ public class Player : MonoBehaviour
   void Update() {
     // Weapon Swap
     // press [button] to open weapon wheel theoretically
-    if(Input.GetKey(KeyCode.LeftShift)){
-      wheel.gameObject.SetActive(true);
-      SwitchWeapon(wheel.weaponChange());
-      Time.timeScale = 0.1f;
-    }
-    else if(Input.GetKeyUp(KeyCode.LeftShift)){
-      wheel.gameObject.SetActive(false);
-      Time.timeScale = 1.0f;
+    if (Input.GetKeyDown(KeyCode.LeftShift)) {
+      StartCoroutine(DoWeaponWheel());
+    } else if (Input.GetKey(KeyCode.LeftShift)){
+      pendingWeapon = wheel.WeaponChange();
     }
     Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
 
@@ -150,4 +149,35 @@ public class Player : MonoBehaviour
     EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
     return true;
   }*/
+
+  private IEnumerator DoWeaponWheel() {
+    wheel.gameObject.SetActive(true); // show wheel
+    Image _wheelImage = wheel.GetComponent<Image>();
+    float t = 0.0f;
+    while (Input.GetKey(KeyCode.LeftShift)) {
+      if (t != 1.0f) {
+        Color deltaA = new Vector4(1f, 1f, 1f, Mathf.Lerp(0.0f, 1.0f, t));
+        _wheelImage.color = deltaA;
+        Time.timeScale = Mathf.Lerp(1.0f, 0.05f, t);
+
+        t += 10f * Time.deltaTime;
+      }
+      yield return null; // skip frame
+    }
+
+    // when shift key released
+    SwitchWeapon(pendingWeapon);
+    t = Mathf.Abs(t - 1f);
+    while (Time.timeScale != 1f) {
+      Color deltaA = new Vector4(1f, 1f, 1f, Mathf.Lerp(1.0f, 0.0f, t));
+      _wheelImage.color = deltaA;
+      Time.timeScale = Mathf.Lerp(0.05f, 1.0f, t);
+      
+      t += 10f * Time.deltaTime;
+
+      yield return null;
+    }
+    wheel.gameObject.SetActive(false);
+      
+  }
 }

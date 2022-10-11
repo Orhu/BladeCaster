@@ -26,7 +26,7 @@ public class WeaponWheel : MonoBehaviour {
     this.gameObject.SetActive(false);
   }
 
-  public int weaponChange(){
+  public int WeaponChange(){
     if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Comma)){
       weaponState++;
       if(weaponState > wheelSprites.Length - 1){
