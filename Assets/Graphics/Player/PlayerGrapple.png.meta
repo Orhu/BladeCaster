@@ -120,7 +120,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -137,11 +137,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrappleUp
+      name: PlayerGrappleAimU
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -158,11 +158,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrappleUpSide
+      name: PlayerGrappleAimUS
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -179,10 +179,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrappleSide
+      name: PlayerGrappleAimS
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -200,11 +200,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrappleDownSide
+      name: PlayerGrappleAimDS
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 32
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -221,11 +221,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrappleDown
+      name: PlayerGrappleAimD
       rect:
         serializedVersion: 2
-        x: 160
-        y: 64
+        x: 32
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -246,7 +246,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -263,225 +263,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerGrappleArmUp
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7350b9f8a0780df47ad380df0a61ba97
-      internalID: -373299518
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleArmUpSide
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa91733d2eace2b41a5482dcdb902611
-      internalID: 495652865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleArmSide
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 721da723defa3a941b9d273c18fd09b7
-      internalID: 2127668322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleArmDownSide
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cd0b9013b63ae246968822729f8643b
-      internalID: -1842310873
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleArmDown
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b23682162fed8e44d8c9f5c9c4e3db03
-      internalID: -1024512920
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleHookUp
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bfc3e4c430d973c4589a5cb69137bf5e
-      internalID: 634623852
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleHookUpSide
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b554e3f39739fa14f8d616e2bf59a742
-      internalID: -2022425002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleHookSide
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d704c0cb522e7f74da073be86aa14b1c
-      internalID: 418379211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleHookDownSide
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebd370d506534c346b6c231e5f5a3ad4
-      internalID: -559984211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerGrappleHookDown
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a252ddaf18638c4694377d385d15ad1
-      internalID: 900713949
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PlayerGrappleRun0
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 96
+        y: 128
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -497,12 +287,12 @@ TextureImporter:
       name: PlayerGrappleRun3
       rect:
         serializedVersion: 2
-        x: 224
-        y: 64
+        x: 96
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -518,12 +308,12 @@ TextureImporter:
       name: PlayerGrappleRun1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 32
+        x: 96
+        y: 96
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -539,12 +329,12 @@ TextureImporter:
       name: PlayerGrappleJump
       rect:
         serializedVersion: 2
-        x: 224
-        y: 32
+        x: 96
+        y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -560,7 +350,112 @@ TextureImporter:
       name: PlayerGrappleRun2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ddcd72170fd78349afdd451c9dee477
+      internalID: 1008305038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleShootD
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 127669f88d61a754c9cd793993e674d3
+      internalID: -964378064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleShootDS
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e97fb2eed4749014c92490954897d358
+      internalID: -382907981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleShootS
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8175f832061ad8e41b0c78997dfe8164
+      internalID: 534730594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleShootUS
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1d5ebaa3108fe42b6f103e7486753d
+      internalID: 1634279135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerGrappleShootU
+      rect:
+        serializedVersion: 2
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -571,8 +466,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ddcd72170fd78349afdd451c9dee477
-      internalID: 1008305038
+      spriteID: 5e2e02337aa7a484c9b3ed19ab10bd3e
+      internalID: 318979472
       vertices: []
       indices: 
       edges: []
@@ -588,28 +483,33 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      PlayerGrappleShootU: 318979472
+      PlayerGrappleAimU: -341614532
       PlayerGrappleArmDownSide: -1842310873
-      PlayerGrappleUpSide: 768397903
       PlayerGrappleArmUp: -373299518
       PlayerGrappleHookDownSide: -559984211
       PlayerGrappleAIr: -1453752811
+      PlayerGrappleAimUS: 768397903
       PlayerGrappleRun3: 427085575
       PlayerGrappleArmDown: -1024512920
       PlayerGrappleArmUpSide: 495652865
       PlayerGrappleHookSide: 418379211
       PlayerGrappleIdle: -1033107564
+      PlayerGrappleAimDS: -1330850128
       PlayerGrappleRun0: 170547755
+      PlayerGrappleAimS: 2144125954
+      PlayerGrappleAimD: -251981967
+      PlayerGrappleShootS: 534730594
       PlayerGrappleArmSide: 2127668322
       PlayerGrappleRun1: 373693020
+      PlayerGrappleShootDS: -382907981
       PlayerGrappleHookUpSide: -2022425002
+      PlayerGrappleShootUS: 1634279135
       PlayerGrappleJump: -1484856135
       PlayerGrappleHookDown: 900713949
-      PlayerGrappleDown: -251981967
-      PlayerGrappleDownSide: -1330850128
-      PlayerGrappleUp: -341614532
+      PlayerGrappleShootD: -964378064
       PlayerGrappleRun2: 1008305038
       PlayerGrappleHookUp: 634623852
-      PlayerGrappleSide: 2144125954
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

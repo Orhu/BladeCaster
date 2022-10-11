@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spear : MonoBehaviour, IWeapon {
     [SerializeField] private LayerMask hurtboxLayerMask;
     public int damage {get; [SerializeField] set;} = 1;
-    public int abilityEnergyCost {get; [SerializeField] set;} = 1;
 
     [SerializeField] float atkHitStrength = 1.75f;
     [SerializeField] float chargeHitStrength = 2.5f;

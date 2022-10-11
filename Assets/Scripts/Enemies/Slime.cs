@@ -67,7 +67,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     }
 
     void OnDisable() {
-        StopCoroutine(currentAction);
+        if (currentAction != null) {
+            StopCoroutine(currentAction);
+        }
     }
 
     // SLIME AI ACTION ZONE

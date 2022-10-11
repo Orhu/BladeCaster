@@ -34,6 +34,7 @@ public class AIPlayerSensor : MonoBehaviour {
     }
 
     void Start() {
+        sensorOrigin = this.transform;
         StartCoroutine(DetectionUpdate());        
     }
 

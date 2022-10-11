@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 
   [SerializeField] private LayerMask platformLayerMask;
   public float speed = 1f;
-  public float airCtrlMod = 0.25f;
+  public float airCtrlMod = 8f;
   public float airSlowForce = 0.05f;
   public float baseJump = 2.5f;
   public float jumpBoost = 0.01f;
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
   private bool stunTimed = false;
   private string stunMessage = "";
   private IEnumerator stunCR;
+  private float vaultStunDirection = 0;
 
   private Rigidbody2D _body;
   private BoxCollider2D _box;
@@ -66,7 +67,11 @@ public class PlayerMovement : MonoBehaviour {
     float deltaX;
     if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
       Debug.Log("spear charge");
-      deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
+      float chargeDir = Mathf.Sign(_body.velocity.x);
+      if (_body.velocity.x == 0) {
+        chargeDir = transform.localScale.x;
+      }
+      deltaX = chargeDir * speed * spearChargeMod;
     } else {
       if (!stun) { // if you're not stunned
         if (!IsGrounded()) {
@@ -82,9 +87,12 @@ public class PlayerMovement : MonoBehaviour {
       } else { // if you are stunned
         switch (stunMessage) {
           case "vault":
-            deltaX = (dir * speed * spearChargeMod) + (horizontalInput * spearCtrlMod); // because of how we're switching the direction you're facing now there are issues...
-            //ChangeAirSpeed(); // theoretical fix
-            //deltaX = _body.velocity.x;
+            if (IsGrounded()) {
+              deltaX = (dir * speed * spearChargeMod) + (horizontalInput * spearCtrlMod); // because of how we're switching the direction you're facing now there are issues...
+            } else {
+              ChangeAirSpeed();
+              deltaX = _body.velocity.x;
+            }
             break;
           case "dash":
             deltaX = gameObject.transform.localScale.x * speed * spearDashMod;
@@ -131,15 +139,18 @@ public class PlayerMovement : MonoBehaviour {
 
     // animation
     _anim.SetFloat("speed", Mathf.Abs(deltaX));
-    if (horizontalInput != 0) { // lets you turn around
+    if (_anim.GetBool("charging")) {
+      transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
+    } else if (horizontalInput != 0) { // lets you turn around
       transform.localScale = new Vector3(Mathf.Sign(horizontalInput), 1, 1);
     }
 
     _anim.SetBool("jump", !IsGrounded());    
   }
 
-  private void ChangeAirSpeed() {
+  private void ChangeAirSpeed() {    
     if (Input.GetAxisRaw("Horizontal") == 0) {
+      Debug.Log("correct thing");
       float xVelIn = Mathf.Sign(_body.velocity.x);
       _body.AddForce((Vector2.left * Mathf.Sign(_body.velocity.x)) * airSlowForce, ForceMode2D.Impulse); // might be acceleration, unsure
       if (xVelIn != Mathf.Sign(_body.velocity.x)) {
@@ -150,7 +161,12 @@ public class PlayerMovement : MonoBehaviour {
       
       if (stunMessage == "vault") {
         if (Mathf.Abs(_body.velocity.x) > ((speed * spearChargeMod) + spearCtrlMod)) {
+          Debug.Log($"x velocity too high: {_body.velocity.x}");
           _body.velocity = new Vector2(((speed * spearChargeMod) + spearCtrlMod) * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+          Debug.Log($"reset X velocity to {_body.velocity.x}");
+        }
+        if (Mathf.Sign(_body.velocity.x) != vaultStunDirection) {
+          _body.velocity = new Vector2(0f, _body.velocity.y);
         }
       } else if (currentWeapon != 4) {
         if (Mathf.Abs(_body.velocity.x) > speed) {
@@ -205,7 +221,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
   public void GetHit(float strength) {
-    if (!_anim.GetBool("spearDash") && !invincible) {
+    if (!_anim.GetBool("spearC") && !invincible) {
       _body.velocity = Vector2.zero;
       float angle = 45f * Mathf.Deg2Rad;
       StunPlayer(0.1f, false, "hit");
@@ -231,6 +247,9 @@ public class PlayerMovement : MonoBehaviour {
         break;
       case "dash":
         RefreshMovement();
+        break;
+      case "vault":
+        vaultStunDirection = Mathf.Sign(_body.velocity.x);
         break;
     }
 
@@ -269,6 +288,7 @@ public class PlayerMovement : MonoBehaviour {
     stun = false;
     stunTimed = false;
     stunMessage = "";
+    vaultStunDirection = 0;
   }
 
   private IEnumerator Invuln() {

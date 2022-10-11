@@ -73,3 +73,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
+--- !u!1 &5860167049707872199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7737643364963049254, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
+  m_PrefabInstance: {fileID: 4193659699558514913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1548009579027885210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860167049707872199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e584b0b8992c0548a78beb5631e1c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PlayerDetected>k__BackingField: 0
+  sensorOrigin: {fileID: 0}
+  sensorSize: {x: 1, y: 1}
+  sensorOffset: {x: 0, y: 0}
+  detectionDelay: 0.2
+  sensorLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  gizmoIdleColor: {r: 0, g: 1, b: 0, a: 0.3}
+  gizmoDetectedColor: {r: 1, g: 0, b: 0, a: 0.3}
+  showGizmos: 1

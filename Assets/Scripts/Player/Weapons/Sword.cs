@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon {
-    [SerializeField] private LayerMask hurtboxLayerMask; //???
+    [SerializeField] private LayerMask hurtboxLayerMask;
     public int damage {get; [SerializeField] set;} = 1;
-    public int abilityEnergyCost {get; [SerializeField] set;} = 0;
 
     [SerializeField] float hitStrength = 2.5f;
     [SerializeField] float pogoForce = 2.5f;

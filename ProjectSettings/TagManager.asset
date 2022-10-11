@@ -9,6 +9,7 @@ TagManager:
   - movingPlatform
   - destructableProp
   - box
+  - grapplePoint
   layers:
   - Default
   - TransparentFX
