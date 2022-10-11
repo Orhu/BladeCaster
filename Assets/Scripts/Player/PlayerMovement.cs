@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
   [Header("Spear Movement Modifiers")]
   [SerializeField] float spearChargeMod = 1.25f;
   [SerializeField] float spearDashMod = 2f;
-  [SerializeField] float spearCtrlMod = 0.25f;
+  [SerializeField] float spearCtrlMod = 0.25f; //deprecated for airCtrlMod
 
   [Header("Claymore Movement Modifiers")]
   [SerializeField] float claymoreSpeed = 0.3f;
@@ -56,6 +56,8 @@ public class PlayerMovement : MonoBehaviour {
       }
     }
 
+    float dir = Mathf.Sign(_body.velocity.x);
+
     // Horizontal Movement
 
     bool claymoreEquipped = (currentWeapon == 4 && movementRefreshed); // weapon-tied movement will only change once ground is touched after switching
@@ -80,10 +82,12 @@ public class PlayerMovement : MonoBehaviour {
       } else { // if you are stunned
         switch (stunMessage) {
           case "vault":
-            deltaX = (gameObject.transform.localScale.x * speed * spearChargeMod) + (horizontalInput * spearCtrlMod); // unnecessary soon
-           break;
+            deltaX = (dir * speed * spearChargeMod) + (horizontalInput * spearCtrlMod); // because of how we're switching the direction you're facing now there are issues...
+            //ChangeAirSpeed(); // theoretical fix
+            //deltaX = _body.velocity.x;
+            break;
           case "dash":
-            deltaX = gameObject.transform.localScale.x * speed * spearDashMod; // I want to retain velocity out of a dash, this is probably unnecessary after the air speed changes too
+            deltaX = gameObject.transform.localScale.x * speed * spearDashMod;
             break;
           case "plummet":
             deltaX = 0;
@@ -95,7 +99,7 @@ public class PlayerMovement : MonoBehaviour {
       }
     }
 
-    if (stunMessage != "hit" && (IsGrounded() || stun)) {
+    if ((stunMessage != "hit" /*|| stunMessage != "vault"*/) && (IsGrounded() || stun)) {
         _body.velocity = new Vector2(deltaX, _body.velocity.y);
     }
 
@@ -142,10 +146,20 @@ public class PlayerMovement : MonoBehaviour {
         _body.velocity = new Vector2(0f, _body.velocity.y); // if x velocity change goes through 0, set x velocity to 0
       }
     } else {
-      _body.AddForce((Vector2.right * Input.GetAxisRaw("Horizontal")) * airCtrlMod, ForceMode2D.Impulse);
+      _body.AddForce((Vector2.right * Input.GetAxisRaw("Horizontal")) * (airCtrlMod * Time.deltaTime), ForceMode2D.Impulse);
       
-      if (Mathf.Abs(_body.velocity.x) > speed) {
-        _body.velocity = new Vector2(speed * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+      if (stunMessage == "vault") {
+        if (Mathf.Abs(_body.velocity.x) > ((speed * spearChargeMod) + spearCtrlMod)) {
+          _body.velocity = new Vector2(((speed * spearChargeMod) + spearCtrlMod) * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+        }
+      } else if (currentWeapon != 4) {
+        if (Mathf.Abs(_body.velocity.x) > speed) {
+          _body.velocity = new Vector2(speed * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+        }
+      } else {
+        if (Mathf.Abs(_body.velocity.x) > claymoreSpeed) {
+          _body.velocity = new Vector2(claymoreSpeed * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+        }
       }
     }
   }
