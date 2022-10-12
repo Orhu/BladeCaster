@@ -131,6 +131,7 @@ public class Player : MonoBehaviour
   public void UnlockWeapon(int weaponNum) {
     weaponUnlocks[weaponNum] = true;
     wheel.IncrementWeaponsUnlocked();
+    SwitchWeapon(weaponNum);
   }
 
   public void refillEnergy(float amount){

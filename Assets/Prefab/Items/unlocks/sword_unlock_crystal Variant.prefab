@@ -9,8 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3404679003559682899, guid: c397492292edc6c489a99a1b40a0bb26, type: 3}
       propertyPath: m_Name
-      value: sword_unlock_crystal
+      value: sword_unlock_crystal Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3404679003559682925, guid: c397492292edc6c489a99a1b40a0bb26, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1460983757, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
     - target: {fileID: 3404679003559682926, guid: c397492292edc6c489a99a1b40a0bb26, type: 3}
       propertyPath: m_RootOrder
       value: 0
