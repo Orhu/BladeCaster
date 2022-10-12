@@ -63,7 +63,8 @@ public class WeaponWheel : MonoBehaviour {
         wheelSprites = wheel4Sprites;
         break;
       default:
-        Debug.LogError($"Invalid number of weapons unlocked: {weaponsUnlocked}");
+        Debug.LogWarning($"Invalid number of weapons unlocked: {weaponsUnlocked}");
+        weaponsUnlocked = 4;
         break;
     }
     _sprite.sprite = wheelSprites[weaponState];

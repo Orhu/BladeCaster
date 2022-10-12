@@ -228,7 +228,7 @@ MonoBehaviour:
     m_Bits: 64
   raycastLayerMask:
     serializedVersion: 2
-    m_Bits: 832
+    m_Bits: 320
   gizmoIdleColor: {r: 0, g: 1, b: 0, a: 0.3}
   gizmoDetectedColor: {r: 1, g: 0, b: 0, a: 0.3}
   showGizmos: 0
