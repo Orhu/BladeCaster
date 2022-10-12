@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
   public IWeapon currentWeapon;
   public int weaponNumber = 0;
+  private int weaponsUnlocked = 0;
   public WeaponWheel wheel;
 
   private float fixedDeltaTime;
@@ -48,6 +49,12 @@ public class Player : MonoBehaviour
       pendingWeapon = wheel.WeaponChange();
     }
     Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+
+    if (Input.GetKeyDown(KeyCode.C)) {
+      if (weaponsUnlocked > 0) {
+        SwitchWeapon(weaponNumber % weaponsUnlocked); // this formula should work
+      }
+    }
 
     if (Input.GetKeyDown("1")) { // sword
       Debug.Log("Switching to Sword");
@@ -129,6 +136,10 @@ public class Player : MonoBehaviour
   }
 
   public void UnlockWeapon(int weaponNum) {
+    weaponsUnlocked++;
+    if (weaponsUnlocked > 4) {
+      weaponsUnlocked = 4;
+    }
     weaponUnlocks[weaponNum] = true;
     wheel.IncrementWeaponsUnlocked();
     SwitchWeapon(weaponNum);

@@ -309,7 +309,7 @@ public class PlayerMovement : MonoBehaviour {
   private IEnumerator Invuln() {
     Debug.Log("Invincible");
     invincible = true;
-    gameObject.layer = 10;
+    gameObject.layer = 14;
     yield return new WaitForSeconds(iFrames);
     Debug.Log("Uninvincible");
     invincible = false;
@@ -328,7 +328,7 @@ public class PlayerMovement : MonoBehaviour {
   public void makeInvuln() {
     Debug.Log("Invincible");
     invincible = true;
-    gameObject.layer = 10;
+    gameObject.layer = 14;
   }
   public void removeInvuln() {
     Debug.Log("Uninvincible");
