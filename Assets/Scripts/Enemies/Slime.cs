@@ -349,7 +349,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
             if (other.transform.position.x <= transform.position.x) {
                 strength *= -1;
             }
-            other.GetComponent<PlayerMovement>().GetHit(strength);
+            other.GetComponent<PlayerMovement>().GetHit(strength, true);
         }
     }
 }

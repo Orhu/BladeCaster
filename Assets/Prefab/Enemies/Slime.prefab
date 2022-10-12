@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7737643364963049276}
   - component: {fileID: 7737643364963049277}
   - component: {fileID: -6338897255377711266}
-  - component: {fileID: 1479085020428794845}
   m_Layer: 7
   m_Name: Slime
   m_TagString: enemy
@@ -197,32 +196,6 @@ MonoBehaviour:
   sensorSize: {x: 1, y: 1}
   sensorOffset: {x: 0, y: 0}
   detectionDelay: 0.2
-  sensorLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 832
-  gizmoIdleColor: {r: 0, g: 1, b: 0, a: 0.3}
-  gizmoDetectedColor: {r: 1, g: 0, b: 0, a: 0.3}
-  showGizmos: 0
---- !u!114 &1479085020428794845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7737643364963049254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e584b0b8992c0548a78beb5631e1c0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <PlayerDetected>k__BackingField: 0
-  sensorOrigin: {fileID: 0}
-  sensorSize: {x: 1.5, y: 1}
-  sensorOffset: {x: 0, y: 0.1}
-  detectionDelay: 0.3
   sensorLayerMask:
     serializedVersion: 2
     m_Bits: 64

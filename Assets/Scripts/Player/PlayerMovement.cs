@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
   private bool stunTimed = false;
   private string stunMessage = "";
   private IEnumerator stunCR;
-  private float vaultStunDirection = 0;
+  private float lockDirection = 0;
 
   private Rigidbody2D _body;
   private BoxCollider2D _box;
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour {
   void Update() {
     if (IsGrounded()) {
       movementRefreshed = true;
-      if (stun && !stunTimed) {
+      if (stun && !stunTimed && stunMessage != "roll") {
         StunReset();
       }
     }
@@ -66,8 +66,10 @@ public class PlayerMovement : MonoBehaviour {
 
     float deltaX;
     if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
-      Debug.Log("spear charge");
       float chargeDir = Mathf.Sign(_body.velocity.x);
+      if (chargeDir != transform.localScale.x) { // if some bitch is bouncing
+        chargeDir = transform.localScale.x;
+      }
       if (_body.velocity.x == 0) {
         chargeDir = transform.localScale.x;
       }
@@ -111,6 +113,10 @@ public class PlayerMovement : MonoBehaviour {
         _body.velocity = new Vector2(deltaX, _body.velocity.y);
     }
 
+    if (_anim.GetBool("rolling")) {
+      _body.velocity = new Vector2(speed * lockDirection, _body.velocity.y);
+    }
+
 
     //Vertical movement
     if (stunMessage == "plummet") {
@@ -139,7 +145,7 @@ public class PlayerMovement : MonoBehaviour {
 
     // animation
     _anim.SetFloat("speed", Mathf.Abs(deltaX));
-    if (_anim.GetBool("charging")) {
+    if (_anim.GetBool("charging") || _anim.GetBool("rolling")) {
       transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
     } else if (horizontalInput != 0) { // lets you turn around
       transform.localScale = new Vector3(Mathf.Sign(horizontalInput), 1, 1);
@@ -161,11 +167,9 @@ public class PlayerMovement : MonoBehaviour {
       
       if (stunMessage == "vault") {
         if (Mathf.Abs(_body.velocity.x) > ((speed * spearChargeMod) + spearCtrlMod)) {
-          Debug.Log($"x velocity too high: {_body.velocity.x}");
           _body.velocity = new Vector2(((speed * spearChargeMod) + spearCtrlMod) * Mathf.Sign(_body.velocity.x), _body.velocity.y);
-          Debug.Log($"reset X velocity to {_body.velocity.x}");
         }
-        if (Mathf.Sign(_body.velocity.x) != vaultStunDirection) {
+        if (Mathf.Sign(_body.velocity.x) != lockDirection) {
           _body.velocity = new Vector2(0f, _body.velocity.y);
         }
       } else if (currentWeapon != 4) {
@@ -220,8 +224,8 @@ public class PlayerMovement : MonoBehaviour {
   }
 
 
-  public void GetHit(float strength) {
-    if (!_anim.GetBool("spearC") && !invincible) {
+  public void GetHit(float strength, bool giveInvuln) {
+    if (!_anim.GetBool("spearDash") && !invincible) {
       _body.velocity = Vector2.zero;
       float angle = 45f * Mathf.Deg2Rad;
       StunPlayer(0.1f, false, "hit");
@@ -230,7 +234,9 @@ public class PlayerMovement : MonoBehaviour {
       _anim.SetTrigger("hit");
     // this might work?
     }
-    StartCoroutine(Invuln());
+    if (giveInvuln) {
+      StartCoroutine(Invuln());
+    }
   }
 
 
@@ -249,7 +255,12 @@ public class PlayerMovement : MonoBehaviour {
         RefreshMovement();
         break;
       case "vault":
-        vaultStunDirection = Mathf.Sign(_body.velocity.x);
+      case "roll":
+        if (_body.velocity.x != 0) {
+          lockDirection = Mathf.Sign(_body.velocity.x);
+        } else {
+          lockDirection = transform.localScale.x;
+        }
         break;
     }
 
@@ -284,11 +295,15 @@ public class PlayerMovement : MonoBehaviour {
     }
     if (stunMessage != "hit") {
       invincible = false;
+      gameObject.layer = 6;
+    }
+    if (_anim.GetBool("rolling")) {
+      _anim.SetBool("rolling", false);
     }
     stun = false;
     stunTimed = false;
     stunMessage = "";
-    vaultStunDirection = 0;
+    lockDirection = 0;
   }
 
   private IEnumerator Invuln() {
@@ -308,5 +323,16 @@ public class PlayerMovement : MonoBehaviour {
 
   public void RefreshMovement() {
     movementRefreshed = true;
+  }
+
+  public void makeInvuln() {
+    Debug.Log("Invincible");
+    invincible = true;
+    gameObject.layer = 10;
+  }
+  public void removeInvuln() {
+    Debug.Log("Uninvincible");
+    invincible = false;
+    gameObject.layer = 6;
   }
 }

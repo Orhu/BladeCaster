@@ -529,17 +529,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4799884619877754368, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1768033705, guid: 2a0933a49366e5046a6c69829e2578ca, type: 3}
     - target: {fileID: 4799884619877754370, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754370, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.429
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754370, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.283
+      value: -0.408
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754370, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_LocalPosition.z
@@ -576,6 +580,18 @@ PrefabInstance:
     - target: {fileID: 4799884619877754371, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799884619877754380, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
+      propertyPath: m_Size.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799884619877754380, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
+      propertyPath: m_Size.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799884619877754380, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0045718774
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754380, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: m_Offset.y
@@ -691,42 +707,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
---- !u!1 &930551164 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7737643364963049254, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-  m_PrefabInstance: {fileID: 1575714138}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &930551165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930551164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e584b0b8992c0548a78beb5631e1c0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <PlayerDetected>k__BackingField: 0
-  sensorOrigin: {fileID: 930551171}
-  sensorSize: {x: 1.5, y: 1}
-  sensorOffset: {x: 0, y: 0.1}
-  detectionDelay: 0.3
-  sensorLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 832
-  gizmoIdleColor: {r: 0, g: 1, b: 0, a: 0.3}
-  gizmoDetectedColor: {r: 1, g: 0, b: 0, a: 0.3}
-  showGizmos: 0
---- !u!4 &930551171 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7737643364963049274, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-  m_PrefabInstance: {fileID: 1575714138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1065206510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,10 +1107,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049254, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7737643364963049274, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1174,30 +1150,6 @@ PrefabInstance:
     - target: {fileID: 7737643364963049274, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: bounce
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: freeze
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: iFrames
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: movesToLose
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: approachSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: approachTimeDelay
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
@@ -1609,13 +1561,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6338897255377711266, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
+      propertyPath: showGizmos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6338897255377711266, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
+      propertyPath: raycastLayerMask.m_Bits
+      value: 320
+      objectReference: {fileID: 0}
     - target: {fileID: 7737643364963049254, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: m_Name
       value: Slime (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049254, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7737643364963049274, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: m_RootOrder
@@ -1660,30 +1616,6 @@ PrefabInstance:
     - target: {fileID: 7737643364963049274, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: bounce
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: freeze
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: iFrames
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: movesToLose
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: approachSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7737643364963049277, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-      propertyPath: approachTimeDelay
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
@@ -2123,42 +2055,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845012586}
   m_CullTransparentMesh: 1
---- !u!1 &2030186288 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7737643364963049254, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-  m_PrefabInstance: {fileID: 1183443338}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2030186289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030186288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e584b0b8992c0548a78beb5631e1c0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <PlayerDetected>k__BackingField: 0
-  sensorOrigin: {fileID: 2030186295}
-  sensorSize: {x: 1.5, y: 1}
-  sensorOffset: {x: 0, y: 0.1}
-  detectionDelay: 0.3
-  sensorLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 832
-  gizmoIdleColor: {r: 0, g: 1, b: 0, a: 0.3}
-  gizmoDetectedColor: {r: 1, g: 0, b: 0, a: 0.3}
-  showGizmos: 0
---- !u!4 &2030186295 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7737643364963049274, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
-  m_PrefabInstance: {fileID: 1183443338}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6681726371437947058
 PrefabInstance:
   m_ObjectHideFlags: 0

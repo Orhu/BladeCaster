@@ -38,9 +38,9 @@ public class Grapple : MonoBehaviour, IWeapon {
     private bool canGrapple = true;
 
 
-    [Header("Debug")]
-    [SerializeField] bool showGizmos = true;
-    [SerializeField] Color rangeColor = Color.yellow;
+    //[Header("Debug")]
+    //[SerializeField] bool showGizmos = true;
+    //[SerializeField] Color rangeColor = Color.yellow;
 
     void Start() {
         _body = GetComponent<Rigidbody2D>();
@@ -82,7 +82,6 @@ public class Grapple : MonoBehaviour, IWeapon {
             // make sure target's collider is not obscured
             RaycastHit2D hit = Physics2D.Raycast((Vector3)this.transform.position, direction, Mathf.Infinity, raycastLayerMask);
             if (hit.collider != target) {
-                Debug.Log(hit.collider);
                 continue; // skip over if target is obscured
             }
 
@@ -192,9 +191,9 @@ public class Grapple : MonoBehaviour, IWeapon {
                 IEnemy hitEnemy = hit.GetComponent<IEnemy>();
                 if (!hitEnemy.IsInvulnerable()) {
                     hitEnemy.GetHit(strongDamage, strongAtkKnockback * direction);
-                } else if (hit.tag == "levelProp") {
-                    hit.GetComponent<ILevelProp>().Interact();
                 }
+            } else if (hit.tag == "levelProp") {
+                hit.GetComponent<ILevelProp>().Interact();
             }
         }
 
@@ -205,9 +204,9 @@ public class Grapple : MonoBehaviour, IWeapon {
                 IEnemy hitEnemy = hit.GetComponent<IEnemy>();
                 if (!hitEnemy.IsInvulnerable()) {
                     hitEnemy.GetHit(damage, weakAtkKnockback * direction);
-                } else if (hit.tag == "levelProp") {
-                    hit.GetComponent<ILevelProp>().Interact();
                 }
+            } else if (hit.tag == "levelProp") {
+                hit.GetComponent<ILevelProp>().Interact();
             }
         }
     }
@@ -283,11 +282,11 @@ public class Grapple : MonoBehaviour, IWeapon {
         Debug.Log("ready to grapple again");
     }
 
-    void OnDrawGizmos() {
-        if (showGizmos) {
-            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, grappleRange);
-        }
-    }
+    //void OnDrawGizmos() {
+        //if (showGizmos) {
+           //UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, grappleRange);
+        //}
+    //}
 
 
     public void CleanUp() {

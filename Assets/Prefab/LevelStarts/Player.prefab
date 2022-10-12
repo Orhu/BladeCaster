@@ -219,6 +219,9 @@ MonoBehaviour:
   hurtboxLayerMask:
     serializedVersion: 2
     m_Bits: 4232
+  rollCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 4352
   hitStrength: 2.5
   pogoForce: 2.5
 --- !u!114 &4799884619877754617
@@ -249,8 +252,6 @@ MonoBehaviour:
   grappleCooldownTime: 0.1
   hookPrefab: {fileID: 0}
   targetMarkerPrefab: {fileID: 0}
-  showGizmos: 1
-  rangeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!114 &4799884619877754618
 MonoBehaviour:
   m_ObjectHideFlags: 0
