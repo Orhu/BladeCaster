@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
   public bool debugWeapon = false;
 
   public IWeapon currentWeapon;
+  public int weaponNumber = 0;
   public WeaponWheel wheel;
 
   private float fixedDeltaTime;
@@ -81,6 +82,9 @@ public class Player : MonoBehaviour
   }
 
   private void SwitchWeapon(int weaponNum) {
+    if (weaponNum != 2 && weaponNumber == 3) {
+      GetComponent<Grapple>().CleanUp();
+    }
     if (_anim.GetBool("swordPogo") && weaponNum!= 0) {
       _anim.SetBool("swordPogo", false);
     }
@@ -88,20 +92,24 @@ public class Player : MonoBehaviour
       case 0:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.sword;
+        weaponNumber = 1;
         Debug.Log("Sword equipped successfully");
         break;
       case 1:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.spear;
+        weaponNumber = 2;
         Debug.Log("Spear equipped successfully");
         break;
       case 2:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.grapple;
+        weaponNumber = 3;
         break;
       case 3:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.claymore;
+        weaponNumber = 4;
         break;
       /*
       case 4:

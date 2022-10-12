@@ -288,4 +288,29 @@ public class Grapple : MonoBehaviour, IWeapon {
             UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, grappleRange);
         }
     }
+
+
+    public void CleanUp() {
+        if (_hook != null) {
+            Destroy(_hook);
+            _hook = null;
+        }
+        if (_targetMarker != null) {
+            Destroy(_targetMarker);
+            _targetMarker = null;
+        }
+        if (activeCR != null) {
+            StopCoroutine(activeCR);
+            activeCR = null;
+        }
+
+        if (markedTarget != null) {
+            markedTarget = null;
+        }
+        
+        if (_body.gravityScale == 0) {
+            _body.gravityScale = 1;
+        }
+        canGrapple = true;
+    }
 }
