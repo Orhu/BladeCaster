@@ -598,16 +598,20 @@ PrefabInstance:
       objectReference: {fileID: 8594656993872562265, guid: 200c7a003524c05489e3fd88e7a6d14d, type: 3}
     - target: {fileID: 4799884619877754617, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: showGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754617, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: grappleRange
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754617, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: targetMarkerPrefab
       value: 
       objectReference: {fileID: 5480325936934207010, guid: 478dd409ccaf2f14f98bb6ead4eae782, type: 3}
+    - target: {fileID: 4799884619877754617, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
+      propertyPath: grappleCooldownTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4799884619877754617, guid: d9abf836110b3374b9b6bea92cb8de22, type: 3}
       propertyPath: hurtboxLayerMask.m_Bits
       value: 128
@@ -1573,21 +1577,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrapplePoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3321234433121256083, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.968
+      value: 0.145
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.59
+      value: 0.211
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1801,21 +1809,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrapplePoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3321234433121256083, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.077
+      value: 0.572
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.073
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1858,6 +1870,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrapplePoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3321234433121256083, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1872,7 +1888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3321234433121256092, guid: 8ce2ec1e7f5fcdd4889033835f0a4044, type: 3}
       propertyPath: m_LocalRotation.w

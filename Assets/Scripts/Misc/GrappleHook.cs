@@ -10,28 +10,23 @@ public class GrappleHook : MonoBehaviour {
 
     [SerializeField] Sprite[] dirSprites; // 0 = up -> 7 = up left (go around clockwise)
 
-    private SpriteRenderer _sprite;
-
-    void Start() {
-        _sprite = GetComponent<SpriteRenderer>();
-        gameObject.SetActive(false);
-    }
-
     public void SetUpHook(Vector3 st, Vector3 dest, int dir) {
-        gameObject.SetActive(true);
         start = st;
         destination = dest;
-        _sprite.sprite = dirSprites[dir];
+        GetComponent<SpriteRenderer>().sprite = dirSprites[dir];
 
         StartCoroutine(FireHook());
     }
 
     private IEnumerator FireHook() {
         float t = 0.0f;
-        while (transform.position != destination) {
+        while (t != 1f) {
             transform.position = new Vector3(Mathf.Lerp(start.x, destination.x, t), Mathf.Lerp(start.y, destination.y, t), 0f); // interpolate between start and destination
             
-            t = 4f * Time.deltaTime; // update t
+            t += 8f * Time.deltaTime; // update t
+            if (t > 1f) {
+                t = 1f;
+            }
 
             yield return null;
         }

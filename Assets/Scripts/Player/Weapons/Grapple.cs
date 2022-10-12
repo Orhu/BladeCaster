@@ -18,7 +18,7 @@ public class Grapple : MonoBehaviour, IWeapon {
     [Header("Grapple Variables")]
     [SerializeField] float grappleRange = 1.5f; // roughly the middle third of the screen.
     [SerializeField] float pullSpeed = 3f;
-    [SerializeField] float grappleCooldownTime = 1f;
+    [SerializeField] float grappleCooldownTime = 0.1f;
     
     [Header("Prefabs")]
     [SerializeField] GameObject hookPrefab;
@@ -33,6 +33,9 @@ public class Grapple : MonoBehaviour, IWeapon {
     private Vector2 lookDirection = Vector2.right; // default to right
     private GameObject markedTarget; // currently targeted game object
     private GameObject _targetMarker = null;
+    private GameObject _hook = null;
+
+    private bool canGrapple = true;
 
 
     [Header("Debug")]
@@ -46,9 +49,9 @@ public class Grapple : MonoBehaviour, IWeapon {
     }
 
     public void WeaponUpdate() {
-        FindTarget(); // search for and mark target
-
-        // if in air and holding x, you can aim the hook without moving
+        if (canGrapple) {
+            FindTarget(); // search for and mark target
+        }
     }
 
     private void FindTarget() {
@@ -178,22 +181,6 @@ public class Grapple : MonoBehaviour, IWeapon {
         // Unused, replaced by GrappleAttack via Animation Event
     }
     public void GrappleAttack() {
-        /* from Sword.cs
-        float direction = transform.localScale.x; // which way are you facing
-        Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x * 3) * direction, 0f, 0f), new Vector3(_box.bounds.size.x * 2, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
-        foreach (Collider2D hit in enemiesHit) {
-            Debug.Log(hit);
-            // check for tags for different results of getting hit (complete later)
-            if (hit.tag == "enemy") {
-                IEnemy hitEnemy = hit.GetComponent<IEnemy>();
-                if (!hitEnemy.IsInvulnerable()) {
-                    hitEnemy.GetHit(damage, hitStrength * direction);
-                }
-            } else if (hit.tag == "levelProp") {
-                hit.GetComponent<ILevelProp>().Interact();
-            }
-        }
-        */
         float direction = transform.localScale.x; // which way are you facing
         Collider2D[] enemiesHitStrong = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x + 0.39f) * direction, 0.01f, 0f), new Vector3(0.1f, 0.2f, 0f), 0f, hurtboxLayerMask);
         Collider2D[] enemiesHitWeak = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x + 0.19f) * direction, 0.06f, 0f), new Vector3(0.3f, 0.3f, 0f), 0f, hurtboxLayerMask);
@@ -223,19 +210,77 @@ public class Grapple : MonoBehaviour, IWeapon {
                 }
             }
         }
-
-        
     }
 
     
     public void Ability() {
         if (markedTarget != null) {
+            canGrapple = false;
             ShootHook();
         }
     }
 
     private void ShootHook() {
+        if (_hook != null) {
+            Destroy(_hook);
+        }
+        _hook = Instantiate(hookPrefab) as GameObject;
+        _hook.GetComponent<GrappleHook>().SetUpHook(transform.position, markedTarget.transform.position, _targetMarker.GetComponent<Animator>().GetInteger("direction"));
+        if (activeCR != null) {
+            StopCoroutine(activeCR);
+        }
+        activeCR = DoGrapple();
+        StartCoroutine(activeCR);
+    }
 
+    private IEnumerator DoGrapple() {
+        // silly variables
+        float currentVelocity = 1.0f;
+        Vector3 start = transform.position;
+        Vector3 dest = markedTarget.transform.position;
+
+        GrappleHook _hookComponent = _hook.GetComponent<GrappleHook>();
+        GetComponent<PlayerMovement>().StunPlayer(0.01f, false, "grapple");
+        _body.gravityScale = 0f;
+        _body.velocity = Vector3.zero; // freeze the player
+        while(!_hookComponent.hooked) {
+            yield return null; // until we're hooked, stay frozen.
+        }
+        // hooked
+        float t = 0.0f;
+        float vT = 0.0f;
+        
+        while(t != 1f) { // while moving to target
+            transform.position = new Vector3(Mathf.Lerp(start.x, dest.x, t), Mathf.Lerp(start.y, dest.y, t), 0f);
+
+            t += (currentVelocity * 2f) * Time.deltaTime;
+            if (t > 1f) {
+                t = 1f;
+            }
+            currentVelocity = Mathf.Lerp(1.0f, pullSpeed, vT);
+            vT += 4f * Time.deltaTime; 
+            if (vT > 1f) {
+                vT = 1f;
+            }
+            yield return null;
+        }
+
+        // once we reach the target
+        Vector3 dir3 = dest - start;
+        Vector2 velocityDirection = new Vector2(dir3.x, dir3.y);
+
+        Destroy(_hook);
+        SetTarget(null, -1);
+
+        _body.gravityScale = 1f;
+        _body.AddForce(Vector3.Normalize(velocityDirection) * currentVelocity, ForceMode2D.Impulse);
+
+        GetComponent<PlayerMovement>().Unstun();
+        
+        yield return new WaitForSeconds(grappleCooldownTime);
+        canGrapple = true;
+
+        Debug.Log("ready to grapple again");
     }
 
     void OnDrawGizmos() {
