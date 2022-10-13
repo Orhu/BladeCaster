@@ -4,7 +4,6 @@ using UnityEngine;
 
 public interface IWeapon {
     int damage {get;}
-    int abilityEnergyCost {get;} // sword wont use this
 
     void WeaponUpdate(); // called in player's update
     void Attack();

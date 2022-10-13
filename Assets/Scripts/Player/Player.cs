@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
   public bool debugWeapon = false;
 
   public IWeapon currentWeapon;
+  public int weaponNumber = 0;
+  private int weaponsUnlocked = 0;
   public WeaponWheel wheel;
 
   private float fixedDeltaTime;
@@ -18,6 +21,8 @@ public class Player : MonoBehaviour
   public static bool[] weaponUnlocks = {false, false, false, false, false, false, false};
 
   private Animator _anim;
+
+  private int pendingWeapon;
 
   void Awake(){
     this.fixedDeltaTime = Time.fixedDeltaTime;
@@ -38,16 +43,18 @@ public class Player : MonoBehaviour
   void Update() {
     // Weapon Swap
     // press [button] to open weapon wheel theoretically
-    if(Input.GetKey(KeyCode.C)){
-      wheel.gameObject.SetActive(true);
-      SwitchWeapon(wheel.weaponChange());
-      Time.timeScale = 0.1f;
-    }
-    else if(Input.GetKeyUp(KeyCode.C)){
-      wheel.gameObject.SetActive(false);
-      Time.timeScale = 1.0f;
+    if (Input.GetKeyDown(KeyCode.LeftShift)) {
+      StartCoroutine(DoWeaponWheel());
+    } else if (Input.GetKey(KeyCode.LeftShift)){
+      pendingWeapon = wheel.WeaponChange();
     }
     Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+
+    if (Input.GetKeyDown(KeyCode.C)) {
+      if (weaponsUnlocked > 0) {
+        SwitchWeapon(weaponNumber % weaponsUnlocked); // this formula should work
+      }
+    }
 
     if (Input.GetKeyDown("1")) { // sword
       Debug.Log("Switching to Sword");
@@ -82,6 +89,9 @@ public class Player : MonoBehaviour
   }
 
   private void SwitchWeapon(int weaponNum) {
+    if (weaponNum != 2 && weaponNumber == 3) {
+      GetComponent<Grapple>().CleanUp();
+    }
     if (_anim.GetBool("swordPogo") && weaponNum!= 0) {
       _anim.SetBool("swordPogo", false);
     }
@@ -89,20 +99,24 @@ public class Player : MonoBehaviour
       case 0:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.sword;
+        weaponNumber = 1;
         Debug.Log("Sword equipped successfully");
         break;
       case 1:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.spear;
+        weaponNumber = 2;
         Debug.Log("Spear equipped successfully");
         break;
       case 2:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.grapple;
+        weaponNumber = 3;
         break;
       case 3:
         if(weaponUnlocks[weaponNum] == false) break;
         currentWeapon = WeaponsMaster.claymore;
+        weaponNumber = 4;
         break;
       /*
       case 4:
@@ -117,12 +131,18 @@ public class Player : MonoBehaviour
     }
     if(weaponUnlocks[weaponNum] == true){
       _anim.SetInteger("weapon", (weaponNum + 1));
+      GetComponent<PlayerMovement>().SwitchWeapon(weaponNum + 1);
     }
   }
 
   public void UnlockWeapon(int weaponNum) {
+    weaponsUnlocked++;
+    if (weaponsUnlocked > 4) {
+      weaponsUnlocked = 4;
+    }
     weaponUnlocks[weaponNum] = true;
     wheel.IncrementWeaponsUnlocked();
+    SwitchWeapon(weaponNum);
   }
 
   public void refillEnergy(float amount){
@@ -149,4 +169,35 @@ public class Player : MonoBehaviour
     EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
     return true;
   }*/
+
+  private IEnumerator DoWeaponWheel() {
+    wheel.gameObject.SetActive(true); // show wheel
+    Image _wheelImage = wheel.GetComponent<Image>();
+    float t = 0.0f;
+    while (Input.GetKey(KeyCode.LeftShift)) {
+      if (t != 1.0f) {
+        Color deltaA = new Vector4(1f, 1f, 1f, Mathf.Lerp(0.0f, 1.0f, t));
+        _wheelImage.color = deltaA;
+        Time.timeScale = Mathf.Lerp(1.0f, 0.05f, t);
+
+        t += 10f * Time.deltaTime;
+      }
+      yield return null; // skip frame
+    }
+
+    // when shift key released
+    SwitchWeapon(pendingWeapon);
+    t = Mathf.Abs(t - 1f);
+    while (Time.timeScale != 1f) {
+      Color deltaA = new Vector4(1f, 1f, 1f, Mathf.Lerp(1.0f, 0.0f, t));
+      _wheelImage.color = deltaA;
+      Time.timeScale = Mathf.Lerp(0.05f, 1.0f, t);
+      
+      t += 10f * Time.deltaTime;
+
+      yield return null;
+    }
+    wheel.gameObject.SetActive(false);
+      
+  }
 }

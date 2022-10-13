@@ -7,6 +7,9 @@ TagManager:
   - enemy
   - levelProp
   - movingPlatform
+  - destructableProp
+  - box
+  - grapplePoint
   layers:
   - Default
   - TransparentFX
@@ -19,9 +22,9 @@ TagManager:
   - Platform
   - Room
   - Invincible
-  - 
-  - 
-  - 
+  - BackgroundElements
+  - SpecialCharacter
+  - TriggerZones
   - 
   - 
   - 

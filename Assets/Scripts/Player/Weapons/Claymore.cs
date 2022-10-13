@@ -5,7 +5,6 @@ using UnityEngine;
 public class Claymore : MonoBehaviour, IWeapon {
     public int damage {get; private set;} = 3;
     public int slamDamage {get; private set;} = 5;
-    public int abilityEnergyCost {get; private set;} = 1;
 
     [SerializeField] private LayerMask hurtboxLayerMask;
 
@@ -25,22 +24,19 @@ public class Claymore : MonoBehaviour, IWeapon {
     }
 
     public void WeaponUpdate() {
-        // TO DO
+        // Unused
     }
 
     public void Attack() {
-        StartCoroutine(DelayedAttack());
+        // Unused, replaced by ClaymoreAttack via Animation Event
     }
-
-    private IEnumerator DelayedAttack() {
-        Debug.Log("DelayedAttack");
-        yield return new WaitForSeconds((_anim.GetCurrentAnimatorStateInfo(0).length/0.5f) * 1.7f);
+    public void ClaymoreAttack() {
         float direction = transform.localScale.x; // which way are you facing
-        Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x * 3) * direction, 0f, 0f), new Vector3(_box.bounds.size.x * 2, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
+        Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x * 4) * direction, 0f, 0f), new Vector3(_box.bounds.size.x * 4f, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
         foreach (Collider2D hit in enemiesHit) {
             Debug.Log(hit);
             // check for tags for different results of getting hit (complete later)
-            if (hit.tag == "enemy") {
+            if (hit.tag == "enemy" || hit.tag == "box") {
                 IEnemy hitEnemy = hit.GetComponent<IEnemy>();
                 if (!hitEnemy.IsInvulnerable()) {
                     hitEnemy.GetHit(damage, attackKnockback * direction);
@@ -63,7 +59,7 @@ public class Claymore : MonoBehaviour, IWeapon {
         GetComponent<PlayerMovement>().StunPlayer(0.01f, false, "plummet");
         while (_anim.GetBool("jump")) {
             PlummetAttack();
-            slamStrengthRatio += 0.01667f;
+            slamStrengthRatio += 0.1f;
             if (slamStrengthRatio > 1) {
                 slamStrengthRatio = 1f;
             }
@@ -91,7 +87,7 @@ public class Claymore : MonoBehaviour, IWeapon {
     }
 
     private void Slam(float strengthRatio) {
-        Collider2D[] hits = Physics2D.OverlapBoxAll(_box.bounds.center, new Vector3(_box.bounds.size.x * 3f, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(_box.bounds.center, new Vector3(_box.bounds.size.x * 3f, _box.bounds.size.y + 0.12f, 0f), 0f, hurtboxLayerMask);
         foreach (Collider2D hit in hits) {
             Debug.Log(hit);
             if (hit.tag == "enemy") {

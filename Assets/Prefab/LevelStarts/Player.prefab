@@ -103,13 +103,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4352
   speed: 1
+  airCtrlMod: 8
+  airSlowForce: 0.05
   baseJump: 2
   jumpBoost: 0.01
+  iFrames: 2
   spearChargeMod: 1.25
   spearDashMod: 2
   spearCtrlMod: 0.25
+  claymoreSpeed: 0.3
+  claymoreBaseJump: 1.25
+  claymoreJumpBoost: 0.05
+  claymorePlummetSpeed: 3
 --- !u!114 &4799884619877754382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugWeapon: 0
-  EText: {fileID: 0}
+  weaponNumber: 0
+  wheel: {fileID: 0}
 --- !u!212 &4799884619877754368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -210,7 +218,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtboxLayerMask:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 4232
+  rollCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 4352
+  hitStrength: 2.5
   pogoForce: 2.5
 --- !u!114 &4799884619877754617
 MonoBehaviour:
@@ -224,6 +236,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90ca990b356b3b4489606ae8d85e6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtboxLayerMask:
+    serializedVersion: 2
+    m_Bits: 4224
+  grappleTargetMask:
+    serializedVersion: 2
+    m_Bits: 2176
+  raycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 6528
+  weakAtkKnockback: 1.5
+  strongAtkKnockback: 2.5
+  grappleRange: 1.5
+  pullSpeed: 3
+  grappleCooldownTime: 0.1
+  hookPrefab: {fileID: 0}
+  targetMarkerPrefab: {fileID: 0}
 --- !u!114 &4799884619877754618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,8 +266,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtboxLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4224
+  atkHitStrength: 1.75
+  chargeHitStrength: 2.5
+  dashHitStrength: 3
   vaultForce: 4
+  dashCooldownTime: 0.4285
 --- !u!114 &4799884619877754619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b38206e51c0ed4db2e034d5fca9399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtboxLayerMask:
+    serializedVersion: 2
+    m_Bits: 4224
+  attackKnockback: 3
+  plummetKnockback: 2.5
+  slamKnockback: 4.5
 --- !u!114 &4799884619877754375
 MonoBehaviour:
   m_ObjectHideFlags: 0

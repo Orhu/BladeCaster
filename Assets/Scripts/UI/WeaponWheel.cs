@@ -26,15 +26,15 @@ public class WeaponWheel : MonoBehaviour {
     this.gameObject.SetActive(false);
   }
 
-  public int weaponChange(){
-    if(Input.GetKeyDown(KeyCode.LeftArrow)){
+  public int WeaponChange(){
+    if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Comma)){
       weaponState++;
       if(weaponState > wheelSprites.Length - 1){
         weaponState = 0;
       }
       _sprite.sprite = this.wheelSprites[weaponState];
     }
-    else if(Input.GetKeyDown(KeyCode.RightArrow)){
+    else if(Input.GetKeyDown(KeyCode.Period)){
       weaponState--;
       if(weaponState < 0){
         weaponState = wheelSprites.Length - 1;
@@ -63,7 +63,8 @@ public class WeaponWheel : MonoBehaviour {
         wheelSprites = wheel4Sprites;
         break;
       default:
-        Debug.LogError($"Invalid number of weapons unlocked: {weaponsUnlocked}");
+        Debug.LogWarning($"Invalid number of weapons unlocked: {weaponsUnlocked}");
+        weaponsUnlocked = 4;
         break;
     }
     _sprite.sprite = wheelSprites[weaponState];

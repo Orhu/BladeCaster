@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 
   [SerializeField] private LayerMask platformLayerMask;
   public float speed = 1f;
+  public float airCtrlMod = 8f;
+  public float airSlowForce = 0.05f;
   public float baseJump = 2.5f;
   public float jumpBoost = 0.01f;
 
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
   private bool stunTimed = false;
   private string stunMessage = "";
   private IEnumerator stunCR;
+  private float lockDirection = 0;
 
   private Rigidbody2D _body;
   private BoxCollider2D _box;
@@ -26,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
   [Header("Spear Movement Modifiers")]
   [SerializeField] float spearChargeMod = 1.25f;
   [SerializeField] float spearDashMod = 2f;
-  [SerializeField] float spearCtrlMod = 0.25f;
+  [SerializeField] float spearCtrlMod = 0.25f; //deprecated for airCtrlMod
 
   [Header("Claymore Movement Modifiers")]
   [SerializeField] float claymoreSpeed = 0.3f;
@@ -34,6 +37,10 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] float claymoreJumpBoost = 0.05f;
   [SerializeField] float claymorePlummetSpeed = 3f;
 
+  private int currentWeapon = 0; // 0 = none, 1 = sword, 2 = spear, 3 = grapple, 4 = claymore
+
+  // claymore speed purposes
+  private bool movementRefreshed = true; // deprecated soon hopefully
 
   void Start() {
     _body = GetComponent<Rigidbody2D>();
@@ -43,27 +50,51 @@ public class PlayerMovement : MonoBehaviour {
 
 
   void Update() {
-    if (IsGrounded() && stun && !stunTimed) {
-      StunReset();
+    if (IsGrounded()) {
+      movementRefreshed = true;
+      if (stun && !stunTimed && stunMessage != "roll") {
+        StunReset();
+      }
     }
 
-    bool claymoreEquipped = _anim.GetInteger("weapon") == 4;
+    float dir = Mathf.Sign(_body.velocity.x);
+
+    // Horizontal Movement
+
+    bool claymoreEquipped = (currentWeapon == 4 && movementRefreshed); // weapon-tied movement will only change once ground is touched after switching
+    float horizontalInput = Input.GetAxisRaw("Horizontal");
 
     float deltaX;
     if (_anim.GetBool("charging")) { // charging (and therefore we don't want to have player movement inputs)
-      Debug.Log("spear charge");
-      deltaX = gameObject.transform.localScale.x * speed * spearChargeMod;
+      float chargeDir = Mathf.Sign(_body.velocity.x);
+      if (chargeDir != transform.localScale.x) { // if some bitch is bouncing
+        chargeDir = transform.localScale.x;
+      }
+      if (_body.velocity.x == 0) {
+        chargeDir = transform.localScale.x;
+      }
+      deltaX = chargeDir * speed * spearChargeMod;
     } else {
-      if (!stun) {
-        if (claymoreEquipped) {
-          deltaX = Input.GetAxisRaw("Horizontal") * claymoreSpeed;
+      if (!stun) { // if you're not stunned
+        if (!IsGrounded()) {
+          ChangeAirSpeed();
+          deltaX = _body.velocity.x;
         } else {
-          deltaX = Input.GetAxisRaw("Horizontal") * speed;
+          if (claymoreEquipped) {
+            deltaX = horizontalInput * claymoreSpeed;
+          } else {
+            deltaX = horizontalInput * speed;
+          }
         }
-      } else {
+      } else { // if you are stunned
         switch (stunMessage) {
           case "vault":
-            deltaX = (gameObject.transform.localScale.x * speed * spearChargeMod) + (Input.GetAxisRaw("Horizontal") * spearCtrlMod);
+            if (IsGrounded()) {
+              deltaX = (dir * speed * spearChargeMod) + (horizontalInput * spearCtrlMod); // because of how we're switching the direction you're facing now there are issues...
+            } else {
+              ChangeAirSpeed();
+              deltaX = _body.velocity.x;
+            }
             break;
           case "dash":
             deltaX = gameObject.transform.localScale.x * speed * spearDashMod;
@@ -77,9 +108,15 @@ public class PlayerMovement : MonoBehaviour {
         }
       }
     }
-    if (stunMessage != "hit") {
-      _body.velocity = new Vector2(deltaX, _body.velocity.y);
+
+    if ((stunMessage != "hit" /*|| stunMessage != "vault"*/) && (IsGrounded() || stun)) {
+        _body.velocity = new Vector2(deltaX, _body.velocity.y);
     }
+
+    if (_anim.GetBool("rolling")) {
+      _body.velocity = new Vector2(speed * lockDirection, _body.velocity.y);
+    }
+
 
     //Vertical movement
     if (stunMessage == "plummet") {
@@ -88,9 +125,9 @@ public class PlayerMovement : MonoBehaviour {
     else if (jumping) {
       if (Input.GetKey(KeyCode.Space)) {
         if (claymoreEquipped) {
-          _body.AddForce(Vector2.up * claymoreJumpBoost, ForceMode2D.Impulse);
+          _body.velocity += new Vector2(0f, claymoreJumpBoost * Time.deltaTime);
         } else {
-          _body.AddForce(Vector2.up * jumpBoost, ForceMode2D.Impulse);
+          _body.velocity += new Vector2(0f, jumpBoost * Time.deltaTime);
         }
       } else {
         jumping = false;
@@ -105,15 +142,47 @@ public class PlayerMovement : MonoBehaviour {
       StartCoroutine(JumpMod());
     }
 
+
     // animation
     _anim.SetFloat("speed", Mathf.Abs(deltaX));
-    if (!Mathf.Approximately(deltaX,0)) { // lets you turn around
+    if (_anim.GetBool("charging") || _anim.GetBool("rolling")) {
       transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
+    } else if (horizontalInput != 0) { // lets you turn around
+      transform.localScale = new Vector3(Mathf.Sign(horizontalInput), 1, 1);
     }
 
     _anim.SetBool("jump", !IsGrounded());    
   }
 
+  private void ChangeAirSpeed() {    
+    if (Input.GetAxisRaw("Horizontal") == 0) {
+      Debug.Log("correct thing");
+      float xVelIn = Mathf.Sign(_body.velocity.x);
+      _body.AddForce((Vector2.left * Mathf.Sign(_body.velocity.x)) * airSlowForce, ForceMode2D.Impulse); // might be acceleration, unsure
+      if (xVelIn != Mathf.Sign(_body.velocity.x)) {
+        _body.velocity = new Vector2(0f, _body.velocity.y); // if x velocity change goes through 0, set x velocity to 0
+      }
+    } else {
+      _body.AddForce((Vector2.right * Input.GetAxisRaw("Horizontal")) * (airCtrlMod * Time.deltaTime), ForceMode2D.Impulse);
+      
+      if (stunMessage == "vault") {
+        if (Mathf.Abs(_body.velocity.x) > ((speed * spearChargeMod) + spearCtrlMod)) {
+          _body.velocity = new Vector2(((speed * spearChargeMod) + spearCtrlMod) * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+        }
+        if (Mathf.Sign(_body.velocity.x) != lockDirection) {
+          _body.velocity = new Vector2(0f, _body.velocity.y);
+        }
+      } else if (currentWeapon != 4) {
+        if (Mathf.Abs(_body.velocity.x) > speed) {
+          _body.velocity = new Vector2(speed * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+        }
+      } else {
+        if (Mathf.Abs(_body.velocity.x) > claymoreSpeed) {
+          _body.velocity = new Vector2(claymoreSpeed * Mathf.Sign(_body.velocity.x), _body.velocity.y);
+        }
+      }
+    }
+  }
 
   private bool IsGrounded() {
     float bonusHeight = 0.075f;
@@ -124,7 +193,9 @@ public class PlayerMovement : MonoBehaviour {
     if (retVal) {
       if (raycastHit.collider.tag == "movingPlatform") {
         transform.parent = raycastHit.collider.transform; 
-      } 
+      } else if (raycastHit.collider.gameObject.layer == 7 && raycastHit.collider.tag != "box") { // if the thing is a character but not a box
+        retVal = false; // overwrite retVal to be false since ya can't stand on that stuff
+      }
     } else {
         transform.parent = null;
     }
@@ -153,7 +224,7 @@ public class PlayerMovement : MonoBehaviour {
   }
 
 
-  public void GetHit(float strength) {
+  public void GetHit(float strength, bool giveInvuln) {
     if (!_anim.GetBool("spearDash") && !invincible) {
       _body.velocity = Vector2.zero;
       float angle = 45f * Mathf.Deg2Rad;
@@ -163,7 +234,9 @@ public class PlayerMovement : MonoBehaviour {
       _anim.SetTrigger("hit");
     // this might work?
     }
-    StartCoroutine(Invuln());
+    if (giveInvuln) {
+      StartCoroutine(Invuln());
+    }
   }
 
 
@@ -173,9 +246,24 @@ public class PlayerMovement : MonoBehaviour {
     if (_anim.GetBool("charging")) {
       _anim.SetBool("charging", false);
     }
-    if (message == "plummet") {
-      invincible = true;
+
+    switch (message) {
+      case "plummet":
+        invincible = true;
+        break;
+      case "dash":
+        RefreshMovement();
+        break;
+      case "vault":
+      case "roll":
+        if (_body.velocity.x != 0) {
+          lockDirection = Mathf.Sign(_body.velocity.x);
+        } else {
+          lockDirection = transform.localScale.x;
+        }
+        break;
     }
+
     if (stunCR != null) {
       StopCoroutine(stunCR);
     }
@@ -207,17 +295,42 @@ public class PlayerMovement : MonoBehaviour {
     }
     if (stunMessage != "hit") {
       invincible = false;
+      gameObject.layer = 6;
+    }
+    if (_anim.GetBool("rolling")) {
+      _anim.SetBool("rolling", false);
     }
     stun = false;
     stunTimed = false;
     stunMessage = "";
+    lockDirection = 0;
   }
 
   private IEnumerator Invuln() {
     Debug.Log("Invincible");
     invincible = true;
-    gameObject.layer = 10;
+    gameObject.layer = 14;
     yield return new WaitForSeconds(iFrames);
+    Debug.Log("Uninvincible");
+    invincible = false;
+    gameObject.layer = 6;
+  }
+
+  public void SwitchWeapon(int weaponNum) {
+    currentWeapon = weaponNum;
+    movementRefreshed = false;
+  }
+
+  public void RefreshMovement() {
+    movementRefreshed = true;
+  }
+
+  public void makeInvuln() {
+    Debug.Log("Invincible");
+    invincible = true;
+    gameObject.layer = 14;
+  }
+  public void removeInvuln() {
     Debug.Log("Uninvincible");
     invincible = false;
     gameObject.layer = 6;

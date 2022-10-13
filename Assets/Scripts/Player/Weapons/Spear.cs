@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spear : MonoBehaviour, IWeapon {
     [SerializeField] private LayerMask hurtboxLayerMask;
     public int damage {get; [SerializeField] set;} = 1;
-    public int abilityEnergyCost {get; [SerializeField] set;} = 1;
 
     [SerializeField] float atkHitStrength = 1.75f;
     [SerializeField] float chargeHitStrength = 2.5f;
@@ -104,7 +103,6 @@ public class Spear : MonoBehaviour, IWeapon {
     }
     private IEnumerator ChargeEnergyTick() {
         while(_anim.GetBool("charging")) {
-            // tick down energy
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -130,25 +128,22 @@ public class Spear : MonoBehaviour, IWeapon {
             yield return new WaitForSeconds(0.1f); // adjust to match roughly the length of the start of the jump
         }
         vaulting = false;
-        // energy stuff
     }
 
     private IEnumerator Dash() {
         if (!dashOnCooldown) {
-            Debug.Log("starting dash");
             // tell the animator to play the dash animatior
             // reduce player's energy meter
             _anim.SetBool("spearDash", true);
             _body.gravityScale = 0;
             _body.velocity = new Vector2(_body.velocity.x, 0f);
+            //_body.AddForce()
             GetComponent<PlayerMovement>().StunPlayer(0.25f, true, "dash");
             StartCoroutine(DashAttacker());
             yield return new WaitForSeconds(0.25f);
             _body.gravityScale = 1;
             _anim.SetBool("spearDash", false);
             StartCoroutine(DashCooldown());
-
-            // energy stuff
         }
     }
     private IEnumerator DashAttacker() {
