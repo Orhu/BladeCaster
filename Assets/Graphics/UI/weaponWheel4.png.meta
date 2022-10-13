@@ -124,7 +124,7 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,7 +145,7 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,7 +166,7 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,7 +187,7 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,6 +195,90 @@ TextureImporter:
       bones: []
       spriteID: 62dc55dc32a85fe4398ff09463d48323
       internalID: 377360900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_crystal
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 146
+        width: 60
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5584ba4c9f2c1304ea70eca11a447a3d
+      internalID: -754662961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spear_crystal
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 146
+        width: 60
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 693ad29654c523b4a92aa3c5b3e373e2
+      internalID: -481177094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grapple_crystal
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 146
+        width: 60
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e6cba2009087cb47b0ae94f9580f8ab
+      internalID: -613520764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: claymore_crystal
+      rect:
+        serializedVersion: 2
+        x: 2210
+        y: 146
+        width: 60
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 793d12fdadf64ef4e8c4fa7a5739b825
+      internalID: -2074125982
       vertices: []
       indices: 
       edges: []
@@ -211,8 +295,12 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       weaponWheel4_Claymore: 377360900
+      claymore_crystal: -2074125982
+      sword_crystal: -754662961
       weaponWheel4_Spear: -722595479
       weaponWheel4_Sword: -1415627784
+      grapple_crystal: -613520764
+      spear_crystal: -481177094
       weaponWheel4_Grapple: -1118067883
   spritePackingTag: 
   pSDRemoveMatte: 0
