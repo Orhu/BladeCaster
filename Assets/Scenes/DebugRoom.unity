@@ -1563,7 +1563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6338897255377711266, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: showGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6338897255377711266, guid: a4f0165a317e978489b985e4d5e346d7, type: 3}
       propertyPath: raycastLayerMask.m_Bits

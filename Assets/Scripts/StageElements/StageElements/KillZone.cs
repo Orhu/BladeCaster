@@ -14,24 +14,9 @@ public class KillZone : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            Debug.Log("Player killzone");
-            StartCoroutine(RespawnPlayer(other));
+            other.gameObject.GetComponent<PlayerMovement>().KillPlayer();
         } else if (other.tag == "enemy") {
             Destroy(other.gameObject);
         }
-    }
-
-    private IEnumerator RespawnPlayer(Collider2D other) { // look! an impressive mess!
-        SpriteRenderer _sprite = other.GetComponent<SpriteRenderer>();
-        Rigidbody2D _body = other.GetComponent<Rigidbody2D>();
-        PlayerMovement _player = other.GetComponent<PlayerMovement>();
-        _player.StunPlayer(0.01f, false, "respawn");
-        _sprite.enabled = false;
-        _body.gravityScale = 0;
-        _body.velocity = new Vector3(0f, 0f, 0f);
-        yield return new WaitForSeconds(2f);
-        other.transform.position = respawnPosition;
-        _body.gravityScale = 1;
-        _sprite.enabled = true;
     }
 }

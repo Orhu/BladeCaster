@@ -107,7 +107,7 @@ public class Sword : MonoBehaviour, IWeapon {
 
         bool ableToExit = false;
         while (!ableToExit) {
-            RaycastHit2D hit = Physics2D.BoxCast(_box.bounds.center + new Vector3(-0.004571877f, 0.06f, 0f), new Vector3(normalBoxSize.x, normalBoxSize.y - 0.06f, 0f), 0f, Vector2.up, 0f, rollCheckLayerMask);
+            RaycastHit2D hit = Physics2D.BoxCast(_box.bounds.center + new Vector3(-0.004571877f, 0.06f, 0f), new Vector3(normalBoxSize.x - 0.01f, normalBoxSize.y - 0.06f, 0f), 0f, Vector2.up, 0f, rollCheckLayerMask);
             Debug.Log(hit.collider);
             ableToExit = hit.collider == null; // if hit.collider is null, you can stand up
             if (hit.collider != null) {

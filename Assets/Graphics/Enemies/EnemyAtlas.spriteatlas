@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EnemyAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+    - {fileID: 2800000, guid: dfba9dae12363e34abf6173e97ffc859, type: 3}
+    - {fileID: 2800000, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 1865405149, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: 609864773, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: 182901666, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: -10823293, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: -883350254, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: 1287978648, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: -446988606, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: -64887936, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: 1469743302, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: -956135328, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: -332564605, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
+  - {fileID: -1318924880, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 1137220363, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 655315588, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 1518377667, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 1452375267, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 883069392, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 1828492108, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: -2124930590, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 137623394, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: -1844298719, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: -1782607510, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: -2037251641, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: -1393009634, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
+  - {fileID: 636143873, guid: dfba9dae12363e34abf6173e97ffc859, type: 3}
+  - {fileID: -1987970247, guid: dfba9dae12363e34abf6173e97ffc859, type: 3}
+  - {fileID: -1385784527, guid: dfba9dae12363e34abf6173e97ffc859, type: 3}
+  - {fileID: -2130668435, guid: dfba9dae12363e34abf6173e97ffc859, type: 3}
+  - {fileID: 839843705, guid: dfba9dae12363e34abf6173e97ffc859, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - guardRun2
+  - guardRun1
+  - guardRun0
+  - guardDead
+  - guardStun
+  - guardHit
+  - guardAttack2
+  - guardAttack3
+  - guardAttack0
+  - guardAttack1
+  - guardIdle
+  - SpearEnemyJump
+  - SpearEnemyRun3
+  - SpearEnemyRun2
+  - SpearEnemyRun1
+  - SpearEnemyRun0
+  - SpearEnemyDash
+  - SpearEnemyIdle
+  - SpearEnemyAtk0
+  - SpearEnemyAtk1
+  - SpearEnemyVault2
+  - SpearEnemyVault3
+  - SpearEnemyVault0
+  - SpearEnemyVault1
+  - slimeIdle1
+  - slimeIdle0
+  - slimeStun
+  - slimeDead
+  - slimeHurt
+  m_RenderDataMap: {}
+  m_Tag: EnemyAtlas
+  m_IsVariant: 0

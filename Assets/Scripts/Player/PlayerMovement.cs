@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour {
   private BoxCollider2D _box;
   private Animator _anim;
 
+  private Vector3 lastGroundedPosition;
+  private bool dead = false;
+
   // spear horizontal movement variables
   [Header("Spear Movement Modifiers")]
   [SerializeField] float spearChargeMod = 1.25f;
@@ -46,10 +49,16 @@ public class PlayerMovement : MonoBehaviour {
     _body = GetComponent<Rigidbody2D>();
     _box = GetComponent<BoxCollider2D>();
     _anim = GetComponent<Animator>();
+
+    lastGroundedPosition = transform.position;
   }
 
 
   void Update() {
+    if (IsMostlyGrounded() && !dead) {
+      lastGroundedPosition = transform.position;
+    }
+
     if (IsGrounded()) {
       movementRefreshed = true;
       if (stun && !stunTimed && stunMessage != "roll") {
@@ -145,9 +154,7 @@ public class PlayerMovement : MonoBehaviour {
 
     // animation
     _anim.SetFloat("speed", Mathf.Abs(deltaX));
-    if (_anim.GetBool("charging") || _anim.GetBool("rolling")) {
-      transform.localScale = new Vector3(Mathf.Sign(deltaX), 1, 1);
-    } else if (horizontalInput != 0) { // lets you turn around
+    if (horizontalInput != 0) { // lets you turn around
       transform.localScale = new Vector3(Mathf.Sign(horizontalInput), 1, 1);
     }
 
@@ -193,7 +200,7 @@ public class PlayerMovement : MonoBehaviour {
     if (retVal) {
       if (raycastHit.collider.tag == "movingPlatform") {
         transform.parent = raycastHit.collider.transform; 
-      } else if (raycastHit.collider.gameObject.layer == 7 && raycastHit.collider.tag != "box") { // if the thing is a character but not a box
+      } else if (raycastHit.collider.gameObject.layer == 12 && raycastHit.collider.tag != "box") { // if the thing is a character but not a box might be unnecessary
         retVal = false; // overwrite retVal to be false since ya can't stand on that stuff
       }
     } else {
@@ -214,6 +221,21 @@ public class PlayerMovement : MonoBehaviour {
     Debug.DrawRay(_box.bounds.center - new Vector3(_box.bounds.extents.x,0), Vector2.down * (_box.bounds.extents.y + bonusHeight), rayColor);
     Debug.DrawRay(_box.bounds.center - new Vector3(_box.bounds.extents.x, _box.bounds.extents.y + bonusHeight), Vector2.right * (_box.bounds.extents.x * 2), rayColor);
     //Debug.Log(raycastHit.collider);
+    return retVal;
+  }
+
+  private bool IsMostlyGrounded() {
+    float bonusHeight = 0.075f;
+    RaycastHit2D raycastHit = Physics2D.Raycast(_box.bounds.center - new Vector3(0f, _box.bounds.extents.y, 0f), Vector2.down, bonusHeight, platformLayerMask);
+    bool retVal = raycastHit.collider != null;
+    
+    // moving platform bullshit
+    if (retVal) {
+      if (raycastHit.collider.tag == "movingPlatform" || raycastHit.collider.tag == "box" || raycastHit.collider.gameObject.layer == 7) {
+        return false;
+      }
+    }
+
     return retVal;
   }
 
@@ -256,11 +278,7 @@ public class PlayerMovement : MonoBehaviour {
         break;
       case "vault":
       case "roll":
-        if (_body.velocity.x != 0) {
-          lockDirection = Mathf.Sign(_body.velocity.x);
-        } else {
-          lockDirection = transform.localScale.x;
-        }
+        lockDirection = transform.localScale.x;
         break;
     }
 
@@ -334,5 +352,25 @@ public class PlayerMovement : MonoBehaviour {
     Debug.Log("Uninvincible");
     invincible = false;
     gameObject.layer = 6;
+  }
+
+  public void KillPlayer() {
+    dead = true;
+    StartCoroutine(RespawnPlayer());
+  }
+
+  private IEnumerator RespawnPlayer() {
+    SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
+    StunPlayer(0.01f, false, "respawn");
+    _sprite.enabled = false;
+    _body.gravityScale = 0;
+    _body.velocity = new Vector3(0f, 0f, 0f);
+    yield return new WaitForSeconds(2f);
+    transform.position = lastGroundedPosition;
+    _body.gravityScale = 1;
+    _sprite.enabled = true;
+    dead = false;
+    
+    StartCoroutine(Invuln());
   }
 }

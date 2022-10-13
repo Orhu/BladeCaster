@@ -10,6 +10,7 @@ TagManager:
   - destructableProp
   - box
   - grapplePoint
+  - spike
   layers:
   - Default
   - TransparentFX
