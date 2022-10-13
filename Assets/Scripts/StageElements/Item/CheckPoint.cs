@@ -9,7 +9,7 @@ public class CheckPoint : MonoBehaviour
   private void OnTriggerEnter2D(Collider2D other){
     if(other.gameObject.layer == LayerMask.NameToLayer("Player")){
       playerSpawn = new Vector2(other.transform.position.x, other.transform.position.y);
-      other.gameObject.GetComponent<Player>().refillEnergy(Player.maxEnergy);
+      other.gameObject.GetComponent<Player>().refillHealth(Player.maxHealth);
     }
   }
 }

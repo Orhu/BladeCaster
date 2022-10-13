@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-  private float curEnergy;
-  public static float maxEnergy = 10;
+  private int curHealth;
+  public static int maxHealth = 6;
   public bool debugWeapon = false;
 
   public IWeapon currentWeapon;
@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
   void Start() {
     _anim = GetComponent<Animator>();
     _movement = GetComponent<PlayerMovement>();
+
+    curHealth = maxHealth;
 
     if(debugWeapon){
       for (int i = 0; i < 4; i++) {
@@ -145,30 +147,14 @@ public class Player : MonoBehaviour
     SwitchWeapon(weaponNum);
   }
 
-  public void refillEnergy(float amount){
-    curEnergy += amount;
-    if(curEnergy > maxEnergy)
+  public void refillHealth(int amount){
+    curHealth += amount;
+    if(curHealth > maxHealth)
     {
-      curEnergy = maxEnergy;
+      curHealth = maxHealth;
     }
     return;
   }
-
-  /*public bool UpdateEnergy(float x) {
-
-    Params:
-      float x = energy consumption from the weapon being called
-
-    float tempEng = curEnergy; //Pinpoints the energy so it is not updated
-    tempEng -= x;
-    if(tempEng <= 0) //If the energy is less than zero (empty), then nothing is changed and the execution is negated
-    {
-      return false;
-    }
-    curEnergy = tempEng; //Decrement by x if the curEnergy is greater than 0
-    EText.text = "Energy: " + curEnergy + "/" + maxEnergy;
-    return true;
-  }*/
 
   private IEnumerator DoWeaponWheel() {
     wheel.gameObject.SetActive(true); // show wheel
@@ -192,12 +178,12 @@ public class Player : MonoBehaviour
       Color deltaA = new Vector4(1f, 1f, 1f, Mathf.Lerp(1.0f, 0.0f, t));
       _wheelImage.color = deltaA;
       Time.timeScale = Mathf.Lerp(0.05f, 1.0f, t);
-      
+
       t += 10f * Time.deltaTime;
 
       yield return null;
     }
     wheel.gameObject.SetActive(false);
-      
+
   }
 }
