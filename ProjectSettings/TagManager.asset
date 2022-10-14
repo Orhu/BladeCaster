@@ -11,6 +11,7 @@ TagManager:
   - box
   - grapplePoint
   - spike
+  - switch
   layers:
   - Default
   - TransparentFX

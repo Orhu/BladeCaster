@@ -11,12 +11,32 @@ public class TutorialZone : MonoBehaviour {
     private GameObject _tutorialPopup;
 
     private IEnumerator activeCR;
+    private bool initialPlayerXScaleSame;
 
     void Start() {
         OnEnable();
     }
 
+    void Update() {
+        if (_tutorialPopup != null) {
+            if (initialPlayerXScaleSame) {
+                if (transform.parent.localScale.x == -1f) {
+                    _tutorialPopup.transform.localScale = new Vector3(-1f,1f,1f);
+                } else {
+                    _tutorialPopup.transform.localScale = new Vector3(1f,1f,1f);
+                }
+            } else {
+                if (transform.parent.localScale.x == -1f) {
+                    _tutorialPopup.transform.localScale = new Vector3(1f,1f,1f);
+                } else {
+                    _tutorialPopup.transform.localScale = new Vector3(-1f,1f,1f);
+                }
+            }
+        }
+    }
+
     void OnEnable() {
+        Debug.Log($"tutorial zone enabled with tutorial number {tutorialNumber}");
         if (Onboarder.GetTutorialStatus(tutorialNumber)) {
             Destroy(this.gameObject);
         }
@@ -47,6 +67,7 @@ public class TutorialZone : MonoBehaviour {
     private IEnumerator ShowTutorial(Collider2D other) {
         if (_tutorialPopup == null) {
             _tutorialPopup = Instantiate(tutorialPopupPrefab) as GameObject;
+            initialPlayerXScaleSame = other.transform.localScale.x == 1f;
         }
 
         _tutorialPopup.transform.parent = other.transform;

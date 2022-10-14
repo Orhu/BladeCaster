@@ -4,8 +4,7 @@ using UnityEngine;
 
 // PLACEHOLDER SCRIPT PLEASE PLAN TO REPLACE THIS WITH A BETTER, MORE FUNCTIONAL SCRIPT AT A LATER DATE
 public class KillZone : MonoBehaviour {
-    [SerializeField] Vector3 respawnPosition; 
-
+    [SerializeField] bool fullKill = false;
     private BoxCollider2D _box;
 
     void Start() {

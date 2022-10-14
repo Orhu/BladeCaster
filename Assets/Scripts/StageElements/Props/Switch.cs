@@ -15,6 +15,7 @@ public class Switch : MonoBehaviour, ILevelProp {
 
     void Start() {
         _anim = GetComponent<Animator>();
+        _anim.SetBool("active", active);
     }
 
     public void Interact() {
@@ -31,7 +32,8 @@ public class Switch : MonoBehaviour, ILevelProp {
     }
 
     public void SwitchOperate() {
-        interactable = !interactable;
+        active = !active;
+        _anim.SetBool("active", active);
     }
 
     private IEnumerator Delay() {

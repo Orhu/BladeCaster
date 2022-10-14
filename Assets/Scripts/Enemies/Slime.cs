@@ -33,6 +33,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     private bool acting = false; // if the slime is acting, dont do slime update
     private Vector3 homePosition; // set in start
     
+    private GameObject parentObj = null;
 
     private IEnumerator currentAction;
 
@@ -47,6 +48,9 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         _anim.SetInteger("health", 2);
 
         homePosition = transform.position;
+        if (transform.parent != null) {
+            parentObj = transform.parent.gameObject;
+        }
 
         StartCoroutine(SlimeUpdate());
     }
@@ -166,6 +170,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
                 for (int i = 0; i < 3; i++) {
                     float deltaX = dir * wanderSpeed;
                     _body.velocity = new Vector2(deltaX, _body.velocity.y);
+                    ChangeLookDirection();
                     yield return new WaitForSeconds(0.05f);
                 } 
             }
@@ -189,6 +194,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         if (SafeToMove(realMove, 1)) {
             float deltaX = dir * approachSpeed;
             _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
+            ChangeLookDirection();
             yield return new WaitForSeconds(approachTimeDelay);
         }
 
@@ -213,6 +219,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
                 if (SafeToMove(realMove, 1)) {
                     float deltaX = dir * approachSpeed;
                     _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
+                    ChangeLookDirection();
                     yield return new WaitForSeconds(approachTimeDelay);
                 } else {
                     break;
@@ -248,6 +255,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
             Vector2 force = new Vector2(Mathf.Cos(angle) * strength, Mathf.Sin(angle) * Mathf.Abs(strength));
             _body.AddForce(force, ForceMode2D.Impulse);
         }
+        ChangeLookDirection();
 
         yield return new WaitForSeconds(1f);
         
@@ -307,6 +315,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         _anim.SetInteger("health", health);
         Vector2 knockback = new Vector2(Mathf.Cos(0.6f) * strength, Mathf.Sin(0.6f) * Mathf.Abs(strength));
         _body.AddForce(knockback, ForceMode2D.Impulse);
+        ChangeLookDirection();
         _anim.SetTrigger("hit");
         if (health != 0) {
             StartCoroutine(DoIFrames());
@@ -339,7 +348,21 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     private bool IsGrounded() {
         float bonusHeight = 0.05f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center, _box.bounds.size, 0f, Vector2.down, bonusHeight, LayerMask.GetMask("Platform"));
-        return raycastHit.collider != null;
+        bool retVal = raycastHit.collider != null;
+
+        // moving platform bullshit
+        if (retVal) {
+            if (raycastHit.collider.tag == "movingPlatform") {
+                transform.parent = raycastHit.collider.transform; 
+            } else if (raycastHit.collider.gameObject.layer == 12 && raycastHit.collider.tag != "box") { // if the thing is a character but not a box might be unnecessary
+                retVal = false; // overwrite retVal to be false since ya can't stand on that stuff
+            }
+        } else {
+            if (parentObj != null) {
+                transform.parent = parentObj.transform;
+            }
+        }
+        return retVal;
     }
 
     void OnCollisionEnter2D(Collision2D col) {
@@ -350,6 +373,12 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
                 strength *= -1;
             }
             other.GetComponent<PlayerMovement>().GetHit(strength, true);
+        }
+    }
+
+    private void ChangeLookDirection() {
+        if (_body.velocity.x != 0) {
+            transform.localScale = new Vector3(Mathf.Sign(_body.velocity.x), 1f, 1f);
         }
     }
 }

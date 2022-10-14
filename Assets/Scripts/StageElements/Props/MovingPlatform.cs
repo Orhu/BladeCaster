@@ -12,6 +12,8 @@ public class MovingPlatform : MonoBehaviour, ILevelProp {
 
     public bool active = false;
 
+    [SerializeField] bool lockAtEnd = false;
+
     void Start() {
         startPoint = transform.position;
     }
@@ -23,8 +25,12 @@ public class MovingPlatform : MonoBehaviour, ILevelProp {
             float y = (endPoint.y - startPoint.y) * trackPercent + startPoint.y;
             transform.position = new Vector3(x, y, startPoint.z);
 
-            if ((direction == 1 && trackPercent > .9f) || (direction == -1 && trackPercent < .1f)) {
-                direction *= -1;
+            if ((direction == 1 && trackPercent > 1f) || (direction == -1 && trackPercent < 0f)) {
+                if (lockAtEnd) {
+                    active = false;
+                } else {
+                    direction *= -1;
+                }
             }
         }
     }

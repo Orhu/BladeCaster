@@ -66,8 +66,8 @@ public class Sword : MonoBehaviour, IWeapon {
                 if (!hitEnemy.IsInvulnerable()) {
                     hitEnemy.GetHit(damage, 0f);
                     hitThing = true;
-                }         
-            } else if (hit.tag == "levelProp") {
+                }
+            } else if (hit.tag == "levelProp" && hit.name != "Switch") {
                 hit.GetComponent<ILevelProp>().Interact();
                 hitThing = true;
             }
