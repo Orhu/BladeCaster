@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
   private Rigidbody2D _body;
   private BoxCollider2D _box;
   private Animator _anim;
+  private Player _player;
 
   private Vector3 lastGroundedPosition;
   private bool dead = false;
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
     _body = GetComponent<Rigidbody2D>();
     _box = GetComponent<BoxCollider2D>();
     _anim = GetComponent<Animator>();
+    _player = GetComponent<Player>();
 
     lastGroundedPosition = transform.position;
   }
@@ -126,7 +128,6 @@ public class PlayerMovement : MonoBehaviour {
       _body.velocity = new Vector2(speed * lockDirection, _body.velocity.y);
     }
 
-
     //Vertical movement
     if (stunMessage == "plummet") {
       _body.AddForce(Vector2.down * claymorePlummetSpeed, ForceMode2D.Impulse);
@@ -161,6 +162,7 @@ public class PlayerMovement : MonoBehaviour {
     _anim.SetBool("jump", !IsGrounded());    
   }
 
+
   private void ChangeAirSpeed() {    
     if (Input.GetAxisRaw("Horizontal") == 0) {
       Debug.Log("correct thing");
@@ -191,7 +193,8 @@ public class PlayerMovement : MonoBehaviour {
     }
   }
 
-  private bool IsGrounded() {
+
+  public bool IsGrounded() {
     float bonusHeight = 0.075f;
     RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center - new Vector3(0f, _box.bounds.extents.y, 0f), _box.bounds.size - new Vector3(0.02f, _box.bounds.extents.y,0f), 0f, Vector2.down, bonusHeight, platformLayerMask);
     bool retVal = raycastHit.collider != null;
@@ -224,7 +227,11 @@ public class PlayerMovement : MonoBehaviour {
     return retVal;
   }
 
+
   private bool IsMostlyGrounded() {
+    if (stunMessage == "roll") {
+      return false;
+    }
     float bonusHeight = 0.075f;
     RaycastHit2D raycastHit = Physics2D.Raycast(_box.bounds.center - new Vector3(0f, _box.bounds.extents.y, 0f), Vector2.down, bonusHeight, platformLayerMask);
     bool retVal = raycastHit.collider != null;
@@ -246,8 +253,18 @@ public class PlayerMovement : MonoBehaviour {
   }
 
 
-  public void GetHit(float strength, bool giveInvuln) {
-    if (!_anim.GetBool("spearDash") && !invincible) {
+  public void GetHit(int damage, float strength, bool giveInvuln, bool overrideInvincible) {
+    if (!invincible || overrideInvincible) {
+      if (damage >= 0) {
+        _player.DealDamage(damage);
+      }
+      if (damage == -1) { // secret instakill damage val
+        _player.KillPlayer();
+      }
+    }
+
+    // knockback
+    if (!_anim.GetBool("spearDash") && (overrideInvincible || !invincible) && strength != 0) {
       _body.velocity = Vector2.zero;
       float angle = 45f * Mathf.Deg2Rad;
       StunPlayer(0.1f, false, "hit");
@@ -354,9 +371,19 @@ public class PlayerMovement : MonoBehaviour {
     gameObject.layer = 6;
   }
 
-  public void KillPlayer() {
+  public void KillPlayer(bool trueKill, int damage = 0) {
     dead = true;
-    StartCoroutine(RespawnPlayer());
+    if (trueKill) {
+      _player.KillPlayer();
+    } else {
+      if (damage != 0) {
+        _player.DealDamage(damage);
+        if (_player.curHealth <= 0) {
+          return;
+        }
+      }
+      StartCoroutine(RespawnPlayer());
+    }
   }
 
   private IEnumerator RespawnPlayer() {

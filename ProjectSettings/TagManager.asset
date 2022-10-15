@@ -12,6 +12,7 @@ TagManager:
   - grapplePoint
   - spike
   - switch
+  - checkpoint
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - BackgroundElements
   - SpecialCharacter
   - TriggerZones
-  - 
+  - InvinciblePlayer
   - 
   - 
   - 

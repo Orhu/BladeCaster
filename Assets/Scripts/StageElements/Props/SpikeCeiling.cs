@@ -8,7 +8,7 @@ public class SpikeCeiling : MonoBehaviour, ILevelProp {
     [SerializeField] Vector3 destination;
     private Vector3 start;
 
-    private bool active;
+    public bool active;
 
     void Start() {
         start = transform.position;
@@ -16,7 +16,7 @@ public class SpikeCeiling : MonoBehaviour, ILevelProp {
 
     void OnCollisionEnter2D(Collision2D other) {
         if (other.collider.tag == "Player") {
-            other.collider.gameObject.GetComponent<PlayerMovement>().KillPlayer(); // swap for the proper kill player thing when thats ready
+            other.collider.gameObject.GetComponent<PlayerMovement>().KillPlayer(true); // swap for the proper kill player thing when thats ready
             active = false;
         } if (other.collider.tag == "enemy") {
             Destroy(other.collider.gameObject);

@@ -41,7 +41,7 @@ public class Bubble : MonoBehaviour, ILevelProp {
             if (other.transform.position.x <= transform.position.x) {
                 strength *= -1;
             }
-            other.GetComponent<PlayerMovement>().GetHit(strength, false);
+            other.GetComponent<PlayerMovement>().GetHit(0, strength, false, true);
         } else if (other.tag == "enemy") {
             float strength = knockbackStrength;
             if (other.transform.position.x <= transform.position.x) {

@@ -6,9 +6,8 @@ public class SpikeCeilingTrigger : MonoBehaviour {
     [SerializeField] SpikeCeiling spikeCeiling;
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+        if (other.tag == "Player" && !spikeCeiling.active) {
             spikeCeiling.Activate();
-            Destroy(this.gameObject);
         }
     }
 }

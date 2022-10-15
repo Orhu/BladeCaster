@@ -84,6 +84,7 @@ SpriteAtlas:
   - {fileID: 1098892477, guid: 19a9dcb15fb5e654d88eb7369ae29048, type: 3}
   - {fileID: 747722960, guid: 19a9dcb15fb5e654d88eb7369ae29048, type: 3}
   - {fileID: 1279071152, guid: 19a9dcb15fb5e654d88eb7369ae29048, type: 3}
+  - {fileID: 1129826071, guid: 2a0933a49366e5046a6c69829e2578ca, type: 3}
   - {fileID: -280871972, guid: 2a0933a49366e5046a6c69829e2578ca, type: 3}
   - {fileID: 603204085, guid: 2a0933a49366e5046a6c69829e2578ca, type: 3}
   - {fileID: -853461784, guid: 2a0933a49366e5046a6c69829e2578ca, type: 3}
@@ -164,6 +165,7 @@ SpriteAtlas:
   - PlayerSwordAtk0
   - PlayerSwordAtk3
   - PlayerSwordAtk2
+  - player_dead
   - PlayerStun
   - PlayerRun1
   - PlayerRun0
