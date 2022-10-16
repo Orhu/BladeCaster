@@ -7,12 +7,23 @@ public class Pause : MonoBehaviour
 {
 
   public GameObject PauseMenu;
-  public void PausePress()
+  public bool isPaused;
+
+
+  void start()
+  {
+    PauseMenu.SetActive(false);
+    
+  }
+
+
+  public void PauseGame()
   {
 
     PauseMenu.SetActive(true);
 
     Time.timeScale = 0f;
+    isPaused = true;
   }
 
   public void Resume()
@@ -20,17 +31,20 @@ public class Pause : MonoBehaviour
     PauseMenu.SetActive(false);
 
     Time.timeScale = 1f;
+    isPaused = false;
   }
 
   void Update()
   {
     if(Input.GetKeyDown(KeyCode.Escape))
     {
-      PausePress();
+      if(isPaused==true){
+        Resume();
+      }
+      else{
+        PauseGame();
+      }
     }
   }
-
-
-
 
 }
