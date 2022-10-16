@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimeSpawner : MonoBehaviour, ILevelProp {
+
+    public AudioSource spawnSound;
+
     [SerializeField] private GameObject slimePrefab;
     private GameObject _enemy;
 
@@ -23,7 +26,7 @@ public class SlimeSpawner : MonoBehaviour, ILevelProp {
         if (_enemy == null && aliveCheck) {
             aliveCheck = false;
             StartCoroutine(RespawnDelay());
-        } 
+        }
 
         if (!gameObject.activeSelf || !active) {
             return;
@@ -32,6 +35,7 @@ public class SlimeSpawner : MonoBehaviour, ILevelProp {
         if (_enemy == null && !spawning) {
             spawning = true;
             aliveCheck = true;
+            spawnSound.Play();
             _anim.SetTrigger("spawn");
         }
     }

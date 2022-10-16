@@ -9,6 +9,10 @@ public class Bubble : MonoBehaviour, ILevelProp {
     private Animator _anim;
     private Collider2D _box;
 
+    [Header("SFX")]
+    [SerializeField] AudioSource bubblePop;
+    [SerializeField] AudioSource bubbleReform;
+
     void Start() {
         _anim = GetComponent<Animator>();
         _box = GetComponent<Collider2D>();
@@ -16,6 +20,7 @@ public class Bubble : MonoBehaviour, ILevelProp {
 
     public void Interact() { // pop
         _anim.SetTrigger("pop");
+        bubblePop.Play();
         StartCoroutine(Respawn());
     }
 
@@ -28,6 +33,7 @@ public class Bubble : MonoBehaviour, ILevelProp {
         yield return new WaitForSeconds(respawnTime);
         _box.enabled = true;
         _sprite.enabled = true;
+        bubbleReform.Play();
     }
 
     public void SwitchOperate() {
@@ -50,6 +56,7 @@ public class Bubble : MonoBehaviour, ILevelProp {
             other.GetComponent<IEnemy>().GetHit(0, strength);
         }
         _anim.SetTrigger("pop");
+        bubblePop.Play();
         StartCoroutine(Respawn());
     }
 }

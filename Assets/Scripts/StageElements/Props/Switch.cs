@@ -13,6 +13,10 @@ public class Switch : MonoBehaviour, ILevelProp {
 
     private Animator _anim;
 
+    [Header("SFX")]
+    [SerializeField] AudioSource activeateSFX;
+    [SerializeField] AudioSource deactiveateSFX;
+
     void Start() {
         _anim = GetComponent<Animator>();
         _anim.SetBool("active", active);

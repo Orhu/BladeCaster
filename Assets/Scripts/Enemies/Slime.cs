@@ -10,7 +10,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     [SerializeField] float iFrames = 1f;
     [SerializeField] float knockbackStrength = 1.5f;
     [SerializeField] float bounce = 1.5f;
-    
+
     private BoxCollider2D _box;
     private Rigidbody2D _body;
     private Animator _anim;
@@ -24,15 +24,20 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     [SerializeField] float wanderDelay = 2.125f;
     [SerializeField] float approachSpeed = 1f; // speed of slime in approach action
     [SerializeField] float approachTimeDelay = 2f;
-    [SerializeField] int movesToLose = 3; // moves to forget about player 
-    [SerializeField] float heightDifferenceTolerance = 0.2f; // How far the slime is willing to fall.   
-    
+    [SerializeField] int movesToLose = 3; // moves to forget about player
+    [SerializeField] float heightDifferenceTolerance = 0.2f; // How far the slime is willing to fall.
+
+    [Header("SFX")]
+    [SerializeField] AudioSource bounceSFX;
+    [SerializeField] AudioSource attackSFX;
+    [SerializeField] AudioSource hurtSFX;
+
     // behavioral variables
     private float lastX; // last x value the player was spotted at or wander destinations.
     private bool passive = true; // true if player not detected as of last slime update
     private bool acting = false; // if the slime is acting, dont do slime update
     private Vector3 homePosition; // set in start
-    
+
     private GameObject parentObj = null;
 
     private IEnumerator currentAction;
@@ -84,7 +89,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
             yield return new WaitForSeconds(2f);
         }
         yield return new WaitForSeconds(updateDelay);
-        
+
         // when target detected
         if (_playerSensor.Target != null && passive) {
             passive = false;
@@ -97,7 +102,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
 
         // when player lost
         if (_playerSensor.Target == null && !passive) {
-            
+
             passive = true;
             if (currentAction != null) {
                 StopCoroutine(currentAction);
@@ -132,7 +137,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
                 StartCoroutine(currentAction);
             }
         }
-        
+
         StartCoroutine(SlimeUpdate());
     }
 
@@ -141,7 +146,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         // Generate a random int between 0 and 7.
         // If number == 0, move left after safety check (need to implement)
         // If number == 7, move right after safety check
-        // 
+        //
         // Do this by setting current destination to be whatever the position of the slime is + the move distance.
         // End the coroutine immediately if the player is detected.
         Debug.Log("Wander");
@@ -163,7 +168,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
             default:
                 break;
         }
-        
+
         if (move) {
             float realMove = 0.031062f * dir;
             if (SafeToMove(realMove, 0)) {
@@ -172,7 +177,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
                     _body.velocity = new Vector2(deltaX, _body.velocity.y);
                     ChangeLookDirection();
                     yield return new WaitForSeconds(0.05f);
-                } 
+                }
             }
             yield return new WaitForSeconds(wanderDelay);
         } else {
@@ -188,12 +193,13 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
 
         acting = true;
 
-        float dir = Mathf.Sign(lastX - transform.position.x); 
+        float dir = Mathf.Sign(lastX - transform.position.x);
 
         float realMove = 0.2531857f * dir;
         if (SafeToMove(realMove, 1)) {
             float deltaX = dir * approachSpeed;
             _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
+            bounceSFX.Play();
             ChangeLookDirection();
             yield return new WaitForSeconds(approachTimeDelay);
         }
@@ -219,6 +225,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
                 if (SafeToMove(realMove, 1)) {
                     float deltaX = dir * approachSpeed;
                     _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
+                    bounceSFX.Play();
                     ChangeLookDirection();
                     yield return new WaitForSeconds(approachTimeDelay);
                 } else {
@@ -236,7 +243,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
 
     private IEnumerator Attack() {
         Debug.Log("Attack");
-        
+
         acting = true;
 
         yield return new WaitForSeconds(2.5f); // charge up
@@ -258,7 +265,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         ChangeLookDirection();
 
         yield return new WaitForSeconds(1f);
-        
+
         while (!IsGrounded()) {
             yield return null;
         }
@@ -275,7 +282,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     }
 
     //private IEnumerator Retreat() {
-        // TO DO 
+        // TO DO
         // Way later, not really important right now
     //}
 
@@ -312,6 +319,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
             StopCoroutine(currentAction);
         }
         health -= damage;
+        hurtSFX.Play();
         _anim.SetInteger("health", health);
         Vector2 knockback = new Vector2(Mathf.Cos(0.6f) * strength, Mathf.Sin(0.6f) * Mathf.Abs(strength));
         _body.AddForce(knockback, ForceMode2D.Impulse);
@@ -353,7 +361,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         // moving platform bullshit
         if (retVal) {
             if (raycastHit.collider.tag == "movingPlatform") {
-                transform.parent = raycastHit.collider.transform; 
+                transform.parent = raycastHit.collider.transform;
             } else if (raycastHit.collider.gameObject.layer == 12 && raycastHit.collider.tag != "box") { // if the thing is a character but not a box might be unnecessary
                 retVal = false; // overwrite retVal to be false since ya can't stand on that stuff
             }
@@ -369,6 +377,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         GameObject other = col.gameObject;
         if (other.tag == "Player") {
             float strength = knockbackStrength;
+            attackSFX.Play();
             if (other.transform.position.x <= transform.position.x) {
                 strength *= -1;
             }

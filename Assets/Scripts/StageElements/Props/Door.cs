@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, ILevelProp {
     public bool locked = false;
-    public bool open = false; 
+    public bool open = false;
+
+    [Header("SFX")]
+    [SerializeField] AudioSource closeSFX;
+    [SerializeField] AudioSource openSFX;
 
     private Collider2D _box;
     private Animator _anim;
@@ -38,7 +42,7 @@ public class Door : MonoBehaviour, ILevelProp {
         if (open != _anim.GetBool("open")) {
             _anim.SetBool("open", open);
             if (open) { // wait for door animation to play to open the door to the player
-                yield return new WaitForSeconds(_anim.GetCurrentAnimatorStateInfo(0).length); 
+                yield return new WaitForSeconds(_anim.GetCurrentAnimatorStateInfo(0).length);
             }
         }
         _box.enabled = !open; // player can go through!

@@ -8,6 +8,7 @@ public class DialogueController : MonoBehaviour
   [Header("The Dialogue")]
   [SerializeField] string[] text;
   [SerializeField] TMP_Text textBox;
+  [SerializeField] AudioSource speech;
 
   [Header("Dialogue Speed")]
   [SerializeField] float interval;
@@ -26,6 +27,7 @@ public class DialogueController : MonoBehaviour
       int index = 0;
       while(index < chars.Length){
         textBox.text += chars[index];
+        speech.Play();
         index++;
         yield return new WaitForSeconds(interval);
       }
