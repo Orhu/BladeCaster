@@ -13,6 +13,7 @@ TagManager:
   - spike
   - switch
   - checkpoint
+  - trigger
   layers:
   - Default
   - TransparentFX
