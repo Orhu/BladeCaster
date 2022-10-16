@@ -6,32 +6,43 @@ using TMPro;
 public class DialogueController : MonoBehaviour
 {
   [Header("The Dialogue")]
-  [SerializeField] string text;
+  [SerializeField] string[] text;
   [SerializeField] TMP_Text textBox;
 
   [Header("Dialogue Speed")]
   [SerializeField] float interval;
   [SerializeField] float turnOff;
 
+  private bool started = false;
+
   void Start(){
     textBox.text = string.Empty;
   }
 
   IEnumerator TextBoxUpdate(){
-    char[] chars = text.ToCharArray();
-    int index = 0;
-    while(index < chars.Length){
-      textBox.text += chars[index];
-      index++;
-      yield return new WaitForSeconds(interval);
+    int line = 0;
+    while(line < text.Length){
+      char[] chars = text[line].ToCharArray();
+      int index = 0;
+      while(index < chars.Length){
+        textBox.text += chars[index];
+        index++;
+        yield return new WaitForSeconds(interval);
+      }
+      line++;
+      yield return new WaitForSeconds(turnOff);
+      textBox.text = string.Empty;
     }
     yield return new WaitForSeconds(turnOff);
     textBox.gameObject.SetActive(false);
+    started = false;
+    textBox.text = string.Empty;
   }
 
   void OnTriggerEnter2D(Collider2D other){
     Debug.Log("Trigger");
-    if (other.tag == "Player"){
+    if (other.tag == "Player" && !started){
+      started = true;
       textBox.gameObject.SetActive(true);
       StartCoroutine(TextBoxUpdate());
     }
