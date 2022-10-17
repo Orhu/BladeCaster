@@ -15,6 +15,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     private Rigidbody2D _body;
     private Animator _anim;
     private AIPlayerSensor _playerSensor;
+    private SFXHandler _voice;
 
     [Header("AI Parameters")]
     //[SerializeField] float followTime = 0.5f;
@@ -26,11 +27,6 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
     [SerializeField] float approachTimeDelay = 2f;
     [SerializeField] int movesToLose = 3; // moves to forget about player
     [SerializeField] float heightDifferenceTolerance = 0.2f; // How far the slime is willing to fall.
-
-    [Header("SFX")]
-    [SerializeField] AudioSource bounceSFX;
-    [SerializeField] AudioSource attackSFX;
-    [SerializeField] AudioSource hurtSFX;
 
     // behavioral variables
     private float lastX; // last x value the player was spotted at or wander destinations.
@@ -49,6 +45,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         _body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _playerSensor = GetComponent<AIPlayerSensor>();
+        _voice = GetComponent<SFXHandler>();
 
         _anim.SetInteger("health", 2);
 
@@ -199,7 +196,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         if (SafeToMove(realMove, 1)) {
             float deltaX = dir * approachSpeed;
             _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
-            bounceSFX.Play();
+            _voice.PlaySFX("Sounds/SFX/slimeBounce");
             ChangeLookDirection();
             yield return new WaitForSeconds(approachTimeDelay);
         }
@@ -225,7 +222,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
                 if (SafeToMove(realMove, 1)) {
                     float deltaX = dir * approachSpeed;
                     _body.velocity = new Vector2(deltaX, _body.velocity.y + bounce);
-                    bounceSFX.Play();
+                    _voice.PlaySFX("Sounds/SFX/slimeBounce");
                     ChangeLookDirection();
                     yield return new WaitForSeconds(approachTimeDelay);
                 } else {
@@ -246,7 +243,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
 
         acting = true;
 
-        yield return new WaitForSeconds(2.5f); // charge up
+        yield return new WaitForSeconds(0.75f); // charge up
 
         float strength = Random.Range(1.5f, 4.0f);
         var dir = _playerSensor.Target.transform.position - transform.position;
@@ -262,6 +259,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
             Vector2 force = new Vector2(Mathf.Cos(angle) * strength, Mathf.Sin(angle) * Mathf.Abs(strength));
             _body.AddForce(force, ForceMode2D.Impulse);
         }
+        _voice.PlaySFX("Sounds/SFX/slimeAttack");
         ChangeLookDirection();
 
         yield return new WaitForSeconds(1f);
@@ -319,7 +317,7 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
             StopCoroutine(currentAction);
         }
         health -= damage;
-        hurtSFX.Play();
+        _voice.PlaySFX("Sounds/SFX/slimeHurt");
         _anim.SetInteger("health", health);
         Vector2 knockback = new Vector2(Mathf.Cos(0.6f) * strength, Mathf.Sin(0.6f) * Mathf.Abs(strength));
         _body.AddForce(knockback, ForceMode2D.Impulse);
@@ -377,7 +375,6 @@ public class Slime : MonoBehaviour, IEnemy { // basic AI for the slime enemy (ri
         GameObject other = col.gameObject;
         if (other.tag == "Player") {
             float strength = knockbackStrength;
-            attackSFX.Play();
             if (other.transform.position.x <= transform.position.x) {
                 strength *= -1;
             }

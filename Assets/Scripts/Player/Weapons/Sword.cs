@@ -13,6 +13,7 @@ public class Sword : MonoBehaviour, IWeapon {
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private Animator _anim;
+    private SFXHandler _voice;
 
     private bool readyToExit = false;
     private bool allowExit = false;
@@ -21,6 +22,7 @@ public class Sword : MonoBehaviour, IWeapon {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
+        _voice = GetComponent<SFXHandler>();
     }
 
     public void WeaponUpdate() {
@@ -39,6 +41,7 @@ public class Sword : MonoBehaviour, IWeapon {
     }
 
     public void Attack() {
+        _voice.PlaySFX("Sounds/SFX/playerSwordAttack");
         float direction = transform.localScale.x; // which way are you facing
         Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x * 3) * direction, 0f, 0f), new Vector3(_box.bounds.size.x * 2, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
         foreach (Collider2D hit in enemiesHit) {
@@ -89,6 +92,7 @@ public class Sword : MonoBehaviour, IWeapon {
     private IEnumerator Roll() {
         PlayerMovement _playerMove = GetComponent<PlayerMovement>();
         _anim.SetBool("rolling", true);
+        _voice.PlaySFX("Sounds/SFX/roll");
 
         Vector2 normalBoxSize = _box.bounds.size; // save the normal size before changing anything
         Vector2 normalBoxOffset = _box.offset; // save the normal offset before changing anything

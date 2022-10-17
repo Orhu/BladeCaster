@@ -16,6 +16,7 @@ public class Spear : MonoBehaviour, IWeapon {
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private Animator _anim;
+    private SFXHandler _voice;
 
     private bool vaultAvailable = false;
     private bool vaulting = false;
@@ -27,6 +28,7 @@ public class Spear : MonoBehaviour, IWeapon {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
+        _voice = GetComponent<SFXHandler>();
     }
 
     public void WeaponUpdate() {
@@ -34,6 +36,7 @@ public class Spear : MonoBehaviour, IWeapon {
     }
 
     public void Attack() {
+        _voice.PlaySFX("Sounds/SFX/spearAttack");
         float direction = transform.localScale.x; // which way are you facing
         Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x * 3) * direction, 0f, 0f), new Vector3(_box.bounds.size.x * 2, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
         foreach (Collider2D hit in enemiesHit) {
@@ -123,6 +126,7 @@ public class Spear : MonoBehaviour, IWeapon {
             xDirection = Vector2.left;
         }
         if (!_anim.GetBool("jump")) {
+            _voice.PlaySFX("Sounds/SFX/vault");
             _body.AddForce(Vector2.up * vaultForce, ForceMode2D.Impulse); // jump vertical
             GetComponent<PlayerMovement>().StunPlayer(0.1f, false, "vault"); // maintains horizontal velocity (need to make that until we interact with something
             yield return new WaitForSeconds(0.1f); // adjust to match roughly the length of the start of the jump
@@ -135,6 +139,7 @@ public class Spear : MonoBehaviour, IWeapon {
             // tell the animator to play the dash animatior
             // reduce player's energy meter
             _anim.SetBool("spearDash", true);
+            _voice.PlaySFX("Sounds/SFX/dash");
             _body.gravityScale = 0;
             _body.velocity = new Vector2(_body.velocity.x, 0f);
             //_body.AddForce()

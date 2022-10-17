@@ -12,10 +12,8 @@ public class BreakableBox : MonoBehaviour, IEnemy {
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private SpriteRenderer _sprite;
+    private SFXHandler _voice;
 
-    [Header("SFX")]
-    [SerializeField] AudioSource hitSFX;
-    [SerializeField] AudioSource breakSFX;
 
     [SerializeField] Sprite[] boxSprites; // 0 = broken, 1 = damaged, 2 = undamaged
 
@@ -23,6 +21,7 @@ public class BreakableBox : MonoBehaviour, IEnemy {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _sprite = GetComponent<SpriteRenderer>();
+        _voice = GetComponent<SFXHandler>();
 
         switch (size) {
             case 0:
@@ -55,7 +54,7 @@ public class BreakableBox : MonoBehaviour, IEnemy {
                 Debug.Log("Break");
                 StartCoroutine(Break());
             } else {
-                hitSFX.Play();
+                _voice.PlaySFX("Sounds/SFX/boxDamage");
                 UpdateSprite();
             }
         } else if (damage >= damageThreshold * 2) {
@@ -70,7 +69,7 @@ public class BreakableBox : MonoBehaviour, IEnemy {
     private IEnumerator Break() {
         _sprite.sprite = boxSprites[health];
         _box.enabled = false;
-        breakSFX.Play();
+        _voice.PlaySFX("Sounds/SFX/boxBreak");
         yield return new WaitForSeconds(0.2f);
         Destroy(this.gameObject);
     }

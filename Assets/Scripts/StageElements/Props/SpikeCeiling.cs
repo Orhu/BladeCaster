@@ -10,12 +10,18 @@ public class SpikeCeiling : MonoBehaviour, ILevelProp {
 
     public bool active;
 
+    private SFXHandler _voice;
+
     void Start() {
+        _voice = GetComponent<SFXHandler>();
+
         start = transform.position;
     }
 
     void OnCollisionEnter2D(Collision2D other) {
         if (other.collider.tag == "Player") {
+            _voice.StopLoop();
+            _voice.PlaySFX("Sounds/SFX/spikeCeilingShutoff");
             other.collider.gameObject.GetComponent<PlayerMovement>().KillPlayer(true); // swap for the proper kill player thing when thats ready
             active = false;
         } if (other.collider.tag == "enemy") {
@@ -29,11 +35,14 @@ public class SpikeCeiling : MonoBehaviour, ILevelProp {
 
     public void SwitchOperate() {
         active = false;
+        _voice.StopLoop();
+        _voice.PlaySFX("Sounds/SFX/spikeCeilingShutoff");
     }
 
     public void Activate() {
         active = true;
         StartCoroutine(Fall());
+        _voice.PlaySFXLoop("Sounds/SFX/spikeCeilingWrrLoop");
     }
 
     private IEnumerator Fall() {

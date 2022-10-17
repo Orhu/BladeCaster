@@ -27,6 +27,7 @@ public class Grapple : MonoBehaviour, IWeapon {
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private Animator _anim;
+    private SFXHandler _voice;
 
     private IEnumerator activeCR; // needed in case the player is hit while grappling
 
@@ -46,6 +47,7 @@ public class Grapple : MonoBehaviour, IWeapon {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
+        _voice = GetComponent<SFXHandler>();
     }
 
     public void WeaponUpdate() {
@@ -180,6 +182,7 @@ public class Grapple : MonoBehaviour, IWeapon {
         // Unused, replaced by GrappleAttack via Animation Event
     }
     public void GrappleAttack() {
+        _voice.PlaySFX("Sounds/SFX/grappleAtk");
         float direction = transform.localScale.x; // which way are you facing
         Collider2D[] enemiesHitStrong = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x + 0.39f) * direction, 0.01f, 0f), new Vector3(0.1f, 0.2f, 0f), 0f, hurtboxLayerMask);
         Collider2D[] enemiesHitWeak = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x + 0.19f) * direction, 0.06f, 0f), new Vector3(0.3f, 0.3f, 0f), 0f, hurtboxLayerMask);
@@ -220,6 +223,7 @@ public class Grapple : MonoBehaviour, IWeapon {
     }
 
     private void ShootHook() {
+        _voice.PlaySFX("Sounds/SFX/grappleShoot");
         if (_hook != null) {
             Destroy(_hook);
         }
@@ -246,6 +250,8 @@ public class Grapple : MonoBehaviour, IWeapon {
             yield return null; // until we're hooked, stay frozen.
         }
         // hooked
+        _voice.PlaySFX("Sounds/SFX/grapplePull");
+        
         float t = 0.0f;
         float vT = 0.0f;
         

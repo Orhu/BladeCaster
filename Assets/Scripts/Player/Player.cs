@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
   private static int maxHealth;
   public int curHealth;
   public bool debugWeapon = false;
+  public bool godMode = false;
 
   public IWeapon currentWeapon;
   public int weaponNumber = 0;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
   private Rigidbody2D _body;
   private Animator _anim;
   private PlayerMovement _movement;
+  private SFXHandler _voice;
 
 
   private int pendingWeapon;
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
     _body = GetComponent<Rigidbody2D>();
     _anim = GetComponent<Animator>();
     _movement = GetComponent<PlayerMovement>();
+    _voice = GetComponent<SFXHandler>();
 
     if (weaponsUnlocked > 1) {
       maxHealth = 6 + (2 * (weaponsUnlocked - 1));
@@ -154,7 +157,8 @@ public class Player : MonoBehaviour
         currentWeapon = WeaponsMaster.shield;
         break;*/
     }
-    if(weaponUnlocks[weaponNum] == true){
+    if(weaponUnlocks[weaponNum]){
+      _voice.PlaySFX("Sounds/SFX/weaponSwap");
       _anim.SetInteger("weapon", (weaponNum + 1));
       GetComponent<PlayerMovement>().SwitchWeapon(weaponNum + 1);
     }
@@ -162,6 +166,7 @@ public class Player : MonoBehaviour
 
 
   public void UnlockWeapon(int weaponNum) {
+    _voice.PlaySFX("Sounds/SFX/weaponGet");
     weaponsUnlocked++;
     if (weaponNum != 0) {
       IncreaseMaxHealth();
@@ -171,7 +176,9 @@ public class Player : MonoBehaviour
     }
     weaponUnlocks[weaponNum] = true;
     wheel.IncrementWeaponsUnlocked();
-    SwitchWeapon(weaponNum);
+    if (weaponNum == 0) { // else keep that shit hidden :O
+      SwitchWeapon(weaponNum);
+    }
   }
 
 
@@ -225,6 +232,9 @@ public class Player : MonoBehaviour
 
 
   public void DealDamage(int damage) {
+    if (godMode) {
+      return;
+    }
     curHealth -= damage;
     Debug.Log($"Player dealt {damage} damage. Health = {curHealth}/{maxHealth}");
     heartMeter.Refresh(curHealth, maxHealth);
@@ -236,6 +246,7 @@ public class Player : MonoBehaviour
 
 
   public void KillPlayer() {
+    _voice.PlaySFX("Sounds/SFX/playerDie");
     if (curHealth > 0) {
       StartCoroutine(EventRespawn(_movement.IsGrounded()));
     } else {

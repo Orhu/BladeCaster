@@ -87,6 +87,9 @@ public class TutorialZone : MonoBehaviour {
             _tutorialSprite.color = deltaA;
 
             t += 2f * Time.deltaTime;
+            if (t >= 1f) {
+                t = 1f;
+            }
 
             if (Input.GetKeyDown(tutorialClearButton)) {
                 ClearTutorial();
@@ -99,6 +102,7 @@ public class TutorialZone : MonoBehaviour {
             if (Input.GetKeyDown(tutorialClearButton)) {
                 ClearTutorial();
             }
+            yield return null;
         }
     }
 

@@ -51,6 +51,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 77747d54096617d4595b9a0175726216, type: 3}
     - {fileID: 2800000, guid: 4c266fe1934614342bb43f8e0883fdc6, type: 3}
     - {fileID: 2800000, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
+    - {fileID: 2800000, guid: ebe1404846d21614f8d1570cc6854bc0, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -100,6 +101,12 @@ SpriteAtlas:
   - {fileID: 1847368095, guid: 77747d54096617d4595b9a0175726216, type: 3}
   - {fileID: 378271052, guid: 77747d54096617d4595b9a0175726216, type: 3}
   - {fileID: -2022306586, guid: 77747d54096617d4595b9a0175726216, type: 3}
+  - {fileID: -1307675835, guid: ebe1404846d21614f8d1570cc6854bc0, type: 3}
+  - {fileID: -2137698352, guid: ebe1404846d21614f8d1570cc6854bc0, type: 3}
+  - {fileID: -1562698375, guid: ebe1404846d21614f8d1570cc6854bc0, type: 3}
+  - {fileID: 624336187, guid: ebe1404846d21614f8d1570cc6854bc0, type: 3}
+  - {fileID: 2024984038, guid: ebe1404846d21614f8d1570cc6854bc0, type: 3}
+  - {fileID: -255776946, guid: ebe1404846d21614f8d1570cc6854bc0, type: 3}
   - {fileID: 1865405149, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
   - {fileID: 609864773, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
   - {fileID: 182901666, guid: 6ba8593924605c94ea2af6acb65a6611, type: 3}
@@ -121,9 +128,10 @@ SpriteAtlas:
   - {fileID: 1737606767, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
   - {fileID: 944016847, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
   - {fileID: 1656013815, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
+  - {fileID: 1775462141, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
+  - {fileID: -427807833, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
   - {fileID: 997920307, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
   - {fileID: -1859487693, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
-  - {fileID: 1775462141, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
   - {fileID: 979709124, guid: caa42fbb777408840a81d0aa3c514372, type: 3}
   - {fileID: -1318924880, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
   - {fileID: 1137220363, guid: b050d93ee325a3d46965a3547f70c6b6, type: 3}
@@ -188,6 +196,12 @@ SpriteAtlas:
   - spearBossP2_run2
   - spearBossP2_run1
   - spearBossP2_run0
+  - spearBossP2_tired4
+  - spearBossP2_tired5
+  - spearBossP2_tired0
+  - spearBossP2_tired1
+  - spearBossP2_tired2
+  - spearBossP2_tired3
   - guardRun2
   - guardRun1
   - guardRun0
@@ -209,9 +223,10 @@ SpriteAtlas:
   - spearBossP1_transformation1
   - spearBossP1_transformation2
   - spearBossP1_transformation3
+  - spearBossP1_defeat0
+  - spearBossP1_defeat1
   - spearBossP1_transformationRoar
   - spearBossP1_transformationComplete
-  - spearBossP1_defeat
   - spearBossP1_transformation8
   - SpearEnemyJump
   - SpearEnemyRun3

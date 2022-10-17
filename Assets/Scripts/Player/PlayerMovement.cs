@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
   private BoxCollider2D _box;
   private Animator _anim;
   private Player _player;
+  private SFXHandler _voice;
 
   private Vector3 lastGroundedPosition;
   private bool dead = false;
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour {
     _box = GetComponent<BoxCollider2D>();
     _anim = GetComponent<Animator>();
     _player = GetComponent<Player>();
+    _voice = GetComponent<SFXHandler>();
 
     lastGroundedPosition = transform.position;
   }
@@ -143,6 +145,7 @@ public class PlayerMovement : MonoBehaviour {
         jumping = false;
       }
     } else if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
+      _voice.PlaySFX("Sounds/SFX/playerJump");
       if (claymoreEquipped) {
         _body.AddForce(Vector2.up * claymoreBaseJump, ForceMode2D.Impulse);
       } else {
@@ -256,6 +259,7 @@ public class PlayerMovement : MonoBehaviour {
   public void GetHit(int damage, float strength, bool giveInvuln, bool overrideInvincible) {
     if (!invincible || overrideInvincible) {
       if (damage >= 0) {
+        _voice.PlaySFX("Sounds/SFX/playerHurt");
         _player.DealDamage(damage);
       }
       if (damage == -1) { // secret instakill damage val

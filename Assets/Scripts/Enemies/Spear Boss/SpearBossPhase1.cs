@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpearBossPhase1 : MonoBehaviour, IEnemy {
+    [SerializeField] SpearBossMain bossHealth;
+
     [SerializeField] LayerMask platformLayerMask;
     [SerializeField] LayerMask playerLayerMask;
 
@@ -14,16 +16,16 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
     private float jumpWaitTime = 1f;
 
     // behavioral stuff
-    int damageToDash = 2;
+    private int damageToDash = 2;
     private bool active = false;
     private float direction = -1f;
     private bool acting = false;
     private bool noMove = false;
     private bool cutscene = false;
-    [SerializeField] float wallDetectionDistance = 0.18f;
+    private bool doJumpNext = false;
 
     // movement stuff
-    private float speed = 1f;
+    private float speed = 1.1f;
     private float dashMod = 2f;
     private float vaultForce = 4f;
     private float leftXExtreme = 50.62f;
@@ -36,6 +38,7 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private Animator _anim;
+    private SFXHandler _voice;
 
     [SerializeField] GameObject phase2Prefab;
 
@@ -45,19 +48,17 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
+        _voice = GetComponent<SFXHandler>();
     }
 
-    // Update is called once per frame
     void Update() {
         if (active) {
             if (health <= 0) {
                 StartCoroutine(Transition());
-                active = false;
+                return;
             }
             if (!cutscene && !acting) {
-                RaycastHit2D wallCast = Physics2D.Raycast(_box.bounds.center + new Vector3((_box.bounds.extents.x * direction) + 0.01f, 0f, 0f), Vector2.right * direction, wallDetectionDistance, platformLayerMask);
-
-                if (/*wallCast.collider != null && wallCast.collider.tag != "enemy" || */((transform.position.x <= leftXExtreme && direction == -1)|| (transform.position.x >= rightXExtreme && direction == 1))) {
+                if ((transform.position.x <= leftXExtreme && direction == -1) || (transform.position.x >= rightXExtreme && direction == 1)) {
                     direction = direction * -1;
                 }
 
@@ -74,13 +75,13 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
                     RaycastHit2D attackCast = Physics2D.BoxCast(_box.bounds.center + new Vector3(0.17f * direction, 0f, 0f), new Vector3(0.18f, 0.2f, 0f), 0f, Vector3.right * direction, Mathf.Infinity, playerLayerMask);
                     if (attackCast.collider != null) {
                         Attack();
-                    } else if (jumpCount >= Random.Range(3,10)) {
+                    } else if (doJumpNext) {
+                        doJumpNext = false;
                         StartCoroutine(Vault());
-                        jumpCount = 0;
                     }
                 } else {
                     _anim.SetBool("jump", true);
-                    RaycastHit2D dashCast = Physics2D.BoxCast(_box.bounds.center + new Vector3(0.4f - _box.bounds.extents.x, _box.bounds.size.y * 1.5f - _box.bounds.extents.y, 0f), new Vector3 (0.8f, _box.bounds.size.y * 3f, 0f), 0f, Vector3.right * direction, Mathf.Infinity, playerLayerMask);
+                    RaycastHit2D dashCast = Physics2D.BoxCast(_box.bounds.center + new Vector3(0.4f - _box.bounds.extents.x * direction, _box.bounds.size.y * 1.5f - _box.bounds.extents.y, 0f), new Vector3 (0.8f, _box.bounds.size.y * 3f, 0f), 0f, Vector3.right * direction, Mathf.Infinity, playerLayerMask);
                     if (dashCast.collider != null) {
                         Dash();
                     }
@@ -98,9 +99,21 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
         }           
     }
 
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.collider.tag == "Player") {
+            other.collider.GetComponent<PlayerMovement>().GetHit(1, atkHitStrength * direction, true, false);
+        }
+    }
+
+    public void BeginFight() {
+        active = true;
+        StartCoroutine(SafetyJump());
+        StartCoroutine(JumpControl());
+    }
 
     private void Attack() {
         _anim.SetTrigger("attack");
+        _voice.PlaySFX("Sounds/SFX/sbp1Atk");
         acting = true;
         noMove = true;
         float direction = transform.localScale.x; // which way are you facing
@@ -121,14 +134,17 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
         _anim.SetTrigger("vault");
         acting = true;
         yield return new WaitForSeconds(_anim.GetCurrentAnimatorStateInfo(0).length);
-        _body.AddForce(Vector2.up * vaultForce, ForceMode2D.Impulse); // jump vertical
+        if (active) {
+            _voice.PlaySFXPitch("Sounds/SFX/vault", 0.5f);
+            _body.AddForce(Vector2.up * vaultForce, ForceMode2D.Impulse); // jump vertical
+        }
         acting = false;
     }
 
-    
     private void Dash() {
         // also from spear
         _anim.SetTrigger("dash");
+        _voice.PlaySFXPitch("Sounds/SFX/dash", -1f);
         acting = true;
         StartCoroutine(DashHelper());
     }
@@ -164,13 +180,34 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
         }
     }
 
+    private IEnumerator JumpControl() {
+        StartCoroutine(JumpDecay());
+        while (active) {
+            if (IsGrounded()) {
+                if (jumpCount >= Random.Range(3, 10)) {
+                        jumpCount = 0;
+                        doJumpNext = true;
+                }
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private IEnumerator JumpDecay() {
+        int lastJump = jumpCount;
+        while (active) {
+            yield return new WaitForSeconds(2f);
+            if (jumpCount == lastJump) {
+                jumpCount -= 1;
+            }
+            lastJump = jumpCount;
+        }
+    } 
 
     public bool IsGrounded() {
         float bonusHeight = 0.075f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(_box.bounds.center - new Vector3(0f, _box.bounds.extents.y, 0f), _box.bounds.size - new Vector3(0.02f, _box.bounds.extents.y,0f), 0f, Vector2.down, bonusHeight, platformLayerMask);
-        bool retVal = raycastHit.collider != null;
-
-        return retVal;
+        return raycastHit.collider != null;
     }
 
     public bool IsInvulnerable() {
@@ -178,9 +215,15 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
     }
 
     public void GetHit(int damage, float strength) {
+        if (!active) {
+            return;
+        }
         // throw out strength
+        _voice.PlaySFX("Sounds/SFX/sbp1Hurt");
         health -= damage;
         damageToDash -= damage;
+        speed += 0.05f;
+        bossHealth.LowerHealth(damage);
         if (health <= 0) {
             StartCoroutine(Transition());
             return;
@@ -189,30 +232,50 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
     }
 
     private IEnumerator DoInvuln() {
+        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
         invulnerable = true;
+        gameObject.layer = 10;
+        _sprite.color = new Vector4(0.75f, 0.125f, 0.125f, 1f);
         yield return new WaitForSeconds(invulnTime);
         invulnerable = false;
+        gameObject.layer = 7;
+        _sprite.color = new Vector4(1f, 1f, 1f, 1f);
     }
 
     private IEnumerator Transition() {
-        _anim.SetTrigger("die");
-        yield return null;
-        // do later!!!!!!!!
-    }
+        active = false;
+        noMove = true;
+        acting = true;
+        gameObject.layer = 10; // make invincible
+        invulnerable = true;
+        _body.velocity = new Vector2(0f, _body.velocity.y);
+        
 
-    public void BeginFight() {
-        active = true;
-        StartCoroutine(SafetyJump());
+        while (!IsGrounded()) { // wait for him to hit the ground.
+            yield return null;
+        }
+        _body.gravityScale = 0;
+        _body.velocity = Vector2.zero;
+
+        _anim.SetTrigger("die");        
     }
 
     private IEnumerator SafetyJump() {
         yield return new WaitForSeconds(1f);
-        StartCoroutine(Vault());
+        if (active) {
+            StartCoroutine(Vault());
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-        if (other.collider.tag == "Player") {
-            other.collider.GetComponent<PlayerMovement>().GetHit(1, atkHitStrength * direction, true, false);
-        }
+    public void SpawnPhase2() {
+        // need to do some math to get the exact positioning to spawn in the phase 2 prefab at.
+        GameObject _phase2 = Instantiate(phase2Prefab) as GameObject;
+        _phase2.GetComponent<SpearBossPhase2>().Setup(bossHealth);
+        _phase2.transform.position = transform.position; /* + new Vector3(something)*/
+        Destroy(this.gameObject);
+    }
+
+    public void RaisePosition(float amount) {
+        transform.position = transform.position + new Vector3 (0f, amount, 0f);
     }
 }

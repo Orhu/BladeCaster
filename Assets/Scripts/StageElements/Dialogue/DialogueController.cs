@@ -5,7 +5,7 @@ using TMPro;
 
 public class DialogueController : MonoBehaviour
 {
-  [Header("The Dialogue")]
+  [Header("Dialogue")]
   [SerializeField] string[] text;
   [SerializeField] TMP_Text textBox;
   [SerializeField] AudioSource speech;

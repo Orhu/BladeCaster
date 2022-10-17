@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimeSpawner : MonoBehaviour, ILevelProp {
-
-    public AudioSource spawnSound;
-
     [SerializeField] private GameObject slimePrefab;
     private GameObject _enemy;
 
@@ -14,11 +11,13 @@ public class SlimeSpawner : MonoBehaviour, ILevelProp {
     private bool aliveCheck = true;
 
     private Animator _anim;
+    private SFXHandler _voice;
 
     [SerializeField] float respawnDelayTime = 2f;
 
     void Start() {
         _anim = GetComponent<Animator>();
+        _voice = GetComponent<SFXHandler>();
     }
 
     // Update is called once per frame
@@ -35,7 +34,6 @@ public class SlimeSpawner : MonoBehaviour, ILevelProp {
         if (_enemy == null && !spawning) {
             spawning = true;
             aliveCheck = true;
-            spawnSound.Play();
             _anim.SetTrigger("spawn");
         }
     }
@@ -52,6 +50,7 @@ public class SlimeSpawner : MonoBehaviour, ILevelProp {
         _enemy.transform.position = new Vector3(transform.position.x, transform.position.y - 0.12f, 0f);
         spawning = false;
         aliveCheck = true;
+        _voice.PlaySFX("Sounds/SFX/spawnSlime");
     }
 
     public void Interact() {

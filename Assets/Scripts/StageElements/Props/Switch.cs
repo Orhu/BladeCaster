@@ -12,19 +12,23 @@ public class Switch : MonoBehaviour, ILevelProp {
     public float delayTime = 0.05f;
 
     private Animator _anim;
-
-    [Header("SFX")]
-    [SerializeField] AudioSource activeateSFX;
-    [SerializeField] AudioSource deactiveateSFX;
+    private SFXHandler _voice;
 
     void Start() {
         _anim = GetComponent<Animator>();
+        _voice = GetComponent<SFXHandler>();
+
         _anim.SetBool("active", active);
     }
 
     public void Interact() {
         if (interactable) {
             active = !active;
+            if (active) {
+                _voice.PlaySFX("Sounds/SFX/switchOn");
+            } else {
+                _voice.PlaySFX("Sounds/SFX/switchOff");
+            }
             _anim.SetBool("active", active);
             if (connectedProps != null) {
                 foreach (GameObject connection in connectedProps) {

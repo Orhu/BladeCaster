@@ -11,10 +11,14 @@ public class MovingPlatform : MonoBehaviour, ILevelProp {
     private int direction = 1;
 
     public bool active = false;
+    
+    private SFXHandler _voice;
 
     [SerializeField] bool lockAtEnd = false;
 
     void Start() {
+        _voice = GetComponent<SFXHandler>();
+
         startPoint = transform.position;
     }
 
@@ -27,7 +31,17 @@ public class MovingPlatform : MonoBehaviour, ILevelProp {
 
             if ((direction == 1 && trackPercent > 1f) || (direction == -1 && trackPercent < 0f)) {
                 if (lockAtEnd) {
+                    if (_voice != null) {
+                        _voice.PlaySFX("Sounds/SFX/elevatorArrive");
+                    }
                     active = false;
+                    gameObject.tag = "levelProp";
+                    Player _player = transform.GetComponentInChildren<Player>();
+                    if (_player != null) {
+                        _player.gameObject.transform.parent = null;
+                    }
+                    
+
                 } else {
                     direction *= -1;
                 }
@@ -46,5 +60,8 @@ public class MovingPlatform : MonoBehaviour, ILevelProp {
 
     public void SwitchOperate() {
         active = !active;
+        if (_voice != null) { // elevator only basically
+            _voice.PlaySFX("Sounds/SFX/elevatorActivate");
+        }
     }
 }

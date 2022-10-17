@@ -8,19 +8,17 @@ public class Bubble : MonoBehaviour, ILevelProp {
 
     private Animator _anim;
     private Collider2D _box;
-
-    [Header("SFX")]
-    [SerializeField] AudioSource bubblePop;
-    [SerializeField] AudioSource bubbleReform;
+    private SFXHandler _voice;
 
     void Start() {
         _anim = GetComponent<Animator>();
         _box = GetComponent<Collider2D>();
+        _voice = GetComponent<SFXHandler>();
     }
 
     public void Interact() { // pop
         _anim.SetTrigger("pop");
-        bubblePop.Play();
+        _voice.PlaySFX("Sounds/SFX/bubblePop");
         StartCoroutine(Respawn());
     }
 
@@ -33,7 +31,7 @@ public class Bubble : MonoBehaviour, ILevelProp {
         yield return new WaitForSeconds(respawnTime);
         _box.enabled = true;
         _sprite.enabled = true;
-        bubbleReform.Play();
+        _voice.PlaySFX("Sounds/SFX/bubbleReform");
     }
 
     public void SwitchOperate() {
@@ -56,7 +54,7 @@ public class Bubble : MonoBehaviour, ILevelProp {
             other.GetComponent<IEnemy>().GetHit(0, strength);
         }
         _anim.SetTrigger("pop");
-        bubblePop.Play();
+        _voice.PlaySFX("Sounds/SFX/bubblePop");
         StartCoroutine(Respawn());
     }
 }

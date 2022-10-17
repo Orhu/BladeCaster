@@ -16,11 +16,13 @@ public class Claymore : MonoBehaviour, IWeapon {
     private Rigidbody2D _body;
     private BoxCollider2D _box;
     private Animator _anim;
+    private SFXHandler _voice;
 
     void Start() {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
+        _voice = GetComponent<SFXHandler>();
     }
 
     public void WeaponUpdate() {
@@ -31,6 +33,7 @@ public class Claymore : MonoBehaviour, IWeapon {
         // Unused, replaced by ClaymoreAttack via Animation Event
     }
     public void ClaymoreAttack() {
+        _voice.PlaySFX("Sounds/SFX/claymoreAtk");
         float direction = transform.localScale.x; // which way are you facing
         Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(_box.bounds.center + new Vector3((_box.bounds.extents.x * 4) * direction, 0f, 0f), new Vector3(_box.bounds.size.x * 4f, _box.bounds.size.y, 0f), 0f, hurtboxLayerMask);
         foreach (Collider2D hit in enemiesHit) {
@@ -87,6 +90,7 @@ public class Claymore : MonoBehaviour, IWeapon {
     }
 
     private void Slam(float strengthRatio) {
+        _voice.PlaySFX("Sounds/SFX/claymoreSlam");
         Collider2D[] hits = Physics2D.OverlapBoxAll(_box.bounds.center, new Vector3(_box.bounds.size.x * 3f, _box.bounds.size.y + 0.12f, 0f), 0f, hurtboxLayerMask);
         foreach (Collider2D hit in hits) {
             Debug.Log(hit);

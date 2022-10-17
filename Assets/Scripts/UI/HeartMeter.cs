@@ -48,7 +48,6 @@ public class HeartMeter : MonoBehaviour {
                 heartStates[i] = 0;
                 if (curHealth != 0) {
                     for (int j = 0; j < 2; j++) {
-                        Debug.Log($"adding 1 to heartStates[{i}]. {curHealth}, {j}");
                         heartStates[i] += 1;
                         curHealth -= 1;
                         if (curHealth == 0) {
@@ -65,12 +64,10 @@ public class HeartMeter : MonoBehaviour {
 
     private void ShowRefresh() {
         for (int i = 0; i < 6; i++) {
-            Debug.Log(i);
             if (heartStates[i] == -1) {
                 hearts[i].gameObject.SetActive(false);
             } else {
                 hearts[i].gameObject.SetActive(true);
-                Debug.Log(heartStates[i]);
                 hearts[i].sprite = heartSprites[heartStates[i]];
             }
         }

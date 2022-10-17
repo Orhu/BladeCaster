@@ -1,0 +1,90 @@
+Player: (done)
+  General:
+	- Footstep - playerFootstep.wav (cut because annoying)
+	- Jump - playerJump.wav (done)
+	- Pickup new Weapon Fanfare - weaponGet.wav (done)
+	- Equip Weapon - weaponSwap.wav (done)
+	- Hurt - playerHurt.wav (done)
+	- Die - playerdie.wav (done)
+	- Fall - fall.wav (done, cheated by putting on the killzone instead)
+  Sword:
+	- Attack - playerSwordAttack.wav (done)
+	- Roll - roll.wav (done)
+  Spear:
+	- Attack - spearAttack.wav (done)
+	- Charge - chargeStep.wav (done, via animation events in charge animation)
+	- Vault - vault.wav (done)
+	- Dash - dash.wav (done)
+  Grapple:
+	- Attack - grappleAtk.wav (done)
+	- Grapple Shoot - grappleShoot.wav (done)
+	- Grapple Pull - grapplePull.wav (done)
+  Claymore:
+	- Attack - claymoreAtk.wav (done)
+	- Slam - claymoreSlam.wav (done)
+
+Slime: (done)
+	- Bounce - slimeBounce.wav (done)
+	- Attack - slimeAttack.wav (done)
+	- Hurt - slimeHurt.wav (done)
+
+Spear Boss:
+  Phase 1:
+	- Footstep - spearBossFootstep.wav (done) (done in animation events)
+	- Attack - sbp1Atk.wav (done)
+	- Dash - dash.wav (pitched down) (done) (pitch 1f -> -1f)
+	- Vault - vault.wav (pitch down slightly) (done) (pitch 1f -> 0.5f)
+	- Hurt - sbp1Hurt.wav (done)
+  Transition: (done via animation events)
+	- Transforming - sbTFweaponCrumble.wav, sbTFpuddleForm.wav, sbTFcrystalForm.wav, sbTransform.wav (done)
+	- Roar - sbroar.wav (done)
+  Phase 2:
+	- Footstep - sbp2Footstep.wav (done via animation events)
+	- Jump - sbJump.wav (done)
+	- Attack - spearBossP2Attack.wav (done)
+	- Charge - sbp2Charge.wav (done via animation events
+	- Shoot - sbShoot.wav (done)
+	  - Crystal Shatter - crystalShatter.wav (done)
+	- Slam - 8-bit Sound Effects Pack 001/Fly 2.wav (cut)
+	- Hit - spearBossP2Hit.wav (done)
+	- Defeat Sounds:
+		After last hit - finalHit.wav + spearBossDie.wav (done)
+		Crystal Forming - crystalForm.wav (done via animation events)
+
+Door: (done)
+	- Open - sfx_movement_dooropen2.wav (done)
+	- Close - sfx_movement_dooropen2.wav (pitched down) (done, pitched 1 -> -1)
+
+Switch: (done)
+	- Activate - switchOn.wav (done)
+	- Deactivate - switchOff.wav (done)
+
+Box: (done)
+	- Hit - boxDamage.wav (done)
+	- Break - boxBreak.wav (done)
+
+Bubble: (done)
+	- Pop - bubblePop.wav (done)
+	- Reform - bubbleReform.wav (done)
+
+Slime Spawner: (done)
+	- Spawn Slime - spawnSlime.wav (done)
+
+Checkpoint: (done)
+	- Activate - checkpoint.wav (done)
+
+Elevator: (done)
+	- Activate - elevatorActivate.wav (done)
+	- Stop - elevatorArrive.wav (done)
+
+Spike Ceiling: (done)
+	- Activate - spikeCeilingWrrLoop.wav (done)
+	- Stop - spikeCeilingShutoff.wav(done)
+
+NPC: (done)
+	- Talking Sound - npcTalk.wav (done)
+
+Misc.:
+	- Level Clear Fanfare - Victory!.wav
+	- Weapon Wheel Cycle sound - weaponWheelCycle.wav
+	- Game Over - Retro_No hope.mp3
