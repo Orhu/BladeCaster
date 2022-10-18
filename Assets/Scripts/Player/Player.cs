@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
 
 
   void Start() {
+    screenBlackout.gameObject.SetActive(false);
     _body = GetComponent<Rigidbody2D>();
     _anim = GetComponent<Animator>();
     _movement = GetComponent<PlayerMovement>();
@@ -59,10 +60,7 @@ public class Player : MonoBehaviour
     heartMeter.Refresh(curHealth, maxHealth);
 
     if(debugWeapon){
-      for (int i = 0; i < 4; i++) {
-        UnlockWeapon(i);
-        Debug.Log("Weapon " + i + " Unlocked");
-      }
+      ActivateDebugWeapon();
     }
   }
 
@@ -215,10 +213,10 @@ public class Player : MonoBehaviour
 
   public void RestoreHealth(int amount){
     if (curHealth + amount > maxHealth) {
-      curHealth = maxHealth; 
-      return;
+      curHealth = maxHealth;
+    } else {
+      curHealth += amount;
     }
-    curHealth += amount;
 
     heartMeter.Refresh(curHealth, maxHealth);
   }
@@ -386,5 +384,12 @@ public class Player : MonoBehaviour
 
   public void UpdateRespawnPoint(Vector3 checkpointPosition) {
     respawnPoint = checkpointPosition;
+  }
+
+  public void ActivateDebugWeapon() {
+    for (int i = 0; i < 4; i++) {
+        UnlockWeapon(i);
+        Debug.Log("Weapon " + i + " Unlocked");
+      }
   }
 }

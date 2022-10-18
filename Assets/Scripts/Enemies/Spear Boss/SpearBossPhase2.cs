@@ -389,6 +389,7 @@ public class SpearBossPhase2 : MonoBehaviour, IEnemy {
     }
 
     private void Die() {
+        bossHealth.Anticipation();
         _voice.PlaySFX("Sounds/SFX/finalHit");
         _voice.PlaySFX("Sounds/SFX/spearBossDie");
         active = false;

@@ -34,12 +34,6 @@ public class HeartMeter : MonoBehaviour {
                     heartStates[i] = 0;
                 }
             }
-        } else if (curHealth >= maxHealth) {
-            for (int i = 0; i < 6; i++) {
-                if (heartStates[i] != -1) {
-                    heartStates[i] = 2;
-                }
-            }
         } else { // fill up like one of those assembly line thingys
             for (int i = 0; i < 6; i++) {
                 if (heartStates[i] == -1) {
@@ -58,6 +52,10 @@ public class HeartMeter : MonoBehaviour {
                 
             }
         }    
+
+        for (int i = 0; i < 6; i++) {
+            Debug.Log(heartStates[i]);
+        }
 
         ShowRefresh();
     }

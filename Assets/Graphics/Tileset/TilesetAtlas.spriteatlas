@@ -35,7 +35,7 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 8
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
@@ -51,7 +51,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: a8ea2a48d9ca7ce488a65419e0c39582, type: 3}
     - {fileID: 2800000, guid: bc79268081f2a59458b9ca9bb35ed91e, type: 3}
     - {fileID: 2800000, guid: b3bc9c21120ee95458adbfe8c7e17d76, type: 3}
-    - {fileID: 2800000, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
     - {fileID: 2800000, guid: 75c7244997c078247ae8600923236488, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
@@ -157,13 +156,6 @@ SpriteAtlas:
   - {fileID: 1203709563, guid: f9be01d45c9644848b85ec3f5b678b05, type: 3}
   - {fileID: -1885086473, guid: f9be01d45c9644848b85ec3f5b678b05, type: 3}
   - {fileID: 377132727, guid: f9be01d45c9644848b85ec3f5b678b05, type: 3}
-  - {fileID: -769990301, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
-  - {fileID: 23664334, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
-  - {fileID: -1460983757, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
-  - {fileID: 1615796644, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
-  - {fileID: -1879150620, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
-  - {fileID: 1011552462, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
-  - {fileID: 676985515, guid: ef5d7536b2d4b5642bf65f2654f57e9a, type: 3}
   - {fileID: -1577406138, guid: a8ea2a48d9ca7ce488a65419e0c39582, type: 3}
   - {fileID: -1636079561, guid: a8ea2a48d9ca7ce488a65419e0c39582, type: 3}
   - {fileID: 1667006454, guid: a8ea2a48d9ca7ce488a65419e0c39582, type: 3}
@@ -287,13 +279,6 @@ SpriteAtlas:
   - tile_thickPlatform_M
   - tile_thickPlatform_L
   - TilesetA_Blue_11
-  - cyrstal_claymore
-  - cyrstal_spear
-  - crystal_sword
-  - crystal_grapple
-  - crystal_musket
-  - crystal_claws
-  - crystal_shield
   - Bubble
   - BubblePop2
   - BubblePop0

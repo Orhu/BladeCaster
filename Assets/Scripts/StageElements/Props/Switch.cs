@@ -7,6 +7,7 @@ public class Switch : MonoBehaviour, ILevelProp {
 
     public bool active = false;
     public bool interactable = true;
+    public bool selfDisable = false;
 
     public bool timeOff = false;
     public float delayTime = 0.05f;
@@ -40,13 +41,23 @@ public class Switch : MonoBehaviour, ILevelProp {
     }
 
     public void SwitchOperate() {
-        active = !active;
-        _anim.SetBool("active", active);
+        if (!selfDisable) {
+            active = !active;
+            _anim.SetBool("active", active);
+        } else {
+            interactable = false;
+        }
     }
 
     private IEnumerator Delay() {
-        interactable = false;
-        yield return new WaitForSeconds(delayTime);
+        if (!selfDisable) {
+            interactable = false;
+            yield return new WaitForSeconds(delayTime);
+            interactable = true;
+        }
+    }
+
+    public void MakeInteractable() {
         interactable = true;
     }
 }

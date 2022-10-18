@@ -7,8 +7,8 @@ using UnityEngine;
 public class SpearBossMain : MonoBehaviour {
     public int health {get; private set;} = 20;
 
-    [SerializeField] GameObject player; // for post boss tutorial
-    [SerializeField] BossHeartMeter healthMeter;
+    private GameObject player; // for post boss tutorial
+    private BossHeartMeter healthMeter;
     [SerializeField] AudioSource _voice;
 
     [SerializeField] GameObject tutorialPopupPrefab; // yes I know this is weird to do like this but idgaf
@@ -17,6 +17,19 @@ public class SpearBossMain : MonoBehaviour {
 
     private bool tutorialTime = false;
     private bool currentTutorialCleared = false;
+
+    void Start() {
+        player = GameObject.Find("Player");
+        healthMeter = GameObject.Find("Boss Health").GetComponent<BossHeartMeter>();
+        _voice = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+    }
+
+    void OnDestroy() {
+        healthMeter.EndFight();
+        _voice.Stop();
+        _voice.clip = Resources.Load("Sounds/Music/level1") as AudioClip;
+        _voice.Play();
+    }
 
     void Update() {
         if (!tutorialTime) {
@@ -40,8 +53,15 @@ public class SpearBossMain : MonoBehaviour {
         }
     }
 
+    public void Anticipation() {
+        _voice.Stop();
+    }
+
     public void StartFight() {
         healthMeter.StartFight();
+        healthMeter.Refresh(20);
+        _voice.clip = Resources.Load("Sounds/Music/boss") as AudioClip;
+        _voice.Play();
     }
 
     public void LowerHealth(int damage) {

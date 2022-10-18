@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour {
       _body.AddForce(Vector2.down * claymorePlummetSpeed, ForceMode2D.Impulse);
     }
     else if (jumping) {
-      if (Input.GetKey(KeyCode.Space)) {
+      if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
         if (claymoreEquipped) {
           _body.velocity += new Vector2(0f, claymoreJumpBoost * Time.deltaTime);
         } else {
@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour {
       } else {
         jumping = false;
       }
-    } else if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
+    } else if (IsGrounded() && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))) {
       _voice.PlaySFX("Sounds/SFX/playerJump");
       if (claymoreEquipped) {
         _body.AddForce(Vector2.up * claymoreBaseJump, ForceMode2D.Impulse);

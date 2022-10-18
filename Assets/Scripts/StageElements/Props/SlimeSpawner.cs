@@ -13,6 +13,8 @@ public class SlimeSpawner : MonoBehaviour, ILevelProp {
     private Animator _anim;
     private SFXHandler _voice;
 
+    [SerializeField] bool makeSound = true;
+
     [SerializeField] float respawnDelayTime = 2f;
 
     void Start() {
@@ -50,7 +52,9 @@ public class SlimeSpawner : MonoBehaviour, ILevelProp {
         _enemy.transform.position = new Vector3(transform.position.x, transform.position.y - 0.12f, 0f);
         spawning = false;
         aliveCheck = true;
-        _voice.PlaySFX("Sounds/SFX/spawnSlime");
+        if (makeSound) {
+            _voice.PlaySFX("Sounds/SFX/spawnSlime");
+        }
     }
 
     public void Interact() {

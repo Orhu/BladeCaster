@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6104841297655176305}
   - component: {fileID: -582854043144762534}
   - component: {fileID: -7602837324399863407}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Door
   m_TagString: levelProp
   m_Icon: {fileID: 0}

@@ -18,11 +18,17 @@ public class Sword : MonoBehaviour, IWeapon {
     private bool readyToExit = false;
     private bool allowExit = false;
 
+    private Vector2 normalBoxSize; // save the normal size before changing anything
+    private Vector2 normalBoxOffset; // save the normal offset before changing anything
+
     void Start() {
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
         _voice = GetComponent<SFXHandler>();
+
+        normalBoxSize = _box.bounds.size;
+        normalBoxOffset = _box.offset;
     }
 
     public void WeaponUpdate() {
@@ -94,8 +100,7 @@ public class Sword : MonoBehaviour, IWeapon {
         _anim.SetBool("rolling", true);
         _voice.PlaySFX("Sounds/SFX/roll");
 
-        Vector2 normalBoxSize = _box.bounds.size; // save the normal size before changing anything
-        Vector2 normalBoxOffset = _box.offset; // save the normal offset before changing anything
+        
 
         // shrink the player's box collider
         _box.size = new Vector2(0.12f,0.12f);
@@ -131,5 +136,11 @@ public class Sword : MonoBehaviour, IWeapon {
         if (allowExit) {
             readyToExit = true;
         }
+    }
+
+    public void HitboxFailsafe() {
+        // thanks nolan
+        _box.size = normalBoxSize;
+        _box.offset = normalBoxOffset;
     }
 }
