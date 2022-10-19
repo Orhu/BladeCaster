@@ -19,6 +19,9 @@ public class SpearBossMain : MonoBehaviour {
     private bool currentTutorialCleared = false;
 
     void Start() {
+        if (Onboarder.SPEAR_BOSS_DEFEATED) {
+            Destroy(this);
+        }
         player = GameObject.Find("Player");
         healthMeter = GameObject.Find("Boss Health").GetComponent<BossHeartMeter>();
         _voice = GameObject.Find("Main Camera").GetComponent<AudioSource>();
@@ -38,13 +41,13 @@ public class SpearBossMain : MonoBehaviour {
 
         if (_tutorialPopup != null) {
             if (initialPlayerXScaleSame) {
-                if (transform.parent.localScale.x == -1f) {
+                if (player.transform.localScale.x == -1f) {
                     _tutorialPopup.transform.localScale = new Vector3(-1f,1f,1f);
                 } else {
                     _tutorialPopup.transform.localScale = new Vector3(1f,1f,1f);
                 }
             } else {
-                if (transform.parent.localScale.x == -1f) {
+                if (player.transform.localScale.x == -1f) {
                     _tutorialPopup.transform.localScale = new Vector3(1f,1f,1f);
                 } else {
                     _tutorialPopup.transform.localScale = new Vector3(-1f,1f,1f);

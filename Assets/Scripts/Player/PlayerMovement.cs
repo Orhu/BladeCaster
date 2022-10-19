@@ -167,6 +167,9 @@ public class PlayerMovement : MonoBehaviour {
 
 
   private void ChangeAirSpeed() {    
+    if (stunMessage == "hit" || stunMessage == "respawn") {
+      return;
+    }
     if (Input.GetAxisRaw("Horizontal") == 0) {
       Debug.Log("correct thing");
       float xVelIn = Mathf.Sign(_body.velocity.x);

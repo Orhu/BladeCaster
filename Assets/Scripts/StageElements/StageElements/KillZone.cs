@@ -18,6 +18,7 @@ public class KillZone : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
             _voice.PlayOneShot(fall);
+            other.gameObject.GetComponent<PlayerMovement>().GetHit(1, 0f, false, true);
             other.gameObject.GetComponent<PlayerMovement>().KillPlayer(trueKill);
         } else if (other.tag == "enemy") {
             Destroy(other.gameObject);

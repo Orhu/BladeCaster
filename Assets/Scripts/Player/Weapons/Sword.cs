@@ -37,6 +37,7 @@ public class Sword : MonoBehaviour, IWeapon {
                 if (!_anim.GetBool("swordPogo")) {
                     _anim.SetBool("swordPogo", true); // turn on pogo mode when down is being held
                 }
+            
                 AttackPogo();
             } else if (_anim.GetBool("swordPogo")) {
                 _anim.SetBool("swordPogo", false); // turn off if not being pressed but is on
@@ -66,7 +67,7 @@ public class Sword : MonoBehaviour, IWeapon {
 
     private void AttackPogo() {
         bool hitThing = false;
-        Collider2D[] hits = Physics2D.OverlapBoxAll(_box.bounds.center - new Vector3(0f, _box.bounds.extents.y + 0.03f, 0f), new Vector3(_box.bounds.size.x, 0.04f, 0f), 0f, hurtboxLayerMask);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(_box.bounds.center - new Vector3(0f, (normalBoxSize.y/4f) + 0.04f, 0f), new Vector3(_box.bounds.size.x, normalBoxSize.y + 0.08f, 0f), 0f, hurtboxLayerMask);
         foreach (Collider2D hit in hits) {
             Debug.Log(hit);
             // check tags for each hit (complete later)
@@ -83,6 +84,7 @@ public class Sword : MonoBehaviour, IWeapon {
         }
 
         if (hitThing) { // if you hit something, pogo up
+            Debug.Log("Bounce Trigger!");
             PlayerMovement _playerMove = GetComponent<PlayerMovement>();
             _playerMove.Unstun(); // pogo unstuns
             _playerMove.RefreshMovement(); // and refreshes movement

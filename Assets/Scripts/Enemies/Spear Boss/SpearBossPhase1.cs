@@ -45,6 +45,9 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
     [SerializeField] float invulnTime = 0.2f;
 
     void Start() {
+        if (Onboarder.SPEAR_BOSS_DEFEATED) {
+            Destroy(this.gameObject);
+        }
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();

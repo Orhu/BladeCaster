@@ -74,14 +74,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - Hello, I have been waiting for you...
-  - I am Jim, and you are the Bladecaster, aren't you?
+  - 
   textBox: {fileID: 4840364734397522259}
   speech: {fileID: 4840364733951914832}
-  startWait: 1.5
+  startWait: 0.75
   interval: 0.05
   periodPauseTime: 0.75
   turnOff: 2
+  isEventTrigger: 0
+  eventNum: 0
+  completed: 0
 --- !u!82 &4840364733951914832
 AudioSource:
   m_ObjectHideFlags: 0

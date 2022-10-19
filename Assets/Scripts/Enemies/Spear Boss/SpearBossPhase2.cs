@@ -398,6 +398,13 @@ public class SpearBossPhase2 : MonoBehaviour, IEnemy {
         transform.localScale = new Vector3(1f, 1f, 1f);
         _body.velocity = Vector2.zero;
         _anim.SetTrigger("die");
+        StartCoroutine(LetFall());
+    }
+
+    private IEnumerator LetFall() {
+        while (!IsGrounded()) {
+            yield return null;
+        }
         _body.simulated = false;
     }
 
@@ -407,7 +414,7 @@ public class SpearBossPhase2 : MonoBehaviour, IEnemy {
 
     public void SpawnCrystal() {
         GameObject _crystal = Instantiate(spearUnlockPrefab) as GameObject;
-        _crystal.transform.position = transform.position + new Vector3 (-0.02f, -0.02f, 0f);
+        _crystal.transform.position = new Vector3(52.04f, 10.63f, 0f);
         bossHealth.EndFight(_crystal);
         Destroy(this.gameObject);
     }

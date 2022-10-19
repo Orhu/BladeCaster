@@ -68,6 +68,7 @@ public class BossHeartMeter : MonoBehaviour {
     }
 
     public void EndFight() {
+        Onboarder.SPEAR_BOSS_DEFEATED = true;
         foreach (Image heart in hearts) {
             heart.gameObject.SetActive(false);
         }

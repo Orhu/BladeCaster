@@ -28,6 +28,8 @@ public class Onboarder : MonoBehaviour {
     public static bool CLEARED_WEAPONWHEEL_TUTORIAL = false; // shift key tutorial (2)
     public static bool CLEARED_RAWCYCLE_TUTORIAL = false; // c key tutorial (3)
 
+    public static bool SPEAR_BOSS_DEFEATED = false;
+
     public static KeyCode GetTutorialKeyCode(int tutorialNumber) {
         switch (tutorialNumber) {
             case 0:
