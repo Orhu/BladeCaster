@@ -19,9 +19,6 @@ public class SpearBossMain : MonoBehaviour {
     private bool currentTutorialCleared = false;
 
     void Start() {
-        if (Onboarder.SPEAR_BOSS_DEFEATED) {
-            Destroy(this);
-        }
         player = GameObject.Find("Player");
         healthMeter = GameObject.Find("Boss Health").GetComponent<BossHeartMeter>();
         _voice = GameObject.Find("Main Camera").GetComponent<AudioSource>();

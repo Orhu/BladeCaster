@@ -41,13 +41,11 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
     private SFXHandler _voice;
 
     [SerializeField] GameObject phase2Prefab;
+    private GameObject _phase2;
 
     [SerializeField] float invulnTime = 0.2f;
 
     void Start() {
-        if (Onboarder.SPEAR_BOSS_DEFEATED) {
-            Destroy(this.gameObject);
-        }
         _body = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
@@ -272,13 +270,19 @@ public class SpearBossPhase1 : MonoBehaviour, IEnemy {
 
     public void SpawnPhase2() {
         // need to do some math to get the exact positioning to spawn in the phase 2 prefab at.
-        GameObject _phase2 = Instantiate(phase2Prefab) as GameObject;
+        _phase2 = Instantiate(phase2Prefab) as GameObject;
         _phase2.GetComponent<SpearBossPhase2>().Setup(bossHealth);
         _phase2.transform.position = transform.position; /* + new Vector3(something)*/
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     public void RaisePosition(float amount) {
         transform.position = transform.position + new Vector3 (0f, amount, 0f);
+    }
+
+    void OnDestroy() {
+        if (_phase2 != null) {
+            Destroy(_phase2);
+        }
     }
 }
