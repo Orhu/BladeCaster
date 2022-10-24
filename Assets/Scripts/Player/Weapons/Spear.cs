@@ -18,7 +18,8 @@ public class Spear : MonoBehaviour, IWeapon {
     private Animator _anim;
     private SFXHandler _voice;
 
-    private bool vaultAvailable = false;
+    //private bool vaultAvailable = false;
+    private bool charging = false;
     private bool vaulting = false;
     private bool dashOnCooldown = false;
 
@@ -32,7 +33,7 @@ public class Spear : MonoBehaviour, IWeapon {
     }
 
     public void WeaponUpdate() {
-        // TO DO
+        // To Do
     }
 
     public void Attack() {
@@ -59,7 +60,7 @@ public class Spear : MonoBehaviour, IWeapon {
             activeCR = Dash();
             StartCoroutine(activeCR);
         } else {
-            if (vaultAvailable) {
+            if (charging) {
                 if (!_anim.GetBool("jump")) {
                     StopCoroutine(activeCR);
                     activeCR = Vault();
@@ -74,19 +75,21 @@ public class Spear : MonoBehaviour, IWeapon {
 
     private IEnumerator Charge() {
         _anim.SetBool("charging", true);
-        bool charging = true;
+        charging = true;
         while(charging) {
             ChargeAttack();
             // charging movement happens in the PlayerMovement script.
             yield return null; // wait a frame
-            if (!Input.GetKey(KeyCode.X)) {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) {
+                _anim.SetTrigger("ability");
+                Ability();
+            } else if (!Input.GetKey(KeyCode.X)) {
                 charging = false;
             }
         }
-        vaultAvailable = true;
-        yield return new WaitForSeconds(0.25f);
-        vaultAvailable = false;
-        _anim.SetBool("charging", false);
+        if (!vaulting) {
+            _anim.SetBool("charging", false);
+        }
     }
     public void ChargeAttack() {
         float direction = transform.localScale.x; // which way are you facing
@@ -104,19 +107,14 @@ public class Spear : MonoBehaviour, IWeapon {
             }
         }
     }
-    private IEnumerator ChargeEnergyTick() {
-        while(_anim.GetBool("charging")) {
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
 
     private IEnumerator Vault() {
         // tell the animator to play the vault animation
         // add a force to the player's rigidbody going up and to the direction the player is facing at 60 degrees with whatever velocity gives the player a vertical component of 4f.
         // also until the player next touches anything (ground, enemy, prop, etc.) they no longer have control over their horizontal movement.
         Debug.Log("starting vault");
-        vaultAvailable = false;
         vaulting = true;
+        charging = false;
 
         yield return new WaitForSeconds(_anim.GetCurrentAnimatorStateInfo(0).length);
         _anim.SetBool("charging", false);

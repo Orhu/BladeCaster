@@ -65,7 +65,9 @@ SpriteAtlas:
   - {fileID: -1388709162, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
   - {fileID: -823450431, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
   - {fileID: 509442093, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
+  - {fileID: -1157833326, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
   - {fileID: 1271995118, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
+  - {fileID: 1342217346, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
   - {fileID: 276985887, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
   - {fileID: 941967147, guid: d30de30a47b66924b91d508e82e0d0e3, type: 3}
   - {fileID: 268885173, guid: 45d781be55260d2488b7308981203480, type: 3}
@@ -130,7 +132,9 @@ SpriteAtlas:
   - tutorialPopupKeys_ShiftDown
   - tutorialPopupKeys_ZUp
   - tutorialPopupKeys_ShiftUp
+  - tutorialPopupKeys_SpaceDown
   - tutorialPopupKeys_XUp
+  - tutorialPopupKeys_SpaceUp
   - tutorialPopupKeys_XDown
   - tutorialPopupKeys_CDown
   - GrappleTargetMarker_L4

@@ -67,7 +67,12 @@ SpriteAtlas:
   - {fileID: -2146726269, guid: 2cc76218ca613634f8b140edd879ccbf, type: 3}
   - {fileID: 650651392, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
   - {fileID: 1709974536, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
+  - {fileID: 1196306045, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
+  - {fileID: -48804964, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
+  - {fileID: -2001381290, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
   - {fileID: -114236401, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
+  - {fileID: 1972597323, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
+  - {fileID: -1069953448, guid: 7efecdfc63e4b7d4293e7ca8b79ab535, type: 3}
   m_PackedSpriteNamesToIndex:
   - SpikeCeiling
   - SewerGrateEmpty
@@ -83,7 +88,12 @@ SpriteAtlas:
   - SlimeSpawnerSpawning3
   - VaultHint
   - Roll Hint
+  - controlsAtk
+  - controlsAbl
+  - controlsJump
   - PogoHint
+  - controlsMove
+  - PogoText
   m_RenderDataMap: {}
   m_Tag: PropAtlasKinda
   m_IsVariant: 0

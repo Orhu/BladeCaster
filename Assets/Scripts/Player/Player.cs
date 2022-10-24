@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 
 
   void Update() {
+    bool isStunned = _movement.StunQuery(0);
     // Weapon Swap
     // press [button] to open weapon wheel theoretically
     if (Input.GetKeyDown(KeyCode.LeftShift)) {
@@ -99,7 +100,7 @@ public class Player : MonoBehaviour
       SwitchWeapon(6);
     }*/
 
-    if (currentWeapon != null) {
+    if (currentWeapon != null && !isStunned) {
       // Attacking/Ability
       if (Input.GetKeyDown(KeyCode.X)) {
         _anim.SetTrigger("ability");

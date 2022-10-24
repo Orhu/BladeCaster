@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour {
       _body.AddForce(Vector2.down * claymorePlummetSpeed, ForceMode2D.Impulse);
     }
     else if (jumping) {
-      if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
+      if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)) {
         if (claymoreEquipped) {
           _body.velocity += new Vector2(0f, claymoreJumpBoost * Time.deltaTime);
         } else {
@@ -144,15 +144,17 @@ public class PlayerMovement : MonoBehaviour {
       } else {
         jumping = false;
       }
-    } else if (IsGrounded() && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))) {
-      _voice.PlaySFX("Sounds/SFX/playerJump");
-      if (claymoreEquipped) {
-        _body.AddForce(Vector2.up * claymoreBaseJump, ForceMode2D.Impulse);
-      } else {
-        _body.AddForce(Vector2.up * baseJump, ForceMode2D.Impulse);
+    } else if (IsGrounded() && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))) {
+      if (!_anim.GetBool("charging")) {
+        _voice.PlaySFX("Sounds/SFX/playerJump");
+        if (claymoreEquipped) {
+          _body.AddForce(Vector2.up * claymoreBaseJump, ForceMode2D.Impulse);
+        } else {
+          _body.AddForce(Vector2.up * baseJump, ForceMode2D.Impulse);
+        }
+        jumping = true;
+        StartCoroutine(JumpMod());
       }
-      jumping = true;
-      StartCoroutine(JumpMod());
     }
 
 
@@ -287,6 +289,14 @@ public class PlayerMovement : MonoBehaviour {
 
 
   // stun/input-locking stuff
+
+  /* legend of stun messages:
+  *  hit: used for when the player is stunned as a result of being hit by an enemy, attack, or prop
+  *  respawn: used for when the player is respawning as a result of falling off a cliff or touching spikes
+  *  plummet: used for when the player is under the influence of the claymore's slam ability
+  *  roll: used for when the player is under the influence of the sword's roll ability
+  *  vault: used for when the player is under the influence of the velocity changes made by the spear's vault ability
+  *  dash: used for when the player is under the influence of the velocity changes made by the spear's dash ability */
   public void StunPlayer(float time, bool endOnTime, string message) {
     stunMessage = message;
     if (_anim.GetBool("charging")) {
@@ -314,6 +324,28 @@ public class PlayerMovement : MonoBehaviour {
     } else {
       stunCR = StunTime(time, endOnTime);
       StartCoroutine(stunCR);
+    }
+  }
+
+  public bool StunQuery(int mode) { // 0 = checking for if you can do weapon attacks and stuff
+    if (!stun) {
+      return false;
+    }
+    switch (mode) {
+      case 0:
+        switch (stunMessage) {
+          case "hit":
+          case "respawn":
+          case "plummet":
+          case "dash":
+          case "roll":
+            return true;
+          default:
+            return false;
+        }
+      default:
+        Debug.LogWarning("Invalid stun query mode selected");
+        return false;
     }
   }
 
